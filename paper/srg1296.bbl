@@ -1,0 +1,113 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Brady(2025)]{Brady2025}
+Andrew~C. Brady.
+\newblock New strongly regular graphs found via local search for partial
+  difference sets.
+\newblock \emph{Electron. J. Combin.}, 32\penalty0 (1):\penalty0 Paper No.
+  1.24, 2025.
+\newblock \doi{10.37236/13296}.
+\newblock arXiv:2406.09550.
+
+\bibitem[Brouwer(2026)]{BrouwerTable}
+Andries~E. Brouwer.
+\newblock Parameters of strongly regular graphs.
+\newblock \url{https://aeb.win.tue.nl/graphs/srg/srgtab.html}, 2026.
+\newblock Online table; accessed 12 October 2026.
+
+\bibitem[Brouwer and Haemers(1992)]{BrouwerHaemers1992}
+Andries~E. Brouwer and Willem~H. Haemers.
+\newblock Structure and uniqueness of the $(81,20,1,6)$ strongly regular graph.
+\newblock \emph{Discrete Math.}, 106/107:\penalty0 77--82, 1992.
+
+\bibitem[Brouwer and {Van Maldeghem}(2022)]{BvM2022}
+Andries~E. Brouwer and Hendrik {Van Maldeghem}.
+\newblock \emph{Strongly Regular Graphs}, volume 182 of \emph{Encyclopedia of
+  Mathematics and its Applications}.
+\newblock Cambridge University Press, 2022.
+
+\bibitem[Fern{\'a}ndez-Alcober et~al.(2010)Fern{\'a}ndez-Alcober, Kwashira, and
+  Mart{\'\i}nez]{FKM2010}
+Gustavo~A. Fern{\'a}ndez-Alcober, Rugare Kwashira, and Luis Mart{\'\i}nez.
+\newblock Cyclotomy over products of finite fields and combinatorial
+  applications.
+\newblock \emph{European J. Combin.}, 31:\penalty0 1520--1538, 2010.
+\newblock \doi{10.1016/j.ejc.2009.08.005}.
+
+\bibitem[Haemers and Tonchev(1996)]{HaemersTonchev1996}
+Willem~H. Haemers and Vladimir~D. Tonchev.
+\newblock Spreads in strongly regular graphs.
+\newblock \emph{Des. Codes Cryptogr.}, 8:\penalty0 145--157, 1996.
+
+\bibitem[Jedwab and Li(2021)]{JedwabLi2021}
+Jonathan Jedwab and Shuxing Li.
+\newblock Packings of partial difference sets.
+\newblock \emph{Combinatorial Theory}, 1:\penalty0 Paper No. 18, 2021.
+\newblock arXiv:2012.00979.
+
+\bibitem[Kova{\v{l}}(2026{\natexlab{a}})]{KovalMultiOrbit}
+Anton Kova{\v{l}}.
+\newblock Strongly regular graphs on 306, 400, 576, 784 and 1296 vertices from
+  multi-orbit coset fusion and {B}ush-type {H}adamard matrices.
+\newblock Preprint, October 2026{\natexlab{a}}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.23296158}.
+
+\bibitem[Kova{\v{l}}(2026{\natexlab{b}})]{KovalNew}
+Anton Kova{\v{l}}.
+\newblock New strongly regular graphs on open parameter sets of {B}rouwer's
+  table.
+\newblock Preprint, October 2026{\natexlab{b}}.
+\newblock URL \url{https://doi.org/10.5281/zenodo.23210829}.
+
+\bibitem[Ma(1994)]{Ma1994}
+Siu~Lun Ma.
+\newblock A survey of partial difference sets.
+\newblock \emph{Des. Codes Cryptogr.}, 4:\penalty0 221--261, 1994.
+\newblock \doi{10.1007/BF01388454}.
+
+\bibitem[McKay and Piperno(2014)]{McKayPiperno2014}
+Brendan~D. McKay and Adolfo Piperno.
+\newblock Practical graph isomorphism, {II}.
+\newblock \emph{J. Symbolic Comput.}, 60:\penalty0 94--112, 2014.
+
+\bibitem[Momihara(2021)]{Momihara2021}
+Koji Momihara.
+\newblock New constructions of strongly regular {C}ayley graphs on abelian non
+  $p$-groups.
+\newblock \emph{J. Combin. Theory Ser. A}, 184:\penalty0 105514, 2021.
+\newblock \doi{10.1016/j.jcta.2021.105514}.
+
+\bibitem[Ott(2016{\natexlab{a}})]{Ott2016a}
+Udo Ott.
+\newblock A generalization of a cyclotomic family of partial difference sets
+  given by {F}ern{\'a}ndez-{A}lcober, {K}washira and {M}art{\'\i}nez.
+\newblock \emph{Discrete Math.}, 339:\penalty0 2153--2156, 2016{\natexlab{a}}.
+\newblock \doi{10.1016/j.disc.2016.03.002}.
+
+\bibitem[Ott(2016{\natexlab{b}})]{Ott2016b}
+Udo Ott.
+\newblock On {J}acobi sums, difference sets and partial difference sets in
+  {G}alois domains.
+\newblock \emph{Des. Codes Cryptogr.}, 80:\penalty0 241--281,
+  2016{\natexlab{b}}.
+\newblock \doi{10.1007/s10623-015-0082-6}.
+
+\bibitem[Perron and Didier(2025)]{CPSAT}
+Laurent Perron and Fr{\'e}d{\'e}ric Didier.
+\newblock {CP-SAT}.
+\newblock Google OR-Tools, version 9.15,
+  \url{https://developers.google.com/optimization}, 2025.
+
+\bibitem[Polhill(2008)]{Polhill2008}
+John~B. Polhill.
+\newblock New negative {L}atin square type partial difference sets in
+  nonelementary abelian 2-groups and 3-groups.
+\newblock \emph{Des. Codes Cryptogr.}, 46\penalty0 (3):\penalty0 365--377,
+  2008.
+
+\end{thebibliography}
