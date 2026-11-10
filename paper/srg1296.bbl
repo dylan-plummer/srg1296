@@ -1,4 +1,4 @@
-\begin{thebibliography}{16}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -81,6 +81,12 @@ Koji Momihara.
   $p$-groups.
 \newblock \emph{J. Combin. Theory Ser. A}, 184:\penalty0 105514, 2021.
 \newblock \doi{10.1016/j.jcta.2021.105514}.
+
+\bibitem[Niskanen and {\"O}sterg{\aa}rd(2003)]{Cliquer}
+Sampo Niskanen and Patric R.~J. {\"O}sterg{\aa}rd.
+\newblock Cliquer user's guide, version 1.0.
+\newblock Technical Report T48, Communications Laboratory, Helsinki University
+  of Technology, 2003.
 
 \bibitem[Ott(2016{\natexlab{a}})]{Ott2016a}
 Udo Ott.

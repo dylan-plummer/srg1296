@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check Constructions 1, 2 and 3 of the paper exactly as printed (plain Python 3, no packages).
+"""Check Constructions 4.1, 4.2 and 4.3 of the paper exactly as printed (plain Python 3, no packages).
 Builds the three Cayley graphs on F_16 x F_81 from the printed data and verifies, for every vertex pair,
 the strongly regular parameters. Runtime: about a minute."""
 
@@ -16,14 +16,14 @@ A16 = powers(2, [1, 0, 0, 1, 1], 4)
 B81 = powers(3, [2, 0, 0, 1, 1], 4)
 Z = (0, 0, 0, 0)
 
-# Construction 1: srg(1296, 560, 244, 240)
+# Construction 4.1: srg(1296, 560, 244, 240)
 S = {(0, 0), (0, 2), (0, 6), (0, 11), (0, 13), (0, 14), (0, 17), (0, 18), (0, 19),
      (1, 3), (1, 6), (1, 7), (1, 8), (1, 10), (1, 11), (1, 13), (1, 15), (1, 19),
      (2, 1), (2, 2), (2, 5), (2, 9), (2, 10), (2, 11), (2, 13), (2, 16), (2, 17)}
 D1 = {(Z, B81[j]) for j in range(0, 80, 4)}
 D1 |= {(A16[i], B81[j]) for i in range(15) for j in range(80) if (i % 3, (j - 4 * (i // 3)) % 20) in S}
 
-# Construction 2: srg(1296, 592, 268, 272); J[a] for a = 0 (key None) and a = alpha^i (key i)
+# Construction 4.2: srg(1296, 592, 268, 272); J[a] for a = 0 (key None) and a = alpha^i (key i)
 J = {None: [0, 1, 3, 4, 7, 8, 9, 11, 12, 13, 16, 17, 19],
      0: [0, 2, 6, 11, 13, 14, 17, 18, 19], 1: [4, 6, 7, 10, 11, 12, 13, 15, 19],
      2: [1, 5, 10, 12, 13, 16, 17, 18, 19], 3: [1, 2, 7, 9, 10, 14, 15, 18, 19],
@@ -35,7 +35,7 @@ J = {None: [0, 1, 3, 4, 7, 8, 9, 11, 12, 13, 16, 17, 19],
      14: [0, 1, 2, 3, 4, 10, 15, 18, 19]}
 D2 = {(Z if a is None else A16[a], B81[j]) for a, js in J.items() for j in range(80) if j % 20 in js}
 
-# Construction 3: srg(1296, 595, 274, 272); J3[a] for a = 0 (key None) and a = alpha^i (key i), plus (a, 0) for a in F_4^*
+# Construction 4.3: srg(1296, 595, 274, 272); J3[a] for a = 0 (key None) and a = alpha^i (key i), plus (a, 0) for a in F_4^*
 J3 = {None: [0, 4, 5, 8, 12, 15, 16],
       0: [0, 2, 5, 6, 11, 13, 14, 15, 17, 18, 19], 1: [5, 9, 10, 12, 13, 14, 16, 18, 19],
       2: [2, 7, 8, 10, 14, 15, 16, 17, 19], 3: [3, 4, 5, 6, 10, 12, 13, 14, 19],
