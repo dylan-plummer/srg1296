@@ -1,0 +1,458 @@
+{
+ "srg1296_560_244_240_class1": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_560_244_240_class10": {
+  "k": 560,
+  "free_subgroups": 8,
+  "orth_edges": [
+   [
+    0,
+    3
+   ],
+   [
+    0,
+    4
+   ],
+   [
+    0,
+    5
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    0,
+    7
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    1,
+    6
+   ],
+   [
+    1,
+    7
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    5
+   ],
+   [
+    2,
+    6
+   ],
+   [
+    2,
+    7
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    3,
+    5
+   ],
+   [
+    3,
+    6
+   ],
+   [
+    3,
+    7
+   ],
+   [
+    4,
+    5
+   ]
+  ],
+  "orthogonal_sets_by_size": {
+   "1": 8,
+   "2": 18,
+   "3": 8,
+   "4": 1
+  },
+  "of_which_LS_PDS": {
+   "1": 8,
+   "2": 18,
+   "3": 8,
+   "4": 1
+  },
+  "bush_LS19": {
+   "hadamard": true,
+   "bush_diag": true,
+   "bush_offdiag_zero_sums": true,
+   "unit_diagonal_blocks": true,
+   "third_spread_W": true
+  }
+ },
+ "srg1296_560_244_240_class2": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_560_244_240_class3": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_560_244_240_class4": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_560_244_240_class5": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_560_244_240_class6": {
+  "k": 560,
+  "free_subgroups": 5,
+  "orth_edges": [
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    3
+   ],
+   [
+    0,
+    4
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    4
+   ],
+   [
+    2,
+    3
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    3,
+    4
+   ]
+  ],
+  "orthogonal_sets_by_size": {
+   "1": 5,
+   "2": 10,
+   "3": 10,
+   "4": 5,
+   "5": 1
+  },
+  "of_which_LS_PDS": {
+   "1": 5,
+   "2": 10,
+   "3": 10,
+   "4": 5,
+   "5": 1
+  },
+  "bush_LS19": {
+   "hadamard": true,
+   "bush_diag": true,
+   "bush_offdiag_zero_sums": true,
+   "unit_diagonal_blocks": true,
+   "third_spread_W": true
+  }
+ },
+ "srg1296_560_244_240_class7": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_560_244_240_class8": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_560_244_240_class9": {
+  "k": 560,
+  "free_subgroups": 0
+ },
+ "srg1296_592_268_272_class1": {
+  "k": 592,
+  "free_subgroups": 0
+ },
+ "srg1296_592_268_272_class2": {
+  "k": 592,
+  "free_subgroups": 0
+ },
+ "srg1296_592_268_272_class3": {
+  "k": 592,
+  "free_subgroups": 0
+ },
+ "srg1296_592_268_272_class4": {
+  "k": 592,
+  "free_subgroups": 0
+ },
+ "srg1296_595_274_272_class1": {
+  "k": 595,
+  "free_subgroups": 4,
+  "orth_edges": [
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    3
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    3
+   ]
+  ],
+  "orthogonal_sets_by_size": {
+   "1": 4,
+   "2": 6,
+   "3": 4,
+   "4": 1
+  },
+  "of_which_LS_PDS": {
+   "1": 4,
+   "2": 6,
+   "3": 4,
+   "4": 1
+  },
+  "bush_LS19": {
+   "hadamard": true,
+   "bush_diag": true,
+   "bush_offdiag_zero_sums": true,
+   "unit_diagonal_blocks": true,
+   "third_spread_W": "none among subgroups (D has no subgroup of order 36)"
+  }
+ },
+ "srg1296_595_274_272_class2": {
+  "k": 595,
+  "free_subgroups": 8,
+  "orth_edges": [
+   [
+    0,
+    3
+   ],
+   [
+    0,
+    4
+   ],
+   [
+    0,
+    5
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    4
+   ],
+   [
+    2,
+    7
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    3,
+    6
+   ],
+   [
+    4,
+    6
+   ],
+   [
+    6,
+    7
+   ]
+  ],
+  "orthogonal_sets_by_size": {
+   "1": 8,
+   "2": 12,
+   "3": 4,
+   "4": 1
+  },
+  "of_which_LS_PDS": {
+   "1": 8,
+   "2": 12,
+   "3": 4,
+   "4": 1
+  },
+  "bush_LS19": {
+   "hadamard": true,
+   "bush_diag": true,
+   "bush_offdiag_zero_sums": true,
+   "unit_diagonal_blocks": true,
+   "third_spread_W": "none among subgroups (D has no subgroup of order 36)"
+  }
+ },
+ "srg1296_595_274_272_class3": {
+  "k": 595,
+  "free_subgroups": 4,
+  "orth_edges": [
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    3
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    3
+   ]
+  ],
+  "orthogonal_sets_by_size": {
+   "1": 4,
+   "2": 6,
+   "3": 4,
+   "4": 1
+  },
+  "of_which_LS_PDS": {
+   "1": 4,
+   "2": 6,
+   "3": 4,
+   "4": 1
+  },
+  "bush_LS19": {
+   "hadamard": true,
+   "bush_diag": true,
+   "bush_offdiag_zero_sums": true,
+   "unit_diagonal_blocks": true,
+   "third_spread_W": "none among subgroups (D has no subgroup of order 36)"
+  }
+ },
+ "srg1296_595_274_272_class4": {
+  "k": 595,
+  "free_subgroups": 8,
+  "orth_edges": [
+   [
+    0,
+    4
+   ],
+   [
+    0,
+    5
+   ],
+   [
+    0,
+    6
+   ],
+   [
+    0,
+    7
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    1,
+    5
+   ],
+   [
+    2,
+    6
+   ],
+   [
+    2,
+    7
+   ],
+   [
+    3,
+    4
+   ],
+   [
+    4,
+    5
+   ],
+   [
+    4,
+    7
+   ],
+   [
+    5,
+    7
+   ]
+  ],
+  "orthogonal_sets_by_size": {
+   "1": 8,
+   "2": 12,
+   "3": 4,
+   "4": 1
+  },
+  "of_which_LS_PDS": {
+   "1": 8,
+   "2": 12,
+   "3": 4,
+   "4": 1
+  },
+  "bush_LS19": {
+   "hadamard": true,
+   "bush_diag": true,
+   "bush_offdiag_zero_sums": true,
+   "unit_diagonal_blocks": true,
+   "third_spread_W": "none among subgroups (D has no subgroup of order 36)"
+  }
+ }
+}

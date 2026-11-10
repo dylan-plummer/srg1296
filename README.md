@@ -9,16 +9,16 @@ F₁₆ × F₈₁* (Dylan Plummer, draft, October 2026), in `paper/`.
 |---|---|---|---|---|---|
 | (1296, 560, 244, 240) | LS₁₆(36) | open ("OA(36,16)?") | 10 | 103680, 51840 (×3), 25920 (×2), 20736 (×4) | 12, 14 or 15 |
 | (1296, 592, 268, 272) | NL₁₆(36) | open | 4 | 20736 each | 12 or 13 |
-| (1296, 595, 274, 272) | LS₁₇(36) | realised independently by Kovaľ, by graphs that are not vertex-transitive | 4 | 20736 each | 24 |
+| (1296, 595, 274, 272) | LS₁₇(36) | realized independently by Kovaľ, by graphs that are not vertex-transitive | 4 | 20736 each | 24 |
 
-Their complements (1296, 735, 414, 420), (1296, 703, 382, 380) and (1296, 700, 376, 380) are also realised.
+Their complements (1296, 735, 414, 420), (1296, 703, 382, 380) and (1296, 700, 376, 380) are also realized.
 Spectra: 560¹ 20⁵⁶⁰ (−16)⁷³⁵; 592¹ 16⁷⁰³ (−20)⁵⁹²; 595¹ 19⁵⁹⁵ (−17)⁷⁰⁰.
 
 - All 18 graphs are vertex-transitive Cayley graphs, so their connection sets are abelian partial difference sets.
 - None of the Latin-square-type graphs is the graph of an orthogonal array.
 - Counts are lower bounds; the search is not exhaustive.
-- Brouwer's table (checked 12 October 2026) lists (1296, 560, 244, 240) as realised, citing this work, and
-  (1296, 592, 268, 272) as open.
+- Brouwer's table (checked 14 October 2026) lists both (1296, 560, 244, 240) and (1296, 592, 268, 272) as realized,
+  citing this work.
 
 ## Construction
 
@@ -36,8 +36,12 @@ Every connection set is in `connsets/*.txt` as discrete-log pairs: a line "i j" 
 Structure (Section 5 of the paper):
 - In graph I each coset {a} × F₈₁ induces the Brouwer–Haemers graph srg(81, 20, 1, 6).
 - Graphs I.6 and I.10 arise from an srg(1296, 665, 340, 342) Cayley graph by deleting three pairwise orthogonal
-  spreads of Delsarte cliques, a configuration asked for in Kovaľ's multi-orbit paper (Section 4.10).
-- The graphs III arise from such a graph by deleting two orthogonal spreads.
+  spreads of Delsarte cliques. That Cayley graph is the graph of a symmetric Bush-type Hadamard matrix, so this answers
+  the question of Kovaľ's multi-orbit paper (Section 4.10) positively for n = 36 (Proposition 5.3).
+- The graphs III arise from such a graph by deleting two orthogonal spreads (graphs Γ_K of Bush-type Hadamard matrices).
+- Adding pairwise orthogonal subgroups of order 36 that are disjoint from D always gives a Latin square type PDS:
+  graph I.6 is an LS₂₁(36) Cayley graph with five orthogonal spreads deleted (the maximum in this group), I.10 an
+  LS₂₀(36) graph with four, and the graphs III LS₂₁(36) graphs with four (Proposition 5.2, Figure 2).
 
 ## Layout
 
@@ -49,11 +53,12 @@ Structure (Section 5 of the paper):
 | `build_from_logs.py` | standalone builder and exhaustive verifier for any file in `connsets/` (plain Python 3, no packages) |
 | `paper/` | LaTeX source (`srg1296.tex`, `refs.bib`), compiled PDF, figures |
 | `paper/check_constructions.py` | rebuilds Constructions 4.1–4.3 exactly as printed and verifies them (plain Python 3) |
-| `paper/make_figures.py` | regenerates `paper/figures/` from `connsets/` (numpy, matplotlib) |
-| `paper/checks/` | computations behind the paper's claims: exact clique numbers (`clique_numbers.py`, output in `clique_numbers.out`), stabilisers and the known-construction checks (`known_constructions.py`), spread structure (`spread_structure.py`, `third_spread.py`) |
+| `paper/make_figures.py` | regenerates `paper/figures/rings.pdf` from `connsets/` (numpy, matplotlib) |
+| `paper/make_fig_orthogonality.py` | regenerates `paper/figures/orthogonality.pdf` (Figure 2(b)) from `paper/checks/spread_lattice.json` |
+| `paper/checks/` | computations behind the paper's claims: exact clique numbers (`clique_numbers.py`, output in `clique_numbers.out`), stabilizers and the known-construction checks (`known_constructions.py`), spread structure (`spread_structure.py`, `third_spread.py`), and the independent check of Propositions 5.2 and 5.3 (`spread_lattice.py`: all subgroups of order 36, every orthogonal set via the character criterion, and the Bush-type Hadamard matrices; output in `spread_lattice.out` and `.json`) |
 | `search/` | the search code, the target parameter sets, and a snapshot of all search logs; see `SEARCH.md` |
-| `SEARCH.md` | how the search works, how it extends Kovaľ's, and its coverage so far (the search is still running) |
-| `srg1296_visualization.html` | interactive visualisation of all 18 graphs (adjacency matrices, connection sets, ring layout) |
+| `SEARCH.md` | how the search works, how it extends Kovaľ's, and its coverage |
+| `srg1296_visualization.html` | interactive visualization of all 18 graphs (adjacency matrices, connection sets, ring layout) |
 
 ## Verification
 
@@ -63,7 +68,7 @@ python3 paper/check_constructions.py                                       # Con
 ```
 
 Both programs use plain Python 3 with no packages and no code shared with the search. They build Cay(G, D) with
-their own arithmetic in F₁₆ and F₈₁, then check D = −D, 0 ∉ D, the degree, and the common-neighbour count for all
+their own arithmetic in F₁₆ and F₈₁, then check D = −D, 0 ∉ D, the degree, and the common-neighbor count for all
 839,160 vertex pairs. All 18 graphs were also checked with Kovaľ's independent verifier (`verify_srg.py` in the
 data of his paper *New strongly regular graphs on open parameter sets of Brouwer's table*,
 doi:10.5281/zenodo.23210829). Isomorphism classes and automorphism groups were computed with nauty (pynauty).

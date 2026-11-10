@@ -85,7 +85,7 @@ for row, (key, tag) in enumerate([("560", "I"), ("592", "II"), ("595", "III")]):
     a0.scatter(P[nb, 0], P[nb, 1], s=1.4, c=INK, lw=0)
     a0.scatter([P[u, 0]], [P[u, 1]], s=12, c=ORANGE, lw=0, zorder=4)
     a0.set_title(f"$\\Gamma_{{{tag}}}$: the {k} edges at $(0,0)$\n{len(inside)} in its ring, {len(outside)} to others", fontsize=7)
-    # (middle) a non-adjacent pair and its common neighbours; frame the ring R_0
+    # (middle) a non-adjacent pair and its common neighbors; frame the ring R_0
     w = next(x for x in range(1296) if ring_of[x] == 6 and x != u and not A[u, x])
     com = np.where(A[u] & A[w])[0]
     a1 = ax[row, 1]
@@ -95,7 +95,7 @@ for row, (key, tag) in enumerate([("560", "I"), ("592", "II"), ("595", "III")]):
     a1.scatter(P[com, 0], P[com, 1], s=1.4, c=INK, lw=0)
     a1.scatter([P[u, 0]], [P[u, 1]], s=12, c=BLUE, lw=0, zorder=4)
     a1.scatter([P[w, 0]], [P[w, 1]], s=12, c=ORANGE, lw=0, zorder=4)
-    a1.set_title(f"$\\Gamma_{{{tag}}}$: a non-adjacent pair,\n$\\mu={mu}$ common neighbours", fontsize=7)
+    a1.set_title(f"$\\Gamma_{{{tag}}}$: a non-adjacent pair,\n$\\mu={mu}$ common neighbors", fontsize=7)
     r0 = 0.16
     a1.add_patch(Rectangle((-r0, -r0), 2 * r0, 2 * r0, fill=False, ec=INK, lw=0.6, zorder=5))
     for a in (a0, a1):
