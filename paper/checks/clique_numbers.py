@@ -88,7 +88,7 @@ def work(fn):
 
 if __name__ == "__main__":
     nproc = int(sys.argv[1]) if len(sys.argv) > 1 else 1
-    files = sorted(glob.glob(os.path.join(CONN, "srg1296_560*_class*.txt")) + glob.glob(os.path.join(CONN, "srg1296_592*_class*.txt")) + glob.glob(os.path.join(CONN, "srg1296_595*_class*.txt")),
+    files = sorted(glob.glob(os.path.join(CONN, "srg1296_*_class*.txt")),
                    key=lambda f: (f.split("_class")[0], int(f.split("_class")[1][:-4])))
     with Pool(nproc) as pool:
         for name, omega, naut, nrep, dt in pool.imap(work, files):

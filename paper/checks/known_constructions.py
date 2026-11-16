@@ -28,7 +28,7 @@ def frob(D, u, w):            # (a,b) -> (a^(2^u), b^(3^w))
     return {((i * 2 ** u) % 15 if i >= 0 else -1, (j * 3 ** w) % 80 if j >= 0 else -1) for i, j in D}
 
 print("1. multiplicative / semilinear stabilisers")
-for fn in sorted(glob.glob(os.path.join(CONN, "srg1296_5[69]*_class*.txt")), key=lambda f: (f.split("_class")[0], int(f.split("_class")[1][:-4]))):
+for fn in sorted(glob.glob(os.path.join(CONN, "srg1296_*_class*.txt")), key=lambda f: (f.split("_class")[0], int(f.split("_class")[1][:-4]))):
     prm, D = load(fn)
     stab = [(x, y) for x in range(15) for y in range(80) if mult(D, x, y) == D]
     full = [(x, y, u, w) for x in range(15) for y in range(80) for u in range(4) for w in range(4)

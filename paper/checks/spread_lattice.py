@@ -117,7 +117,7 @@ def main():
     names = sorted(f[:-4] for f in os.listdir(CONN) if f.endswith(".txt"))
     for name in names:
         prm, D = load(name)
-        m = {560: 16, 592: None, 595: 17}[prm[1]]
+        m = {560: 16, 592: None, 595: 17, 525: 15, 490: 14, 455: 13, 420: 12, 385: 11}[prm[1]]
         if m is None:
             assert not any(True for _ in [])
         free = [(i, j) for i in range(35) for j in range(130)
@@ -136,9 +136,9 @@ def main():
                     levels.setdefault(j, [0, 0]); levels[j][0] += 1; levels[j][1] += int(good)
             res["orthogonal_sets_by_size"] = {j: v[0] for j, v in levels.items()}
             res["of_which_LS_PDS"] = {j: v[1] for j, v in levels.items()}
-            # Bush check on one LS_19 configuration
+            # Bush check on one LS_19 configuration (only m = 16, 17 can reach LS_19 with <= 3 added spreads here)
             need = 19 - m
-            for T in itertools.combinations(range(len(free)), need):
+            for T in [] if m not in (16, 17) else itertools.combinations(range(len(free)), need):
                 if all(orthogonal(free[a], free[b]) for a, b in itertools.combinations(T, 2)):
                     E = set(D)
                     for t in T: E |= {x for x in group(*free[t]) if x != Z2 + Z3}

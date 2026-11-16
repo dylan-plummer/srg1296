@@ -1,0 +1,4 @@
+orbits 131 r,s 21 -15
+character constraints 131
+cuts 1310 g1 9 g2 4
+RESULT (525, 216, 210) cuts 1 model c5 UNKNOWN 300.0s

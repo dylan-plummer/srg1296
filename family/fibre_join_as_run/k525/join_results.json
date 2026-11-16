@@ -1,0 +1,59 @@
+{
+  "scope": "Shared-frame path after verified local absolute-spectrum uniqueness",
+  "domain_sizes": [
+    336665,
+    336665,
+    252
+  ],
+  "complete_join": false,
+  "pairs_tested": 2910,
+  "left_candidates_after_cap_filter": 2986,
+  "found_bucket_choices": [
+    292431,
+    160395,
+    5
+  ],
+  "cap_stats": [
+    [
+      0,
+      184,
+      450
+    ],
+    [
+      1,
+      841,
+      364
+    ],
+    [
+      2,
+      314,
+      154
+    ],
+    [
+      3,
+      559,
+      531
+    ],
+    [
+      4,
+      511,
+      503
+    ],
+    [
+      5,
+      577,
+      665
+    ]
+  ],
+  "seconds": 3.2212539929896593,
+  "verification": {
+    "parameters": [
+      1296,
+      525,
+      216,
+      210
+    ],
+    "all_degrees_verified": true,
+    "all_common_neighbour_pairs_verified": 839160
+  }
+}

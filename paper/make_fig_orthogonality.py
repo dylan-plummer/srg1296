@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Figure: orthogonality graphs of the subgroups of order 36 disjoint from D (graphs I.6, I.10, III.1, III.2).
+"""Figure: orthogonality graphs of the subgroups of order 36 disjoint from D (graphs I.6, I.10, III.1, III.2, VIII.1).
 Data: checks/spread_lattice.json (written by checks/spread_lattice.py). Output: OUT/orthogonality.pdf
 usage: make_fig_orthogonality.py OUTDIR"""
 import os, sys, json, itertools, math
@@ -14,7 +14,8 @@ plt.rcParams.update({"font.family": "serif", "font.size": 8, "pdf.fonttype": 42,
 BLUE, GREY, INK, MUTED = "#2a78d6", "#b9bec7", "#1b1f27", "#5b616e"
 
 PANELS = [("srg1296_560_244_240_class6", "I.6", 16), ("srg1296_560_244_240_class10", "I.10", 16),
-          ("srg1296_595_274_272_class1", "III.1, III.3", 17), ("srg1296_595_274_272_class2", "III.2, III.4", 17)]
+          ("srg1296_595_274_272_class1", "III.1, III.3", 17), ("srg1296_595_274_272_class2", "III.2, III.4", 17),
+          ("srg1296_385_124_110_class1", "VIII.1, VIII.2", 11)]
 
 
 def max_clique(n, E):
@@ -23,9 +24,9 @@ def max_clique(n, E):
                 if all((a, b) in S for a, b in itertools.combinations(T, 2))), key=len)
 
 
-fig, axes = plt.subplots(1, 4, figsize=(6.3, 1.85))
+fig, axes = plt.subplots(1, 5, figsize=(7.6, 1.85))
 for ax, (key, name, m) in zip(axes, PANELS):
-    r = D[key]; n = r["free_subgroups"]; E = [tuple(e) for e in r["orth_edges"]]
+    r = D[key]; n = r["free_subgroups"]; E = [tuple(e) for e in r.get("orth_edges", [])]
     C = max_clique(n, E); rest = [v for v in range(n) if v not in C]
     pos = {}
     for t, v in enumerate(C):                      # maximal orthogonal set on the inner polygon
@@ -42,7 +43,8 @@ for ax, (key, name, m) in zip(axes, PANELS):
                    linewidths=1.0, zorder=3)
     j = len(C)
     ax.set_title(f"{name}", fontsize=8.5, color=INK, pad=3)
-    ax.text(0, -1.38, f"{n} subgroups, {j} orthogonal\n"
+    ax.text(0, -1.38, (f"{n} subgroups, {j} orthogonal\n" if n > 1 else "1 subgroup\n")
+                     +
                       rf"$\mathrm{{LS}}_{{{m}}}(36)\to\mathrm{{LS}}_{{{m + j}}}(36)$",
             ha="center", va="top", fontsize=7, color=INK, linespacing=1.5)
     ax.set_xlim(-1.3, 1.3); ax.set_ylim(-2.05, 1.3); ax.set_aspect("equal"); ax.axis("off")

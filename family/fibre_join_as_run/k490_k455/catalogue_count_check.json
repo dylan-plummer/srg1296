@@ -1,0 +1,7 @@
+{
+  "method": "Independent dynamic programming on weight and F3^10 quadratic moments; no MITM enumeration reused",
+  "weight13_moment_zero_sets": 365080,
+  "weight18_moment_zero_sets": 2677740,
+  "matches_complete_MITM_raw_counts": true,
+  "seconds": 0.5306772338226438
+}

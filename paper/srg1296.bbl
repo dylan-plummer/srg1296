@@ -1,4 +1,4 @@
-\begin{thebibliography}{17}
+\begin{thebibliography}{18}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -30,6 +30,11 @@ Andries~E. Brouwer and Hendrik {Van Maldeghem}.
 \newblock \emph{Strongly Regular Graphs}, volume 182 of \emph{Encyclopedia of
   Mathematics and its Applications}.
 \newblock Cambridge University Press, 2022.
+
+\bibitem[Delsarte(1973)]{Delsarte1973}
+Philippe Delsarte.
+\newblock An algebraic approach to the association schemes of coding theory.
+\newblock \emph{Philips Research Reports Supplements}, 10, 1973.
 
 \bibitem[Fern{\'a}ndez-Alcober et~al.(2010)Fern{\'a}ndez-Alcober, Kwashira, and
   Mart{\'\i}nez]{FKM2010}

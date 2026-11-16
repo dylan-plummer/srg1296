@@ -1,0 +1,62 @@
+{
+  "parameters": [
+    1296,
+    455,
+    166,
+    156
+  ],
+  "fibre_mask": 124,
+  "complete_local_size27_sets": 353340,
+  "positive_energy_histogram": {
+    "0": 2400,
+    "1": 21330,
+    "2": 61515,
+    "3": 107640,
+    "4": 84690,
+    "5": 56880,
+    "6": 13245,
+    "7": 5580,
+    "9": 60
+  },
+  "required_three_seed_positive_energy": 12,
+  "matching_cases": [
+    {
+      "index": 0,
+      "matching_frequency_cycle": [
+        9,
+        28,
+        12,
+        37,
+        30
+      ],
+      "ordinary_local_sets": 91590,
+      "special_local_sets": 264
+    },
+    {
+      "index": 1,
+      "matching_frequency_cycle": [
+        11,
+        34,
+        21,
+        38,
+        24
+      ],
+      "ordinary_local_sets": 91650,
+      "special_local_sets": 264
+    },
+    {
+      "index": 2,
+      "matching_frequency_cycle": [
+        18,
+        20,
+        32,
+        33,
+        36
+      ],
+      "ordinary_local_sets": 91590,
+      "special_local_sets": 264
+    }
+  ],
+  "seconds": 2.7565621419344097,
+  "scope": "Five rank-eight matching channels imposed as an optional construction ansatz; not required in all Cayley graphs"
+}

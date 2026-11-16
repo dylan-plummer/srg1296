@@ -1,0 +1,26 @@
+{
+  "source_degree": 385,
+  "pieces": 17,
+  "unions_examined": 131072,
+  "hits": [
+    {
+      "mask": 70573,
+      "parameters": [
+        1296,
+        385,
+        124,
+        110
+      ],
+      "table_status": "?",
+      "locally_constructed": true
+    }
+  ],
+  "parameter_rows": [
+    [
+      1296,
+      385,
+      124,
+      110
+    ]
+  ]
+}

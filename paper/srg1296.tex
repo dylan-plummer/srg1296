@@ -10,7 +10,8 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{positioning}
+\usepackage[section]{placeins}
+\usetikzlibrary{positioning,decorations.pathreplacing}
 \setlength{\emergencystretch}{1.5em}
 \renewcommand{\topfraction}{0.9}
 \renewcommand{\textfraction}{0.1}
@@ -19,6 +20,7 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{definition}
 \newtheorem{construction}[theorem]{Construction}
 \newtheorem{remark}[theorem]{Remark}
@@ -32,7 +34,7 @@
 \newcommand{\NL}{\mathrm{NL}}
 \newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
 
-\title[Strongly regular graphs on 1296 vertices]{New strongly regular graphs on 1296 vertices\\ from partial difference sets in $\F_{16}\times\F_{81}$}
+\title[Latin square type graphs on 1296 vertices]{Strongly regular graphs on 1296 vertices\\ for every Latin square parameter set}
 \author{Dylan Plummer}
 \address{Case Western Reserve University}
 \email{dylan.plummer@case.edu}
@@ -41,7 +43,9 @@
 \begin{document}
 
 \begin{abstract}
-We construct strongly regular graphs with parameters $(1296,560,244,240)$ and $(1296,592,268,272)$, for which no construction was previously known. We also construct the first vertex-transitive graphs with parameters $(1296,595,274,272)$, a parameter set realized independently by Kova\v{l}. All are Cayley graphs of $\Z_2^4\times\Z_3^4$, realized as the additive group of $\F_{16}\times\F_{81}$, whose connection sets are unions of orbits of a small group of field multiplications and a Galois map. We find $10$, $4$ and $4$ pairwise non-isomorphic graphs with the three parameter sets. The connection sets were found by an exact constraint-programming search for partial difference sets in products of finite fields, which extends Kova\v{l}'s search in $\F_4\times\F_{81}$ for $\srg(324,136,58,56)$. The three families are linked by spreads of Delsarte cliques. Some of the graphs with the first parameter set arise from an $\srg(1296,665,340,342)$ by deleting three pairwise orthogonal spreads; this $\srg(1296,665,340,342)$ is the graph of a symmetric Bush-type Hadamard matrix, which answers a question of Kova\v{l}. The graphs with the third parameter set arise by deleting two. None of the graphs with Latin square parameters is the graph of an orthogonal array. In one of the graphs with the first parameter set, every coset of $\F_{81}$ induces the Brouwer--Haemers graph $\srg(81,20,1,6)$.
+We construct strongly regular graphs with the Latin square parameters $\LS_m(36)$ for $m=11,12,\dots,16$, that is, with parameters $(1296,35m,\,34+(m-1)(m-2),\,m(m-1))$. With orthogonal arrays and known constructions this shows that a strongly regular graph with parameters $\LS_m(36)$ exists for every $m$. We also construct graphs with the negative Latin square parameters $\NL_{16}(36)=(1296,592,268,272)$, which were open, and, to our knowledge, the first vertex-transitive graphs with parameters $\LS_{17}(36)$. All $35$ graphs are Cayley graphs of $\Z_2^4\times\Z_3^4$, the additive group of $\F_{16}\times\F_{81}$, and none is the graph of an orthogonal array. A constraint-programming search over groups of field multiplications found the first of them. The others were found by decomposing the connection set along the cosets of $\F_{81}$, joining complete catalogues of the possible cosets, and using duality of partial difference sets and spreads of Delsarte cliques.
+
+The graphs share a rigid skeleton. In any Latin square type partial difference set in this group with $m\le18$, the elements of $\F_{16}\times\{0\}$ and the positive characters trivial on $\F_{81}$ form ovoids, grids, planes or their complements in $\mathrm{PG}(3,2)$, depending only on $m\bmod 8$, and the sizes of all cosets of $\F_{81}$ in the set are forced. Every coset of $\F_{81}$ other than $\{0\}\times\F_{81}$, in every graph, is one of nine local types. Symmetries of orders five and three organize the cases $m=13,\dots,16$ and $m=11,12$. Under the order-five symmetry and with $m\le18$, $m$ must be $5$, $6$, $13$, $14$, $15$ or $16$, and the cosets of $\F_{81}$ then induce cyclotomic negative Latin square graphs. Adding a single spread of Delsarte cliques turns the graphs with $m=11$ into graphs with $m=12$. Some of the graphs with $m=16$ arise from a symmetric Bush-type Hadamard matrix by deleting three orthogonal spreads, which answers a question of Kova\v{l}.
 \end{abstract}
 
 \maketitle
@@ -49,32 +53,66 @@ We construct strongly regular graphs with parameters $(1296,560,244,240)$ and $(
 %=====================================================================
 \section{Introduction}
 
-A strongly regular graph $\srg(v,k,\lambda,\mu)$ is a $k$-regular graph on $v$ vertices, neither complete nor edgeless, in which any two adjacent vertices have exactly $\lambda$ common neighbors and any two distinct non-adjacent vertices exactly $\mu$. Brouwer maintains an online table of feasible parameter sets~\cite{BrouwerTable}; see also the monograph of Brouwer and Van Maldeghem~\cite{BvM2022}. All three parameter sets of Theorems~\ref{thm:main} and~\ref{thm:595} were marked there as open when this work began.
+A strongly regular graph $\srg(v,k,\lambda,\mu)$ is a $k$-regular graph on $v$ vertices, neither complete nor edgeless, in which any two adjacent vertices have exactly $\lambda$ common neighbors and any two distinct non-adjacent vertices exactly $\mu$. Brouwer maintains an online table of feasible parameter sets~\cite{BrouwerTable}; see also the monograph of Brouwer and Van Maldeghem~\cite{BvM2022}.
 
-A standard route to strongly regular graphs is through partial difference sets (PDS). If $D$ is a $(v,k,\lambda,\mu)$-PDS in a group $G$ with $D=D^{(-1)}$ and $1\notin D$, then the Cayley graph $\Cay(G,D)$ is an $\srg(v,k,\lambda,\mu)$~\cite[Proposition~1.1]{Ma1994}. Brady~\cite{Brady2025} turned this into a systematic computational program aimed at \emph{new} strongly regular graphs: a local search found PDSs with $62$ parameter sets in $1254$ non-isomorphic groups of order at most $147$, including the first constructions of $\srg(144,52,16,20)$ and $\srg(147,66,25,33)$.
+The Latin square parameters $\LS_m(n)$ (Section~\ref{sec:prelim}) are those of the graph of an orthogonal array $\mathrm{OA}(n,m)$, equivalently of $m-2$ mutually orthogonal Latin squares of order $n$. For $n=36$ only eight MOLS are known, so orthogonal arrays give $\LS_m(36)$ graphs only for $m\le10$ and, by complementation, $m\ge27$. When this work began, Brouwer's table also listed graphs for $m=18$ and $m=19$, and the parameter sets $\LS_m(36)$ with $11\le m\le17$, together with their complements, were open. We close all of them.
 
-Recently Kova\v{l}~\cite[Section~5]{KovalNew} realized the Latin square parameters $\LS_8(18)=(324,136,58,56)$ and the negative Latin square parameters $\NL_6(18)$ and $\NL_7(18)$ by PDSs in $\Z_2^2\times\Z_3^4$. One of these is a cyclotomic construction in the additive group of $\F_4\times\F_{81}$: the connection set is invariant under multiplication by the fourth roots of unity $\mu_4\le\F_{81}^*$, and each of its four slices $D_a$, $a\in\F_4$, is a union of cyclotomic classes of index~$20$ in~$\F_{81}$~\cite[Construction~5.4]{KovalNew}.
-
-This paper replaces $\F_4$ by $\F_{16}$ and searches systematically over the symmetry groups that the product structure provides (Section~\ref{sec:search}). On $1296=36^2$ vertices this produces the following.
-
-\begin{theorem}\label{thm:main}
-There exist strongly regular graphs with parameters
-\[
- (1296,560,244,240)\ \ (\LS_{16}(36)) \qquad\text{and}\qquad (1296,592,268,272)\ \ (\NL_{16}(36)).
-\]
-There are at least $10$ pairwise non-isomorphic graphs with the first parameter set and at least $4$ with the second. All of them are vertex-transitive Cayley graphs of $\Z_2^4\times\Z_3^4$.
+\begin{theorem}\label{thm:complete}
+For every $m$ with $1\le m\le35$ there is a strongly regular graph with parameters $\LS_m(36)=(1296,35m,\,34+(m-1)(m-2),\,m(m-1))$.
 \end{theorem}
 
-The parameters $(1296,595,274,272)=\LS_{17}(36)$ were realized independently by Kova\v{l}~\cite{KovalMultiOrbit}, with six graphs, none of them vertex-transitive. Our search gives the first vertex-transitive examples.
+\begin{theorem}\label{thm:main}
+There exist strongly regular graphs with the parameters $\LS_m(36)$ for $m=11,\dots,16$, namely
+\[
+\begin{gathered}
+(1296,385,124,110),\quad (1296,420,144,132),\quad (1296,455,166,156),\\
+(1296,490,190,182),\quad (1296,525,216,210),\quad (1296,560,244,240),
+\end{gathered}
+\]
+and with the negative Latin square parameters $\NL_{16}(36)=(1296,592,268,272)$. There are at least $2$, $3$, $1$, $2$, $2$, $14$ and $7$ pairwise non-isomorphic graphs with these seven parameter sets. All of them are vertex-transitive Cayley graphs of $\Z_2^4\times\Z_3^4$, and none of those with Latin square parameters is the graph of an orthogonal array.
+\end{theorem}
+
+Theorem~\ref{thm:complete} follows from Theorem~\ref{thm:main}, the orthogonal arrays ($m\le10$), Theorem~\ref{thm:595} ($m=17$), Lemma~\ref{lem:free} applied to graph I.6 with two or three of its free subgroups ($m=18,19$; Proposition~\ref{prop:spreads}), and complementation ($m\ge20$). For $m=36$ the parameters $\LS_{36}(36)$ are those of the complete multipartite graph $K_{36\times36}$, which we exclude as trivial. The parameters $\LS_{17}(36)$ were realized independently by Kova\v{l}~\cite{KovalMultiOrbit}, with six graphs, none of them vertex-transitive; we also give, to our knowledge, the first vertex-transitive examples.
 
 \begin{theorem}\label{thm:595}
 There are at least $4$ pairwise non-isomorphic vertex-transitive strongly regular graphs with parameters $(1296,595,274,272)$. They are Cayley graphs of $\Z_2^4\times\Z_3^4$, so their connection sets are abelian partial difference sets with these parameters, and none of them is isomorphic to a graph of~\cite{KovalMultiOrbit}.
 \end{theorem}
 
-The three families are related by deleting spreads of Delsarte cliques (Section~\ref{sec:spreads}). Two of the graphs with parameters $\LS_{16}(36)$ arise from a Cayley graph with parameters $\LS_{19}(36)$ by deleting three pairwise orthogonal spreads, and this Cayley graph is the graph of a symmetric Bush-type Hadamard matrix. This answers a question of Kova\v{l}~\cite[Section~4.10]{KovalMultiOrbit} (Proposition~\ref{prop:bush}). One of the two arises from an $\LS_{21}(36)$ Cayley graph by deleting five pairwise orthogonal spreads, the largest possible number in this group. The graphs of Theorem~\ref{thm:595} arise from $\LS_{19}(36)$ Cayley graphs by deleting two orthogonal spreads, as Kova\v{l}'s do.
+All our graphs are Cayley graphs $\Cay(G,D)$ of $G=\F_{16}\times\F_{81}$ (additive group), and their connection sets $D$ are partial difference sets (PDS). If $D$ is a $(v,k,\lambda,\mu)$-PDS in a group $G$ with $D=D^{(-1)}$ and $1\notin D$, then $\Cay(G,D)$ is an $\srg(v,k,\lambda,\mu)$~\cite[Proposition~1.1]{Ma1994}. Brady~\cite{Brady2025} turned this into a systematic computational program aimed at new strongly regular graphs. Kova\v{l}~\cite[Section~5]{KovalNew} realized $\LS_8(18)$ and two negative Latin square parameter sets on $324$ vertices by PDSs in $\F_4\times\F_{81}$, using cyclotomic classes of $\F_{81}$~\cite[Construction~5.4]{KovalNew}. We replace $\F_4$ by $\F_{16}$.
+
+\subsection*{How the graphs were found}
+A constraint-programming search over groups of field multiplications (Section~\ref{sec:search}) found the graphs with parameters $\LS_{16}(36)$, $\NL_{16}(36)$ and $\LS_{17}(36)$. The cases $m=11,\dots,15$ were out of its reach. They were solved by decomposing $D$ along the cosets $\{a\}\times\F_{81}$, the \emph{rings}. Each ring set $T_a=\{b:(a,b)\in D\}$ is constrained locally by divisibility of its character sums (Lemma~\ref{lem:div}). Complete catalogues of the possible ring sets are then joined under a small symmetry group (Section~\ref{sec:fibres}). Duality of partial difference sets and the addition of a single spread of cliques gave further graphs.
+
+\subsection*{Shared structure}
+The graphs share a common skeleton, which we determine in Sections~\ref{sec:fibrelemmas} and~\ref{sec:shared}. In what follows, $\F_{16}^*$ is viewed as the point set of $\mathrm{PG}(3,2)$.
+
+\begin{theorem}\label{thm:shape}
+Let $D$ be a regular partial difference set in $\F_{16}\times\F_{81}$ with parameters $\LS_m(36)$, $1\le m\le18$. Then $\{a:(a,0)\in D\}$ and the set of nontrivial characters $\varphi$ of $\F_{16}$ with $(\varphi\times1)(D)=36-m$ are both empty, a plane minus $0$, the complement of a grid, a grid, the complement of a plane, all of $\F_{16}^*$, the complement of an ovoid, or an ovoid, for $m\equiv0,1,\dots,7\pmod 8$. Here grids and ovoids are the point sets of hyperbolic and elliptic quadrics. The number $|D\cap(\{0\}\times\F_{81})|$ and the ring sizes $|D\cap(\{a\}\times\F_{81})|$ are determined by $m$ (Table~\ref{tab:fibredata}).
+\end{theorem}
+
+Beyond this skeleton the graphs have several features in common (Section~\ref{sec:shared}).
+\begin{itemize}
+\item \emph{A small local alphabet.} Every ring set $T_a$, $a\ne0$, of every graph is one of nine types, determined by the size and the multiset of character sums. Some of them are classical: an affine plane of $\mathrm{PG}(3,3)$, or $\F_{81}$ minus two hyperplanes, or the union of two hyperplanes.
+\item \emph{Two symmetry types.} The graphs with $m=13,\dots,16$ are invariant under a map $\rho$ of order $5$ acting fixed-point-freely on both factors. The graphs with $m=11,12$ are invariant under a map $\sigma$ of order $3$ that is fixed-point-free on $\F_{16}^*$ and unipotent on $\F_{81}$.
+\item \emph{Links between parameter sets.} Duality of partial difference sets pairs up graphs with the same parameters. Adding one spread of Delsarte cliques turns both graphs with parameters $\LS_{11}(36)$ into graphs with parameters $\LS_{12}(36)$, as adding spreads links $\LS_{16}(36)$ and $\LS_{17}(36)$ to $\LS_{19}(36)$, $\LS_{20}(36)$ and $\LS_{21}(36)$ (Figure~\ref{fig:links}).
+\end{itemize}
+
+For the order-five symmetry the structure is completely explicit.
+
+\begin{theorem}\label{thm:family}
+Let $\rho=(\alpha^{12},\beta^{16})$, the multiplication by elements of order $5$ in both fields. Let $D$ be a regular partial difference set in $\F_{16}\times\F_{81}$ with parameters $\LS_m(36)$, $1\le m\le18$, and $\rho D=D$. Then $m\in\{5,6,7\}\cup\{13,14,15,16\}$. Put $g=18-m$ if $m\ge13$ and $g=9-m$ if $m\le7$. Then $D\cap(\{0\}\times\F_{81})$ is a union of $g$ cyclotomic classes of index $8$ of $\F_{81}$ and is a partial difference set with parameters $\NL_g(9)$. Also $D\cap(\F_{16}\times\{0\})$ is a union of $g-2$, respectively $g-1$, cosets of the group $\mu_5$ of fifth roots of unity of $\F_{16}$. All these values of $m$ except $m=7$ occur.
+\end{theorem}
+
+For $m=13,\dots,16$ the rings thus induce the negative Latin square graphs $\NL_g(9)$, from the Brouwer--Haemers graph ($g=2$) to $\srg(81,50,31,30)$ ($g=5$). Some of the graphs with parameters $\LS_{16}(36)$ arise from the graph of a symmetric Bush-type Hadamard matrix by deleting three pairwise orthogonal spreads of Delsarte cliques, which answers a question of Kova\v{l}~\cite[Section~4.10]{KovalMultiOrbit} (Proposition~\ref{prop:bush}).
+
+\subsection*{Cayley graphs on this group}
+Our graphs, together with the partial congruence partitions ($m\le5$), the order-five sets with $m=5,6$, and the added spreads, give Cayley graphs on $\Z_2^4\times\Z_3^4$ with parameters $\LS_m(36)$ for all $m\le6$ and all $m$ with $11\le m\le26$, and their complements. Whether this group carries a partial difference set with parameters $\LS_m(36)$ for $7\le m\le10$ is open (Section~\ref{sec:open}).
+
+\subsection*{Outline}
+Section~\ref{sec:prelim} collects the character lemmas and proves Theorem~\ref{thm:shape} (as Theorem~\ref{thm:fibredata}). Section~\ref{sec:search} describes the searches and Section~\ref{sec:graphs} the graphs. Section~\ref{sec:shared} describes their shared structure and proves Theorem~\ref{thm:family}. Section~\ref{sec:properties} treats cliques, rings and spreads, Section~\ref{sec:open} lists open questions, and Section~\ref{sec:verification} the verification.
 
 %=====================================================================
-\section{Preliminaries}
+\section{Preliminaries}\label{sec:prelim}
 
 \subsection{Latin square type parameters}
 The \emph{Latin square} and \emph{negative Latin square} parameters~\cite[Section~2]{Ma1994} are, for $n\ge2$ and $m\ge1$,
@@ -96,6 +134,111 @@ Let $D$ be a regular PDS in an abelian group $G$. If $(\lambda-\mu)^2+4(k-\mu)$ 
 \end{lemma}
 In particular, a PDS with integral eigenvalues is a union of orbits of the multiplier group $\{x\mapsto tx:\gcd(t,|G|)=1\}$. Any additional group of automorphisms that we impose on $D$ can therefore be taken to contain the multipliers, with no loss of generality.
 
+\subsection{Fibres over $\F_{16}$}\label{sec:fibrelemmas}
+From now on $G=\F_{16}\times\F_{81}$ (additive group), with $\F_{16}$ and $\F_{81}$ as in Section~\ref{sec:graphs}. Its characters are the products $\varphi\times\psi$ of characters $\varphi$ of $\F_{16}$ and $\psi$ of $\F_{81}$. Let $\mathrm{Tr}$ denote the absolute traces of $\F_{16}$ and $\F_{81}$, and $\omega=e^{2\pi i/3}$. We identify $G$ with its character group by $(c,d)\mapsto\chi_{c,d}$,
+\[
+\chi_{c,d}(a,b)=(-1)^{\mathrm{Tr}(ca)}\,\omega^{\mathrm{Tr}(db)},
+\]
+and write $\varphi_c=\chi_{c,0}|_{\F_{16}}$ and $\psi_d=\chi_{0,d}|_{\F_{81}}$. For $D\subseteq G$, $a\in\F_{16}$ and $b\in\F_{81}$ let
+\[
+T_a=\{b':(a,b')\in D\}\subseteq\F_{81},\qquad U_b=\{a':(a',b)\in D\}\subseteq\F_{16}.
+\]
+We call the cosets $\{a\}\times\F_{81}$ \emph{rings} and $|T_a|$ the \emph{ring sizes}. Let $D$ be a regular PDS in $G$ with integral eigenvalues $r>s$, and put $\Delta=r-s$. For $\psi\ne1$ let $S_\psi=\{\varphi:(\varphi\times\psi)(D)=r\}$, for $\varphi\ne1$ let $S'_\varphi=\{\psi:(\varphi\times\psi)(D)=r\}$, and let $S_1=\{\varphi\ne1:(\varphi\times1)(D)=r\}$. Through $c\mapsto\varphi_c$ we regard $S_1$ as a subset of $\F_{16}^*$.
+
+\begin{lemma}\label{lem:div}
+For $\psi\ne1$ and $a\in\F_{16}$,
+\begin{equation}\label{eq:fibre}
+\psi(T_a)=s\,[a=0]+\frac{\Delta}{16}\sum_{\varphi\in S_\psi}\varphi(a),
+\end{equation}
+and for $\varphi\ne1$ and $b\in\F_{81}$, $\varphi(U_b)=s\,[b=0]+\frac{\Delta}{81}\sum_{\psi\in S'_\varphi}\psi(b)$. If $\Delta=36$, then $\psi(T_a)\equiv s\,[a=0]\pmod 9$ and $\varphi(U_b)\equiv s\,[b=0]\pmod 4$ for all such $\varphi,\psi,a,b$, and $|S_\psi|$ is divisible by $4$.
+\end{lemma}
+
+\begin{proof}
+Fix $\psi\ne1$. Every $\varphi\times\psi$ is non-principal, so $(\varphi\times\psi)(D)=s+\Delta\,[\varphi\in S_\psi]$ by Lemma~\ref{lem:char}. Since $(\varphi\times\psi)(D)=\sum_a\varphi(a)\psi(T_a)$, Fourier inversion on $\F_{16}$ gives~\eqref{eq:fibre}; the formula for $\varphi(U_b)$ is proved in the same way. Let $\Delta=36$. Since $-a=a$ in $\F_{16}$ and $D=-D$, we have $T_a=-T_a$, so $\psi(T_a)$ is a rational integer, and so is $W=\sum_{\varphi\in S_\psi}\varphi(a)$. By~\eqref{eq:fibre}, $\psi(T_a)-s[a=0]=9W/4$, so $4\mid W$ and $9\mid\psi(T_a)-s[a=0]$; for $a=0$ we have $W=|S_\psi|$. Similarly $\varphi(U_b)$ is an integer, and $X=\sum_{\psi\in S'_\varphi}\psi(b)=\frac94(\varphi(U_b)-s[b=0])$ is a rational algebraic integer, hence an integer, so $4\mid\varphi(U_b)-s[b=0]$.
+\end{proof}
+
+For $a\ne0$ write $T_a=\pm P$ or $T_a=\{0\}\cup\pm P$, with $P$ a set of points of $\mathrm{PG}(3,3)$. Then $\psi(T_a)=[0\in T_a]+3|P\cap H_\psi|-|P|$, where $H_\psi$ is the plane $\ker\psi$. So Lemma~\ref{lem:div} says that all plane sections of $P$ have sizes in one residue class modulo $3$. This is the condition behind the catalogues of Section~\ref{sec:fibres}.
+
+\begin{lemma}\label{lem:trace}
+Put $d=|T_0|$, $d'=|U_0|$, $j=|S_1|$ and $j'=|\{\psi\ne1:(1\times\psi)(D)=r\}|$. Then
+\[
+16d=k+15s+\Delta j,\qquad 81d'=k+80s+\Delta j',
+\]
+and $|T_a|=\frac{1}{16}\bigl(k-s+\Delta\sum_{\varphi\in S_1}\varphi(a)\bigr)$ for $a\ne0$. In particular, for $\LS_m(36)$ we have $4d=5m+9j$, $9d'=4j'-5m$ and $|T_a|=\frac94\bigl(m+\sum_{\varphi\in S_1}\varphi(a)\bigr)$ for $a\ne0$.
+\end{lemma}
+
+\begin{proof}
+Summing $(\varphi\times1)(D)=\sum_a\varphi(a)|T_a|$ over all $\varphi$ gives $16|T_0|=k+(15-j)s+jr$. Summing $(1\times\psi)(D)=\sum_b\psi(b)|U_b|$ over all $\psi$ gives the second identity. Fourier inversion of $\varphi\mapsto(\varphi\times1)(D)$ gives the third.
+\end{proof}
+
+
+\begin{proposition}\label{prop:dual}
+Let $D$ be a regular PDS in $G$ with parameters $\LS_m(36)$ or $\NL_m(36)$, and let $\theta\in\{r,s\}$ be the eigenvalue of multiplicity $k$, that is, $\theta=r$ for $\LS_m(36)$ and $\theta=s$ for $\NL_m(36)$. Then
+\[
+D^*=\{(c,d)\ne(0,0):\chi_{c,d}(D)=\theta\}
+\]
+is a regular PDS with the same parameters. Moreover, for $g\ne0$ we have $\chi_g(D^*)=\theta$ if and only if $g\in D$; in particular $D^{**}=D$.
+\end{proposition}
+
+\begin{proof}
+The partition $\{0\},D,G\setminus(D\cup\{0\})$ is a translation association scheme. Its dual scheme lives on the character group and has the classes $\{\chi:\chi(D)=r\}$ and $\{\chi:\chi(D)=s\}$~\cite{Delsarte1973}, so $D^*$ is a PDS. Its parameters are those of $D$, because the Latin square and negative Latin square parameters are formally self-dual: the first and second eigenmatrices of the scheme coincide. The dual of the dual scheme is the original scheme, which gives the second statement since $D=-D$. Independently, every $D^*$ used in this paper was checked by counting all differences.
+\end{proof}
+
+\begin{lemma}[Dual parity]\label{lem:parity}
+Let $D$ be a regular PDS in $G$ with parameters $\LS_m(36)$. For $S\subseteq\F_{16}^*$ let
+\[
+\Pi_m(S)=\Bigl\{a\ne0:\ \tfrac94\bigl(m+\textstyle\sum_{c\in S}(-1)^{\mathrm{Tr}(ca)}\bigr)\ \text{is odd}\Bigr\}.
+\]
+Then $U_0=\Pi_m(S_1)$ and $S_1=\Pi_m(U_0)$.
+\end{lemma}
+
+\begin{proof}
+Since $T_a=-T_a$ and $|\F_{81}|$ is odd, $0\in T_a$ if and only if $|T_a|$ is odd. By Lemma~\ref{lem:trace}, $|T_a|=\frac94(m+\sum_{c\in S_1}\varphi_c(a))$ for $a\ne0$, so $U_0=\Pi_m(S_1)$. By Proposition~\ref{prop:dual}, $D^*$ has the same parameters, and $S_1(D^*)=\{a\ne0:(a,0)\in D\}=U_0(D)$ and $U_0(D^*)=\{c\ne0:\chi_{c,0}(D)=r\}=S_1(D)$. Applying the first statement to $D^*$ gives $S_1=\Pi_m(U_0)$.
+\end{proof}
+
+This involution is very restrictive. Identify $\F_{16}^*$ with the points of $\mathrm{PG}(3,2)$. For a non-degenerate quadratic form $Q$ on $\F_{16}$ over $\F_2$ we call $\{x\ne0:Q(x)=0\}$ an \emph{ovoid} ($5$ points) if $Q$ is elliptic and a \emph{grid} ($9$ points) if $Q$ is hyperbolic. We call $\{x:Q(x)=1\}$ the \emph{complement of the ovoid} ($10$ points) or of the grid ($6$ points), respectively.
+
+\begin{theorem}\label{thm:fibredata}
+Let $D$ be a regular PDS in $G$ with parameters $\LS_m(36)$, $1\le m\le18$. Then $S_1$ and $U_0$ are sets of the type given in Table~\ref{tab:fibredata}, which depends only on $m\bmod 8$, and
+\[
+|T_0|=\tfrac14\bigl(5m+9|S_1|\bigr).
+\]
+The ring sizes $|T_a|$, $a\ne0$, are as in the table, the odd value being taken exactly for $a\in U_0$. Conversely, every set of the given type satisfies these necessary conditions.
+\end{theorem}
+
+\begin{proof}
+By Lemma~\ref{lem:trace}, $S_1$ must make all values $\frac94(m+\sum_{c\in S_1}\varphi_c(a))$ integers in $[0,81]$, and by Lemma~\ref{lem:parity}, $U_0=\Pi_m(S_1)$ and $\Pi_m(U_0)=S_1$. Since $U_0=S_1(D^*)$ and $D^*$ has the same parameters (Proposition~\ref{prop:dual}), $U_0$ must satisfy the same integrality condition; this excludes, for $m=4$ and $m=12$, the set $S_1=\emptyset$, for which $U_0=\F_{16}^*$ and $|T_0|$ would be odd. A computer enumeration of all $2^{15}$ subsets $S\subseteq\F_{16}^*$ shows that, for each $m$, the sets $S$ satisfying these conditions are exactly the sets of the type in the table; for these, $\Pi_m(S)$ has the same type. The formula for $|T_0|$ is Lemma~\ref{lem:trace}.
+\end{proof}
+
+\begin{table}[ht]
+\centering\small
+\caption{Forced data of an $\LS_m(36)$ PDS in $\F_{16}\times\F_{81}$ (Theorem~\ref{thm:fibredata}). Planes are $2$-dimensional subspaces of $\F_{16}$, ``all'' is $\F_{16}^*$, and $x^y$ means $y$ rings of size $x$; the odd size occurs exactly on $U_0$.}\label{tab:fibredata}
+\begin{tabular}{rlrrl}
+\toprule
+$m$ & type of $S_1$ and of $U_0$ & $|S_1|=|U_0|$ & $|T_0|$ & ring sizes $|T_a|$, $a\ne0$\\
+\midrule
+1 & plane minus $0$ & 3 & 8 & $0^{12}\,9^{3}$\\
+2 & complement of a grid & 6 & 16 & $0^{9}\,9^{6}$\\
+3 & grid & 9 & 24 & $0^{6}\,9^{9}$\\
+4 & complement of a plane & 12 & 32 & $0^{3}\,9^{12}$\\
+5 & all & 15 & 40 & $9^{15}$\\
+6 & complement of an ovoid & 10 & 30 & $18^{5}\,9^{10}$\\
+7 & ovoid & 5 & 20 & $18^{10}\,9^{5}$\\
+8 & empty & 0 & 10 & $18^{15}$\\
+9 & plane minus $0$ & 3 & 18 & $18^{12}\,27^{3}$\\
+10 & complement of a grid & 6 & 26 & $18^{9}\,27^{6}$\\
+11 & grid & 9 & 34 & $18^{6}\,27^{9}$\\
+12 & complement of a plane & 12 & 42 & $18^{3}\,27^{12}$\\
+13 & all & 15 & 50 & $27^{15}$\\
+14 & complement of an ovoid & 10 & 40 & $36^{5}\,27^{10}$\\
+15 & ovoid & 5 & 30 & $36^{10}\,27^{5}$\\
+16 & empty & 0 & 20 & $36^{15}$\\
+17 & plane minus $0$ & 3 & 28 & $36^{12}\,45^{3}$\\
+18 & complement of a grid & 6 & 36 & $36^{9}\,45^{6}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 %=====================================================================
 \section{The search}\label{sec:search}
 
@@ -115,7 +258,26 @@ Let $O_1,\dots,O_N$ be the orbits of $K=K(S,\boldsymbol\sigma)$ on $G$, and let 
 where $f$ is the multiplicity of the eigenvalue $r$; the equation $\sum_j|\Omega_j|\,b_j=f$ is implied by the others but helps the solver. We solve this integer program with the CP-SAT solver of OR-Tools~\cite{CPSAT}. Every solution is checked independently by the full identity $A^2=kI+\lambda A+\mu(J-I-A)$ for $A$ the adjacency matrix of $\Cay(G,D)$.
 
 \subsection{Relation to Kova\v{l}'s search}
-Kova\v{l}'s cyclotomic search on $\F_4\times\F_{81}$~\cite[Section~5.4]{KovalNew} is the analogue of this scheme for $(q_1,q_2)=(4,81)$, except that it also allows non-cyclic Galois parts. There $S$ runs over the $16$ subgroups of even order of the cyclic group $\F_4^*\times\F_{81}^*\cong C_{240}$, and the Galois part over the $8$ subgroups of $\mathrm{Gal}(\F_4/\F_2)\times\mathrm{Gal}(\F_{81}/\F_3)$. For $(q_1,q_2)=(16,81)$ the group $\F_{16}^*\times\F_{81}^*\cong C_{15}\times C_{80}$ is not cyclic, and we let $S$ run over all of its $80$ subgroups. Here $S$ need not have even order, because $-1$ is among the multipliers. $\boldsymbol\sigma$ runs over the trivial map and the $15$ maps $(a,b)\mapsto(a^{2^u},b^{3^w})$ with $(u,w)\ne(0,0)$. This gives $1280$ models. The $1251$ models with at most $200$ orbits were each tested against every parameter set $(1296,k,\lambda,\mu)$ with $k\le 648$ and integral eigenvalues that was open in Brouwer's table; complements cover the rest. Section~\ref{sec:graphs} presents the solutions, which have the three parameter sets of Theorems~\ref{thm:main} and~\ref{thm:595}. The same scheme was also run on other products of finite fields; the solver settings and the coverage of these searches are recorded in the data repository.
+Kova\v{l}'s cyclotomic search on $\F_4\times\F_{81}$~\cite[Section~5.4]{KovalNew} is the analogue of this scheme for $(q_1,q_2)=(4,81)$, except that it also allows non-cyclic Galois parts. There $S$ runs over the $16$ subgroups of even order of the cyclic group $\F_4^*\times\F_{81}^*\cong C_{240}$, and the Galois part over the $8$ subgroups of $\mathrm{Gal}(\F_4/\F_2)\times\mathrm{Gal}(\F_{81}/\F_3)$. For $(q_1,q_2)=(16,81)$ the group $\F_{16}^*\times\F_{81}^*\cong C_{15}\times C_{80}$ is not cyclic, and we let $S$ run over all of its $80$ subgroups. Here $S$ need not have even order, because $-1$ is among the multipliers. $\boldsymbol\sigma$ runs over the trivial map and the $15$ maps $(a,b)\mapsto(a^{2^u},b^{3^w})$ with $(u,w)\ne(0,0)$. This gives $1280$ models. The $1251$ models with at most $200$ orbits were each tested against every parameter set $(1296,k,\lambda,\mu)$ with $k\le 648$ and integral eigenvalues that was open in Brouwer's table; complements cover the rest. The solutions have the parameter sets $\LS_{16}(36)$, $\NL_{16}(36)$ and $\LS_{17}(36)$. The same scheme was also run on other products of finite fields; the solver settings and the coverage of these searches are recorded in the data repository.
+
+A model without solutions is not a proof of non-existence: many cases ended undecided. In particular, the model $(\langle\rho\rangle,\mathrm{id})$, $\rho=(\alpha^{12},\beta^{16})$, has $132$ orbits, and for $\LS_{13}(36)$, $\LS_{14}(36)$ and $\LS_{15}(36)$ the solver returned no decision within $120$ seconds (as in its three conjugate models). Section~\ref{sec:fibres} shows that this model has solutions for all three. For $\LS_{15}(36)$, adding the divisibility conditions of Lemma~\ref{lem:div} as redundant constraints did not change this within $300$ seconds.
+
+\subsection{A decomposition along the cosets of $\F_{81}$}\label{sec:fibres}
+For $D\subseteq G$ and $a\in\F_{16}$ let $T_a=\{b\in\F_{81}:(a,b)\in D\}$. Then $D=\bigcup_a\{a\}\times T_a$, and for characters $\varphi$ of $\F_{16}$ and $\psi$ of $\F_{81}$
+\[
+(\varphi\times\psi)(D)=\sum_{a\in\F_{16}}\varphi(a)\,\psi(T_a).
+\]
+In the model $\langle\rho\rangle$ the sets $T_a$ on an orbit $\{\alpha^{12t}a\}$ are determined by one of them, $T_{\alpha^{12t}a}=\beta^{16t}T_a$, so $D$ is determined by $T_0$ and three \emph{seeds} $T_1,T_\alpha,T_{\alpha^2}$. By Lemma~\ref{lem:div}, every nontrivial character sum of a seed is divisible by $9$. Writing a seed as $\pm P$ or $\{0\}\cup\pm P$ for a set $P$ of points of $\mathrm{PG}(3,3)$, this says that every plane meets $P$ in a number of points congruent to $|P|$ modulo $3$, which is equivalent to $\sum_{x\in P}xx^{\top}\equiv0\pmod 3$. By Proposition~\ref{prop:family}, the seeds have $13$ points together with $0$, or $18$ points. A meet-in-the-middle enumeration over the quadratic moments $\sum_{x\in P}xx^\top$ lists all such sets in seconds: there are $365{,}080$ with $13$ points and $2{,}677{,}740$ with $18$ points, a count confirmed by an independent dynamic program. For each of the eight dual orbits of $\psi$, the vector $(\psi(T_a))_a$ must have its Walsh transform over $\F_{16}$ in $\{r,s\}$. This couples the three seeds, and the catalogues are joined with bit-set indices on these Walsh patterns. To keep the joins small, an optional restriction on the positions of the positive Walsh coefficients was imposed (it is not a necessary condition). The joins found the connection sets of $\LS_{15}(36)$, $\LS_{14}(36)$ and $\LS_{13}(36)$ in a few seconds each; the searches were stopped at the first solution, so they say nothing about how many solutions exist.
+
+For $\LS_{12}(36)$ the same method works in a different model (Section~\ref{sec:outside}). Theorem~\ref{thm:fibredata} forces $|T_0|=42$, and ring sizes $18$ on the three nonzero points of a plane and $27$ elsewhere. The model is generated by $\sigma=(\alpha^5,u)$, where $\alpha^5$ is a primitive cube root of unity of $\F_4\subset\F_{16}$ and $u$ is a unipotent element of order $3$ and Jordan type $(2,2)$ of $\mathrm{GL}(\F_{81})$, together with $-1$. It has five seeds: one of size $18$ and four of size $27$.
+
+The catalogue of size-$18$ seeds, sets $\pm P$ with $|P|=9$ and all plane sections of size divisible by $3$, has $9{,}880$ members. The size-$27$ catalogue is the one above, minus the $40$ sets with a character value $27$, which cannot occur: for $a\ne0$, \eqref{eq:fibre} gives $\psi(T_a)=\frac94\sum_{\varphi\in S_\psi}\varphi(a)\le\frac94\cdot8=18$, since only $8$ characters $\varphi$ have $\varphi(a)=1$. The $\sigma$-invariant candidates for $T_0$ form a single orbit of $108$ sets under the centralizer of $M_3$ in $\mathrm{GL}_4(\F_3)$. Their nontrivial character sums are $-3$, $6$ and $15$, so $T_0$ is not a partial difference set here.
+
+The join again used optional restrictions: each positive Walsh pattern of size $8$ was required to come from a single ring, and two of the size-$27$ seeds were required to have a character value $18$. It found $D_{VII}$ after $33$ search nodes, in less than a second.
+
+The same model with the same $\sigma$ also gives $\LS_{11}(36)$. By Theorem~\ref{thm:fibredata}, $|T_0|=34$, and the rings have size $27$ on a grid and $18$ on the other six points. Under $\sigma$, these six points are two orbits, so two of the five seeds have size $18$. The $\sigma$-invariant candidates for $T_0$ again form one orbit of $108$ sets under the centralizer of $\sigma$, with nontrivial character sums $-11$, $-2$, $7$ and $16$. One of the two size-$18$ seeds was taken to be the size-$18$ seed of $D_{VII}$, and one size-$27$ seed was required to have a character value $18$. Under these choices the join found $D_{VIII}$ after about $10^3$ search nodes, in five seconds.
+
+Two further graphs come from spreads. For $D=D_{VIII}$, and likewise for its dual, there is exactly one subgroup $U$ of order $36$ with $U\cap D=\emptyset$, and $D\cup U^*$ is a PDS with parameters $\LS_{12}(36)$ (Lemma~\ref{lem:free}). These are the graphs VII.2 and VII.3, which are not isomorphic to $\Gamma_{VII}$.
 
 %=====================================================================
 \section{The graphs}\label{sec:graphs}
@@ -182,26 +344,111 @@ a & J_a\ (\Gamma_{II}) & J'_a\ (\Gamma_{III})\\
 \end{tabular}
 \end{table}
 
+\begin{construction}[Graphs IV, V, VI]\label{con:IVVI}
+Let $\rho=(\alpha^{12},\beta^{16})$. For $J_0\subseteq\Z_8$, $I_0\subseteq\Z_3$ and $S_0,S_1,S_2\subseteq\Z_{40}$ let
+\begin{multline*}
+D(J_0,I_0,S)=\{(0,\beta^j):j\bmod 8\in J_0\}\ \cup\ \{(\alpha^i,0):i\bmod 3\in I_0\}\\
+\cup\ \bigl\{(\alpha^{3t+u},\beta^j):0\le t<5,\ 0\le u<3,\ 0\le j<80,\ (j+16t)\bmod 40\in S_u\bigr\},
+\end{multline*}
+and let $D_{IV}$, $D_V$, $D_{VI}$ be the sets $D(J_0,I_0,S)$ given by Table~\ref{tab:IVVI}. Then $|D(J_0,I_0,S)|=10|J_0|+5|I_0|+10(|S_0|+|S_1|+|S_2|)$, which is $525$, $490$ and $455$. Each set is invariant under $\rho$ and under $-1=(1,\beta^{40})$, and every set invariant under these two maps has this form. The first part is $\{0\}\times T_0$ with $T_0$ a union of cyclotomic classes $\beta^i\langle\beta^8\rangle$ of index $8$, and the second is $U_0\times\{0\}$ with $U_0$ a union of cosets $\alpha^i\mu_5$ of $\mu_5=\langle\alpha^3\rangle$.
+\end{construction}
+
+\begin{table}[ht]
+\centering\small
+\caption{The data of Construction~\ref{con:IVVI}.}\label{tab:IVVI}
+\begin{tabular}{ll}
+\toprule
+$D_{IV}$ & $k=525$: \quad $J_0=\{0,1,6\}$, \quad $I_0=\{0\}$\\
+ & $S_0=\{0,2,3,8,10,12,14,15,20,30,32,37,39\}$\\
+ & $S_1=\{0,2,3,5,6,11,12,13,14,19,20,21,26,28,30,31,33,35\}$\\
+ & $S_2=\{3,5,6,11,12,13,16,17,20,21,24,25,29,30,31,32,35,36\}$\\
+\midrule
+$D_{V}$ & $k=490$: \quad $J_0=\{0,1,4,5\}$, \quad $I_0=\{0,1\}$\\
+ & $S_0=\{0,1,2,8,14,18,19,23,25,33,34,37,38\}$\\
+ & $S_1=\{4,5,6,9,10,13,21,23,25,28,29,30,35\}$\\
+ & $S_2=\{0,2,3,4,5,6,9,10,14,15,18,19,22,25,29,30,31,34\}$\\
+\midrule
+$D_{VI}$ & $k=455$: \quad $J_0=\{0,1,2,3,5\}$, \quad $I_0=\{0,1,2\}$\\
+ & $S_0=\{0,1,2,4,5,11,21,28,29,31,32,37,38\}$\\
+ & $S_1=\{3,5,6,7,13,14,19,22,25,31,33,35,39\}$\\
+ & $S_2=\{6,10,13,14,19,22,26,27,28,30,32,35,36\}$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{construction}[Graph VII]\label{con:VII}
+For this graph we use the coordinates $G\cong\F_2^4\times\F_3^4$ in which it was found. A vector $(x_0,x_1,x_2,x_3)$ is written as the digit string $x_0x_1x_2x_3$, and $\pm P$ denotes $P\cup(-P)$. Let $\sigma=(M_2,M_3)$ with
+\[
+M_2(b_0,b_1,b_2,b_3)=(b_1,\,b_0+b_1,\,b_3,\,b_2+b_3),\qquad M_3(v_0,v_1,v_2,v_3)=(v_0+v_2,\,v_1+v_3,\,v_2,\,v_3).
+\]
+Both maps have order $3$; $M_2$ is fixed-point-free on $\F_2^4\setminus\{0\}$ (it is multiplication by a primitive cube root of unity of $\F_4$ on $\F_4^2$), and $M_3$ is unipotent of Jordan type $(2,2)$. Let $D_{VII}$ consist of $\{0\}\times\pm P_0$ and of the $\sigma$-orbits of the five sets $\{b\}\times T$, with $P_0$ and the pairs $(b,T)$ given in Table~\ref{tab:VII}. Then $|D_{VII}|=42+3\,(18+4\cdot27)=420$, and $D_{VII}$ is invariant under $\sigma$ and $-1$. In the coordinates of $\F_{16}\times\F_{81}$, the binary part of $\sigma$ becomes multiplication by $\alpha^5$, but the ternary part is not a field multiplication. The data repository contains $D_{VII}$ in both coordinate systems.
+\end{construction}
+
+\begin{table}[ht]
+\centering\small
+\caption{The data of Construction~\ref{con:VII}: $T_0=\pm P_0$ and, for each of the five seeds, the label $b\in\F_2^4$ and $T=\pm P$ or $T=\{0\}\cup\pm P$.}\label{tab:VII}
+\begin{tabular}{lll}
+\toprule
+$b$ & $0\in T$ & $P$ (projective points of $\mathrm{PG}(3,3)$)\\
+\midrule
+--- & no & $P_0$: 0001 0010 0011 0012 0100 0101 0102 0112 0121 1000 1010\\
+& & \phantom{$P_0$: }1012 1020 1021 1100 1111 1112 1121 1122 1212 1221\\
+0100 & no & 0001 0010 0011 0101 0102 0110 0111 0120 0122\\
+0001 & yes & 0001 0010 0011 0121 1021 1101 1102 1110 1111 1112 1120 1122 1200\\
+0101 & yes & 0001 0010 0011 0112 1001 1002 1010 1011 1012 1020 1022 1121 1200\\
+1001 & yes & 0001 0012 0120 0122 1001 1010 1101 1122 1200 1210 1212 1221 1222\\
+1101 & yes & 0001 0100 0110 0111 1000 1002 1020 1100 1102 1111 1200 1211 1220\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{construction}[Graph VIII]\label{con:VIII}
+In the coordinates and with the map $\sigma=(M_2,M_3)$ of Construction~\ref{con:VII}, let $D_{VIII}$ consist of $\{0\}\times\pm P_0$ and of the $\sigma$-orbits of the five sets $\{b\}\times T$ given in Table~\ref{tab:VIII}. Then $|D_{VIII}|=34+3\,(2\cdot18+3\cdot27)=385$, and $D_{VIII}$ is invariant under $\sigma$ and $-1$. The first seed is the size-$18$ seed of $D_{VII}$ (with another label), and $T_0(D_{VIII})\subset T_0(D_{VII})$.
+\end{construction}
+
+\begin{table}[ht]
+\centering\small
+\caption{The data of Construction~\ref{con:VIII}, in the format of Table~\ref{tab:VII}.}\label{tab:VIII}
+\begin{tabular}{lll}
+\toprule
+$b$ & $0\in T$ & $P$ (projective points of $\mathrm{PG}(3,3)$)\\
+\midrule
+--- & no & $P_0$: 0001 0010 0012 0100 0101 0102 0112 0121 1000 1010 1012\\
+& & \phantom{$P_0$: }1020 1021 1112 1121 1212 1221\\
+0110 & no & 0001 0010 0011 0101 0102 0110 0111 0120 0122\\
+0111 & no & 0102 0110 0121 1001 1012 1020 1200 1211 1222\\
+0001 & yes & 0001 0010 0011 0012 1001 1002 1010 1011 1020 1022 1200 1212 1221\\
+0100 & yes & 0010 0100 0110 0120 1002 1020 1022 1111 1112 1121 1200 1201 1210\\
+0101 & yes & 0001 0101 0110 0112 1000 1011 1021 1101 1102 1122 1200 1202 1210\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \begin{theorem}\label{thm:graphs}
-$D_I$, $D_{II}$ and $D_{III}$ are partial difference sets in $(\F_{16}\times\F_{81},+)\cong\Z_2^4\times\Z_3^4$ with parameters $(1296,560,244,240)$, $(1296,592,268,272)$ and $(1296,595,274,272)$. Consequently the Cayley graphs $\Gamma_I$, $\Gamma_{II}$, $\Gamma_{III}$ of $\F_{16}\times\F_{81}$ with these connection sets are strongly regular, with spectra $560^1\,20^{560}\,(-16)^{735}$, $592^1\,16^{703}\,(-20)^{592}$ and $595^1\,19^{595}\,(-17)^{700}$.
+$D_I,\dots,D_{VIII}$ are partial difference sets in $(\F_{16}\times\F_{81},+)\cong\Z_2^4\times\Z_3^4$ with parameters $(1296,k,\lambda,\mu)$ for $(k,\lambda,\mu)=(560,244,240)$, $(592,268,272)$, $(595,274,272)$, $(525,216,210)$, $(490,190,182)$, $(455,166,156)$, $(420,144,132)$ and $(385,124,110)$. Consequently the Cayley graphs $\Gamma_I,\dots,\Gamma_{VIII}$ of $\F_{16}\times\F_{81}$ with these connection sets are strongly regular, with spectra $560^1\,20^{560}\,(-16)^{735}$, $592^1\,16^{703}\,(-20)^{592}$, $595^1\,19^{595}\,(-17)^{700}$, $525^1\,21^{525}\,(-15)^{770}$, $490^1\,22^{490}\,(-14)^{805}$, $455^1\,23^{455}\,(-13)^{840}$, $420^1\,24^{420}\,(-12)^{875}$ and $385^1\,25^{385}\,(-11)^{910}$.
 \end{theorem}
 
 \begin{proof}
-All three sets satisfy $D=-D$ and $0\notin D$. The identity $A^2=kI+\lambda A+\mu(J-I-A)$ was verified exhaustively, by counting the common neighbors of all $\binom{1296}{2}$ vertex pairs of $\Cay(G,D)$ (Section~\ref{sec:verification}). As a consistency check, all $1295$ non-principal character values were computed numerically. They take exactly the two values $r,s$ allowed by Lemma~\ref{lem:char}, with the multiplicities of the stated spectrum.
+All eight sets satisfy $D=-D$ and $0\notin D$. The identity $A^2=kI+\lambda A+\mu(J-I-A)$ was verified exhaustively, by counting the common neighbors of all $\binom{1296}{2}$ vertex pairs of $\Cay(G,D)$ (Section~\ref{sec:verification}). As a consistency check, all $1295$ non-principal character values were computed numerically. They take exactly the two values $r,s$ allowed by Lemma~\ref{lem:char}, with the multiplicities of the stated spectrum.
 \end{proof}
 
 \begin{remark}
 Unlike Kova\v{l}'s Construction~5.4, which is proved by hand in~\cite[Section~5.3]{KovalNew}, these proofs are computational. A proof in that style should be possible, since every character value of $D_I$, $D_{II}$ and $D_{III}$ is a sum of Gauss periods of index $20$ of $\F_{81}$ with signs $\pm1$ given by additive characters of $\F_{16}$.
+For $D_{IV}$, $D_V$ and $D_{VI}$, Section~\ref{sec:family} explains the shape of the sets $T_0$ and $U_0$ and the sizes of the sets $T_a$ by hand, but the existence proof is computational.
 \end{remark}
 
 \subsection{Further graphs}
-Table~\ref{tab:classes} lists all isomorphism classes found. Graphs I.7--I.10, II.1--II.4 and III.1--III.4 come from the same four models $(S,\boldsymbol\sigma)$, with $S=\langle(1,\beta^{20})\rangle\cong\mu_4$ and one of four Galois maps. Since $(a^8,b^{27})$ and $(a^8,b^3)$ are the inverses of $(a^2,b^3)$ and $(a^2,b^{27})$, these four models define only two groups $K$, each of which has solutions for all three parameter sets. Of Kova\v{l}'s six graphs with parameters $(1296,595,274,272)$~\cite{KovalMultiOrbit}, four have automorphism groups of orders $2903040$, $3456$, $31104$ and $19584$~\cite[Table~4]{KovalMultiOrbit}, and nauty~\cite{McKayPiperno2014} gives trivial automorphism groups for the other two. None of them is vertex-transitive, so none is isomorphic to III.1--III.4, which proves the last claim of Theorem~\ref{thm:595}; a comparison of nauty canonical forms confirms this. The connection sets of all eighteen graphs are in the data repository (see Data availability).
+Table~\ref{tab:classes} lists all isomorphism classes found. Graphs I.7--I.10, II.1--II.4 and III.1--III.4 come from the same four models $(S,\boldsymbol\sigma)$, with $S=\langle(1,\beta^{20})\rangle\cong\mu_4$ and one of four Galois maps. Since $(a^8,b^{27})$ and $(a^8,b^3)$ are the inverses of $(a^2,b^3)$ and $(a^2,b^{27})$, these four models define only two groups $K$, each of which has solutions for all three parameter sets. Of Kova\v{l}'s six graphs with parameters $(1296,595,274,272)$~\cite{KovalMultiOrbit}, four have automorphism groups of orders $2903040$, $3456$, $31104$ and $19584$ with vertex orbits of sizes $1260+36$, $864+288+144$, $864+432$ and $1224+72$~\cite{KovalMultiOrbit}, and nauty~\cite{McKayPiperno2014} gives trivial automorphism groups for the other two. Hence none of them is vertex-transitive, and none is isomorphic to III.1--III.4, which proves the last claim of Theorem~\ref{thm:595}; a comparison of nauty canonical forms confirms this. Graphs IV.1, V.1, VI.1, VII.1 and VIII.1 come from the fibre decomposition of Section~\ref{sec:fibres}; VII.2 and VII.3 are $D_{\mathrm{VIII}.1}\cup U^*$ and $D_{\mathrm{VIII}.2}\cup U'^*$ for the unique free subgroups $U$, $U'$ (Section~\ref{sec:fibres}).
+
+Proposition~\ref{prop:dual} is a second source of graphs. For I.1--I.4, I.6, I.10, II.1, III.1--III.4, VI.1 and VII.1 the Cayley graph $\Cay(G,D^*)$ is isomorphic to $\Cay(G,D)$. For the other ten connection sets I.5, I.7, I.8, I.9, II.2, II.3, II.4, IV.1, V.1 and VIII.1 it is a new graph; these ten dual graphs are I.11--I.14, II.5--II.7, IV.2, V.2 and VIII.2 of Table~\ref{tab:classes}. The graphs VII.2 and VII.3 are dual to each other: by Lemma~\ref{lem:dualspread}, duality takes $D\cup U^*$ to $D^*\cup(U^\perp)^*$. The isomorphism statements were decided with nauty and, independently, with bliss (through igraph).
+
+The connection sets of all thirty-five graphs are in the data repository (see Data availability).
 
 
 
 \begin{table}[t]
 \centering\small
-\caption{Non-isomorphic graphs found, with $|\Aut\Gamma|$ computed by nauty, the order of the multiplicative stabilizer $\mathrm{Stab}(D)=\{\gamma\in\F_{16}^*\times\F_{81}^*:\gamma D=D\}$ of the connection set, the clique number $\omega$, and the model in which each graph was first found. A multiplicative generator $(\alpha^x,\beta^y)$ acts by $(a,b)\mapsto(\alpha^xa,\beta^yb)$, and a Galois map is written by its action on $(a,b)$.}\label{tab:classes}
+\caption{Non-isomorphic graphs found, with $|\Aut\Gamma|$ computed by nauty, the order of the multiplicative stabilizer $\mathrm{Stab}(D)=\{\gamma\in\F_{16}^*\times\F_{81}^*:\gamma D=D\}$ of the connection set, the clique number $\omega$, and the model in which each graph was first found, or its origin ($\rho=(\alpha^{12},\beta^{16})$). A multiplicative generator $(\alpha^x,\beta^y)$ acts by $(a,b)\mapsto(\alpha^xa,\beta^yb)$, and a Galois map is written by its action on $(a,b)$.}\label{tab:classes}
 \begin{tabular}{llrrrl}
 \toprule
 graph & parameters & $|\Aut\Gamma|$ & $|\mathrm{Stab}(D)|$ & $\omega$ & model $(S,\boldsymbol\sigma)$\\
@@ -216,27 +463,215 @@ I.7 & & 20736 & 4 & 12 & $\langle(1,\beta^{20})\rangle$, $(a^2,b^{3})$ \\
 I.8 & & 20736 & 4 & 15 & $\langle(1,\beta^{20})\rangle$, $(a^2,b^{27})$ \\
 I.9 & & 20736 & 4 & 12 & $\langle(1,\beta^{20})\rangle$, $(a^8,b^{3})$ \\
 I.10 & & 20736 & 4 & 14 & $\langle(1,\beta^{20})\rangle$, $(a^8,b^{27})$ \\
+I.11 & & 25920 & 20 & 12 & dual of I.5 \\
+I.12 & & 20736 & 4 & 12 & dual of I.7 \\
+I.13 & & 20736 & 4 & 14 & dual of I.8 \\
+I.14 & & 20736 & 4 & 13 & dual of I.9 \\
 \midrule
 II.1 & $(1296,592,268,272)$ & 20736 & 4 & 13 & $\langle(1,\beta^{20})\rangle$, $(a^2,b^{3})$ \\
 II.2 & & 20736 & 4 & 12 & $\langle(1,\beta^{20})\rangle$, $(a^2,b^{27})$ \\
 II.3 & & 20736 & 4 & 12 & $\langle(1,\beta^{20})\rangle$, $(a^8,b^{3})$ \\
 II.4 & & 20736 & 4 & 12 & $\langle(1,\beta^{20})\rangle$, $(a^8,b^{27})$ \\
+II.5 & & 20736 & 4 & 12 & dual of II.2 \\
+II.6 & & 20736 & 4 & 12 & dual of II.3 \\
+II.7 & & 20736 & 4 & 13 & dual of II.4 \\
 \midrule
 III.1 & $(1296,595,274,272)$ & 20736 & 4 & 24 & $\langle(1,\beta^{20})\rangle$, $(a^2,b^{3})$ \\
 III.2 & & 20736 & 4 & 24 & $\langle(1,\beta^{20})\rangle$, $(a^2,b^{27})$ \\
 III.3 & & 20736 & 4 & 24 & $\langle(1,\beta^{20})\rangle$, $(a^8,b^{3})$ \\
 III.4 & & 20736 & 4 & 24 & $\langle(1,\beta^{20})\rangle$, $(a^8,b^{27})$ \\
+\midrule
+IV.1 & $(1296,525,216,210)$ & 12960 & 10 & 12 & $\langle\rho\rangle$, none; Section~\ref{sec:fibres} \\
+IV.2 & & 12960 & 10 & 12 & dual of IV.1 \\
+\midrule
+V.1 & $(1296,490,190,182)$ & 12960 & 10 & 18 & $\langle\rho\rangle$, none; Section~\ref{sec:fibres} \\
+V.2 & & 12960 & 10 & 12 & dual of V.1 \\
+\midrule
+VI.1 & $(1296,455,166,156)$ & 12960 & 10 & 24 & $\langle\rho\rangle$, none; Section~\ref{sec:fibres} \\
+\midrule
+VII.1 & $(1296,420,144,132)$ & 7776 & 2 & 18 & $\langle(\alpha^5,u)\rangle$, $u$ unipotent; Section~\ref{sec:fibres} \\
+VII.2 & & 7776 & 2 & 36 & $D_{\mathrm{VIII}.1}\cup U^*$ \\
+VII.3 & & 7776 & 2 & 36 & $D_{\mathrm{VIII}.2}\cup U'^*$; dual of VII.2 \\
+\midrule
+VIII.1 & $(1296,385,124,110)$ & 7776 & 2 & 18 & $\langle(\alpha^5,u)\rangle$, $u$ unipotent; Section~\ref{sec:fibres} \\
+VIII.2 & & 7776 & 2 & 13 & dual of VIII.1 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Graphs I.1, II.1 and III.1 are $\Gamma_I$, $\Gamma_{II}$ and $\Gamma_{III}$ of Constructions~\ref{con:I}--\ref{con:III}. All eighteen graphs are vertex-transitive, being Cayley graphs. The counts are lower bounds, since the search is not exhaustive.
+Graphs I.1, II.1, III.1, IV.1, V.1, VI.1, VII.1 and VIII.1 are $\Gamma_I,\dots,\Gamma_{VIII}$ of Constructions~\ref{con:I}--\ref{con:VIII}. All thirty-five graphs are vertex-transitive, being Cayley graphs, and the graphs with the same parameters are pairwise non-isomorphic. The counts are lower bounds, since the searches are not exhaustive.
+
+%=====================================================================
+\section{Structure shared by the graphs}\label{sec:shared}
+
+\subsection{The binary skeleton}
+By Theorem~\ref{thm:fibredata}, the sets $S_1$ and $U_0$ and all ring sizes are forced by $m$. Table~\ref{tab:skeleton} lists them for the graphs of Latin square type, with the graphs that realize them. In every case the coset $\F_{16}\times\{0\}$, and with it every coset $\F_{16}\times\{b\}$, induces a strongly regular graph $\Cay(\F_{16},U_0)$ or a trivial one. This is because each type in Table~\ref{tab:fibredata} gives a strongly regular Cayley graph of $\F_{16}$, coming from a quadric, a plane, or a partial spread.
+
+\begin{table}[ht]
+\centering\small
+\caption{The forced binary data of the graphs of Latin square type (Theorem~\ref{thm:fibredata}).}\label{tab:skeleton}
+\begin{tabular}{rllll}
+\toprule
+$m$ & graphs & $U_0$ and $S_1$ & $\Cay(\F_{16},U_0)$ & $|T_0|$; ring sizes\\
+\midrule
+$11$ & VIII.1--2 & grid & $\srg(16,9,4,6)$ & $34$; $18^6\,27^9$\\
+$12$ & VII.1--3 & complement of a plane & $\srg(16,12,8,12)$ & $42$; $18^3\,27^{12}$\\
+$13$ & VI.1 & all of $\F_{16}^*$ & $K_{16}$ & $50$; $27^{15}$\\
+$14$ & V.1--2 & complement of an ovoid & $\srg(16,10,6,6)$ & $40$; $36^5\,27^{10}$\\
+$15$ & IV.1--2 & ovoid & $\srg(16,5,0,2)$ (Clebsch) & $30$; $36^{10}\,27^5$\\
+$16$ & I.1--14 & empty & empty & $20$; $36^{15}$\\
+$17$ & III.1--4 & plane minus $0$ & $\srg(16,3,2,0)=4K_4$ & $28$; $36^{12}\,45^3$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{A local alphabet}
+The ring sets $T_a$, $a\ne0$, are strongly constrained individually. Write $c_d(T)=\psi_d(T)/9$ for the $40$ points $d$ of $\mathrm{PG}(3,3)$, that is, for $d\in\F_{81}^*$ up to sign; these are integers by Lemma~\ref{lem:div}.
+
+\begin{lemma}\label{lem:alphabet}
+Let $T=-T\subseteq\F_{81}$ have all nontrivial character sums divisible by $9$. Then
+\[
+\sum_d c_d(T)=\frac{81\,[0\in T]-|T|}{18},\qquad \sum_d c_d(T)^2=\frac{|T|\,(81-|T|)}{162}.
+\]
+\end{lemma}
+
+\begin{proof}
+Sum $\psi(T)$ over all $\psi\ne1$, and apply Parseval's identity. Note that $\psi_d$ and $\psi_{-d}$ give the same value.
+\end{proof}
+
+For $|T|=18,27,36,45$ this gives $(\sum c,\sum c^2)=(-1,7)$, $(3,9)$, $(-2,10)$, $(2,10)$, which leaves few possible multisets $\{c_d\}$. Across all thirty-five graphs, only nine occur (Table~\ref{tab:alphabet}). Three of them are classical: the type $L_1$ is $\pm$ an affine plane, that is, a hyperplane of $\F_{81}$ minus a $2$-dimensional subspace; the type $L_6$ is $\F_{81}$ minus two hyperplanes; and the type $L_8$ is the union of two hyperplanes. The same types recur for different $m$: every ring of size $27$, in all graphs with $11\le m\le15$, is of type $L_3$ or $L_4$, and $L_7$ occurs for $m=14,15,16,17$ and in the graphs II.
+
+\begin{table}[ht]
+\centering\small
+\caption{The nine local types of ring sets $T_a$, $a\ne0$, in all thirty-five graphs: size, whether $0\in T_a$, the nonzero values of $c_d$ with multiplicities, and the graphs in which the type occurs.}\label{tab:alphabet}
+\begin{tabular}{llllll}
+\toprule
+type & $|T|$ & $0\in T$ & $\{c_d\ne0\}$ & description & occurs in\\
+\midrule
+$L_1$ & $18$ & no & $2,\,(-1)^3$ & affine plane & VII, VIII\\
+$L_2$ & $18$ & no & $1^3,\,(-1)^4$ & & VII, VIII\\
+$L_3$ & $27$ & yes & $2,\,1^3,\,(-1)^2$ & & IV, V, VI, VII, VIII\\
+$L_4$ & $27$ & yes & $1^6,\,(-1)^3$ & & IV, V, VI, VII, VIII\\
+$L_5$ & $36$ & no & $1^3,\,(-1)^3,\,-2$ & & I\\
+$L_6$ & $36$ & no & $1^2,\,(-2)^2$ & $\F_{81}$ minus two hyperplanes & I, II\\
+$L_7$ & $36$ & no & $1^4,\,(-1)^6$ & & I, II, III, IV, V\\
+$L_8$ & $45$ & yes & $2^2,\,(-1)^2$ & union of two hyperplanes & III\\
+$L_9$ & $45$ & yes & $1^6,\,(-1)^4$ & & III\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{The zero ring}
+By~\eqref{eq:fibre} with $a=0$, the sizes of the positive sets are read off from the character sums of $T_0$:
+\[
+|S_\psi|=\tfrac49\bigl(\psi(T_0)+m\bigr)\qquad(\psi\ne1)
+\]
+for $\LS_m(36)$. In the order-five family $T_0$ is a cyclotomic $\NL_g(9)$ set (Section~\ref{sec:family}), so $|S_\psi|\in\{4,8\}$ (Figure~\ref{fig:zerorings}). In the other graphs $T_0$ is not a partial difference set, and $|S_\psi|$ takes three or four values. The character sums of $T_0$ are $-8,1,10$ for the graphs III, $-3,6,15$ for all three graphs VII, and $-11,-2,7,16$ for both graphs VIII. In every graph, $T_0(D)$ and $T_0(D^*)$ have the same character sums with the same multiplicities (computed for all dual pairs; data repository). Equivalently, by Proposition~\ref{prop:dual}, the sizes of the $\F_2$-fibres $U_b$, $b\ne0$, have the same distribution as the sizes $|S_\psi|$. Finally, $T_0(D_{\mathrm{VIII}.1})\subset T_0(D_{\mathrm{VII}.1})$ in the coordinates of Constructions~\ref{con:VII} and~\ref{con:VIII}, and $T_0(D_{\mathrm{VII}.2})$ is $T_0(D_{\mathrm{VIII}.1})$ together with the $8$ nonzero elements of $U\cap(\{0\}\times\F_{81})$.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=\textwidth]{figures/zero_rings.pdf}
+\caption{The zero ring $R_0=\{0\}\times\F_{81}$, that is, $\Cay(\F_{81},T_0)$, for one graph with each of the parameter sets $\LS_m(36)$, $m=11,\dots,17$, drawn as the right-hand panels of Figure~\ref{fig:rings}; the type of $U_0$ (Table~\ref{tab:skeleton}) is given below each panel. For the order-five family ($m=13,\dots,16$) the zero ring is the cyclotomic graph $\NL_{18-m}(9)$, so the numbers of common neighbors are constant. For $m=11$, $12$ and $17$ it is not strongly regular: adjacent vertices have $13$, $19$ or $25$, respectively $21$ or $27$, respectively $1$, $7$ or $13$ common neighbors in $R_0$, and non-adjacent vertices $8$, $14$ or $20$, respectively $18$ or $24$, respectively $8$ or $14$.}\label{fig:zerorings}
+\end{figure}
+
+\subsection{Symmetry, duality and spreads}
+Apart from the translations, the graphs have small automorphism groups (Table~\ref{tab:classes}). They fall into three symmetry types:
+\begin{itemize}
+\item the order-five family I.1--I.6, I.11, IV, V and VI, invariant under $\rho$, with $|\Aut|=12960=1296\cdot10$ for IV--VI;
+\item the order-three graphs VII and VIII, invariant under $\sigma$, with $|\Aut|=7776=1296\cdot6$;
+\item the graphs I.7--I.10, I.12--I.14, II and III, invariant under $\mu_4$ and a Galois map, with $|\Aut|=20736$.
+\end{itemize}
+Duality (Proposition~\ref{prop:dual}) is an involution on connection sets, $D\mapsto D^*$. On our connection sets, $\Cay(G,D^*)\cong\Cay(G,D)$ for $13$ of the $35$ graphs, and the other $22$ form $11$ dual pairs (Table~\ref{tab:classes}).
+
+Spreads of Delsarte cliques link different parameter sets (Figure~\ref{fig:links}). By Lemma~\ref{lem:free} below, a subgroup $U$ of order $36$ with $U\cap D=\emptyset$ can always be added to an $\LS_m(36)$ PDS to give an $\LS_{m+1}(36)$ PDS, and a subgroup with $U^*\subseteq D$ can be deleted to give an $\LS_{m-1}(36)$ PDS. For the latter, the same argument shows that $\chi_g(D)=36-m$ for all $g\in U^\perp\setminus\{0\}$; it is also Kova\v{l}'s lemma recalled in Section~\ref{sec:spreads}. Among all thirty-five graphs, exactly I.6, I.10, III.1--III.4, VIII.1 and VIII.2 have free subgroups, and exactly VII.2 and VII.3 contain a subgroup of order $36$. Each graph VIII has a single free subgroup, and adding it gives VII.2, respectively VII.3. Adding a free subgroup commutes with duality.
+
+\begin{lemma}\label{lem:free}
+Let $D$ be a regular PDS in $G$ with parameters $\LS_m(36)$, $m\le34$, and let $U$ be a subgroup of order $36$ with $U\cap D=\emptyset$. Put $U^\perp=\{g:\chi_g(U)=36\}$, a subgroup of order $36$. Then $\chi_g(D)=-m$ for all $g\in U^\perp\setminus\{0\}$, and $D\cup U^*$ is a regular PDS with parameters $\LS_{m+1}(36)$. Consequently, if $U_1,\dots,U_j$ are such subgroups with pairwise intersection $\{0\}$ and $m+j\le35$, then $D\cup U_1^*\cup\dots\cup U_j^*$ is a regular PDS with parameters $\LS_{m+j}(36)$.
+\end{lemma}
+
+\begin{proof}
+By orthogonality, $\sum_{g\in U^\perp}\chi_g(D)=36\,|D\cap U|=0$, so the $35$ values $\chi_g(D)$, $g\in U^\perp\setminus\{0\}$, add up to $-k=-35m$. Each of them is $36-m$ or $-m$, so all equal $-m$. Since $\chi_g(U^*)=35$ for $g\in U^\perp\setminus\{0\}$ and $-1$ otherwise, $\chi_g(D\cup U^*)$ lies in $\{35-m,\,-m-1\}$ for all $g\ne0$, and Lemma~\ref{lem:char} applies. For the last statement note that $U_2\cap(D\cup U_1^*)=\emptyset$ when $U_1\cap U_2=\{0\}$, and use induction.
+\end{proof}
+
+\begin{lemma}\label{lem:dualspread}
+Let $D$ be a regular PDS with parameters $\LS_m(36)$ in $G$, and let $U$ be a subgroup of order $36$ with $U\cap D=\emptyset$, so that $E=D\cup U^*$ has parameters $\LS_{m+1}(36)$ (Lemma~\ref{lem:free}). Then $U^\perp\cap D^*=\emptyset$, and $E^*=D^*\cup(U^\perp)^*$.
+\end{lemma}
+
+\begin{proof}
+For $g\ne0$ we have $\chi_g(U^*)=35$ if $g\in U^\perp$ and $-1$ otherwise. The eigenvalues of $E$ are $r-1$ and $s-1$, where $r-s=36$. For $g\notin U^\perp$, $\chi_g(E)=\chi_g(D)-1$, which equals $r-1$ exactly when $\chi_g(D)=r$. For $g\in U^\perp\setminus\{0\}$, $\chi_g(E)=\chi_g(D)+35\in\{r-1,s-1\}$ forces $\chi_g(D)=s$, so $g\notin D^*$ and $\chi_g(E)=s+35=r-1$.
+\end{proof}
+
+So VII.2 and VII.3 are dual to each other, as VIII.1 and VIII.2 are.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[x=13.5mm,y=9mm,box/.style={draw,rounded corners=2pt,inner sep=2pt,font=\scriptsize,minimum width=10mm},arr/.style={->,>=stealth,semithick},lab/.style={font=\tiny,align=center}]
+\foreach \m in {11,...,21} { \node[box] (n\m) at (\m-11,0) {$\LS_{\m}$}; }
+\draw[arr] (n11.north) to[out=60,in=120] node[lab,above=1pt]{VIII $\to$ VII.2, VII.3: $+U$} (n12.north);
+\draw[arr] (n16.north east) to[out=70,in=110] node[lab,pos=0.6,above right=-1pt and 1pt]{I.6, I.10: $+U$} (n17.north);
+\draw[arr] (n16.north west) to[out=75,in=105,looseness=0.7] node[lab,above=1pt]{I.6: $+U_1+\dots+U_5$} (n21.north east);
+\draw[arr] (n17.south) to[out=-60,in=-120] node[lab,below=1pt]{III: $+U$} (n18.south);
+\draw[decorate,decoration={brace,amplitude=4pt,mirror},semithick] (-0.45,-0.55) -- (1.45,-0.55) node[midway,below=3pt,font=\tiny]{order 3 ($\sigma$)};
+\draw[decorate,decoration={brace,amplitude=4pt,mirror},semithick] (1.55,-0.55) -- (5.3,-0.55) node[midway,below=3pt,font=\tiny]{order 5 ($\rho$)};
+\end{tikzpicture}
+\caption{Links between our graphs of Latin square type by adding spreads of Delsarte cliques ($+U$, Proposition~\ref{prop:spreads}), and the two symmetry types of the graphs found by the decomposition of Section~\ref{sec:fibres}. In addition, the graphs III arise from $\LS_{19}(36)$ Bush-type graphs by deleting two spreads (Proposition~\ref{prop:bush}).}\label{fig:links}
+\end{figure}
+
+\subsection{The order-five family}\label{sec:family}
+
+Let $\rho=(\alpha^{12},\beta^{16})$, the multiplication by elements of order $5$ in both fields. The model $\langle\rho\rangle$ contains the graphs I.1--I.6 up to isomorphism: each of them is invariant under $(\alpha^3,\beta^{16c})$ for some $c\in\{1,2,3,4\}$ (Table~\ref{tab:classes}), the Galois maps $b\mapsto b^{3^w}$ permute the four subgroups $\langle(\alpha^3,\beta^{16c})\rangle$ transitively, and $\langle\rho\rangle=\langle(\alpha^3,\beta^{64})\rangle$. The model also contains the graphs IV--VI, and with $D$ it contains $D^*$, since the identification of Proposition~\ref{prop:dual} turns $\rho$ into the multiplication by $(\alpha^{12},\beta^{16})$ on characters.
+
+\begin{proposition}\label{prop:family}
+Let $D$ be a $\rho$-invariant regular PDS in $G$ with parameters $\LS_m(36)$, $1\le m\le18$, or $\NL_m(36)$ with $k\le648$. Then $D$ has Latin square type and $m\in\{5,6,7\}\cup\{13,14,15,16\}$. Put $g=18-m$ and $e=g-2$ if $m\ge13$, and $g=9-m$ and $e=g-1$ if $m\le7$. Then:
+\begin{enumerate}
+\item[(a)] $T_0$ is the union of $g$ of the eight cyclotomic classes $\beta^i\langle\beta^8\rangle$, and $\Cay(\F_{81},T_0)$ is a strongly regular graph with parameters $\NL_g(9)=(81,10g,g^2+3g-9,g^2+g)$;
+\item[(b)] $U_0$ is the union of $e$ of the three cosets of $\mu_5=\langle\alpha^3\rangle$, so $\Cay(\F_{16},U_0)$ is the empty graph, the Clebsch graph $\srg(16,5,0,2)$, its complement $\srg(16,10,6,6)$, or $K_{16}$, for $e=0,1,2,3$;
+\item[(c)] for $a\ne0$, $|T_a|=36-9\,[a\in U_0]$ if $m\ge13$, and $|T_a|=18-9\,[a\in U_0]$ if $m\le7$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+The group $\langle\rho,-1\rangle$ has order $10$. Its orbits on $\F_{16}^*$ are the three cosets of $\mu_5$, and its orbits on $\F_{81}^*$ are the eight classes $\beta^i\langle\beta^8\rangle$, because $\langle\beta^{16},\beta^{40}\rangle=\langle\beta^8\rangle$. So $T_0$ is a union of classes and $U_0$ a union of cosets, and $10\mid d$, $5\mid d'$. Since $\mathrm{Tr}(c\cdot\zeta a)=\mathrm{Tr}(\zeta c\cdot a)$, the dual action of $\rho$ on characters is again multiplication by $(\alpha^{12},\beta^{16})$. So $S_1$ is a union of cosets of $\mu_5$ and $5\mid j$. Also $\{\psi\ne1:(1\times\psi)(D)=r\}$ is closed under $\rho$ and under complex conjugation, so $10\mid j'$. With these divisibilities, the two identities of Lemma~\ref{lem:trace} hold only for $\LS_m(36)$ with $m\in\{5,\dots,8\}\cup\{13,\dots,16\}$ and for $\NL_{10}(36)$. This is a finite check over $m$, recorded in the data repository. For $\LS_m(36)$ they force $(d,j,d',j')=(10g,5e,5e,10g)$, with $(g,e)=(1,0)$ for $m=8$, and for $\NL_{10}(36)$ they force $(d,j,d',j')=(10,5,10,70)$.
+
+By Lemma~\ref{lem:div} and~\eqref{eq:fibre}, $\psi(T_0)\in\{s,s+9,\dots,s+36\}$ for all $\psi\ne1$, since $0\le|S_\psi|\le16$ and $4\mid|S_\psi|$. The sums of $\psi\ne1$ over one class $\beta^i\langle\beta^8\rangle$ (Gauss periods of index $8$) take the values $-5,-2,1,4$, with multiplicities $10,30,20,20$. For $\LS_8(36)$ and $\NL_{10}(36)$, $T_0$ is a single class and $s\equiv1\pmod 9$, so the values $-5,-2,4$ are excluded; hence these two cases do not occur. For the other values of $m$, a finite check of all $\binom8g$ unions of $g$ classes shows that exactly $4$, $8$, $6$ and $8$ of them, for $g=2,3,4,5$, satisfy $\psi(T_0)\equiv s\pmod 9$ for all $\psi\ne1$. Each of these is a PDS with character values $g$ and $g-9$, which proves~(a).
+
+(b) follows from $d'=5e$. The set $\mu_5$ is the set of nonzero zeros of the elliptic quadratic form $x\mapsto\mathrm{Tr}_{\F_4/\F_2}(x^5)$ on $\F_{16}$, an ovoid of $\mathrm{PG}(3,2)$, and $\Cay(\F_{16},\mu_5)$ is the Clebsch graph. The union of two cosets is the complement of one coset in $\F_{16}^*$.
+
+For~(c), identify the characters of $\F_{16}$ with $\F_{16}$ by $\varphi_c(a)=(-1)^{\mathrm{Tr}(ca)}$. Then $S_1$ is the union of $e$ cosets $c\mu_5$. Each coset is again an ovoid, and a plane $\ker\varphi_a$ ($a\ne0$) meets it in $1$ or $3$ points, so $\sum_{x\in c\mu_5}\varphi_x(a)\in\{1,-3\}$. Hence $\sum_{\varphi\in S_1}\varphi(a)$ is $0$, lies in $\{1,-3\}$, lies in $\{-2,2\}$, or equals $-1$, for $e=0,1,2,3$. Lemma~\ref{lem:trace} then gives $|T_a|\in\{27,36\}$ for $m\ge13$ and $|T_a|\in\{9,18\}$ for $m\le7$. Finally, $|T_a|$ is odd exactly when $0\in T_a$, that is, when $a\in U_0$.
+\end{proof}
+
+As a consequence, for $m\ge13$ every $S_\psi$ ($\psi\ne1$) has $4$ or $8$ elements, and for $m\le7$ it has $0$ or $4$. Indeed, $\psi(T_0)\in\{g-9,g\}$ by~(a), and~\eqref{eq:fibre} gives $|S_\psi|=\frac49(\psi(T_0)-s)$.
+
+\begin{theorem}\label{thm:familyexact}
+Of the seven values of $m$ in Proposition~\ref{prop:family}, exactly the six values $m=5,6,13,14,15,16$ occur. Examples are:
+\begin{itemize}
+\item $m=16$: the graphs I.1--I.6 and I.11, up to isomorphism;
+\item $m=15$: IV.1 and IV.2;
+\item $m=14$: V.1 and V.2;
+\item $m=13$: VI.1;
+\item $m=5,6$: $\rho$-invariant PDSs whose connection sets are in the data repository.
+\end{itemize}
+There is no $\rho$-invariant PDS with parameters $\LS_7(36)$. The parameter sets $\LS_m(36)$ with $m\le7$ were known before, from orthogonal arrays.
+\end{theorem}
+
+\begin{proof}
+The graphs IV--VI and their duals are $\rho$-invariant by construction. For I.1--I.6 and I.11 see the discussion before Proposition~\ref{prop:family}. For $m\le7$, Proposition~\ref{prop:family} fixes $T_0$ and $U_0$ up to multiplication by $\F_{16}^*\times\F_{81}^*$, which commutes with $\rho$, and fixes all ring sizes. Multiplication by $\beta$ permutes the $\NL_g(9)$ unions of classes transitively for $g=2,3$, so for $m=6,7$ the choice of $T_0$ is no restriction; for $m=5$ we fixed one of the two orbits.
+
+With these data fixed, the seeds $T_{\alpha^u}$ are of two kinds. Those of size $9$ are $\{0\}\cup\pm L$ for a line $L$ of $\mathrm{PG}(3,3)$, since a $9$-divisible set of $4$ points meets every plane in $1$ or $4$ points. Those of size $18$ are $\pm P$ for one of the $9{,}880$ sets $P$ of $9$ points all of whose plane sections have size divisible by $3$. An exhaustive join over these catalogues, without a solver, finds solutions for $m=5$ and $m=6$. For $m=7$ it finds none among all $130\cdot 9880$ choices of the first two seeds. The join matches exactly, by hashing, the character sums of the rows with $|S_\psi|=0$, and then checks all rows. Two CP-SAT runs in the model $\langle\rho\rangle$ with these data fixed, using two different normalizations of $(T_0,U_0)$, also prove infeasibility for $m=7$. All connection sets were verified as in Section~\ref{sec:verification}.
+\end{proof}
+
+All fourteen graphs I have $U_0=\emptyset$, all ring sizes $36$, and a ring $\Cay(\F_{81},T_0)$ isomorphic to the Brouwer--Haemers graph. Theorem~\ref{thm:fibredata} forces $U_0=\emptyset$, $|T_0|=20$ and these ring sizes for every $\LS_{16}(36)$ PDS in $G$; that the ring is the Brouwer--Haemers graph is a computed fact for our graphs. Only I.1--I.6 and I.11 are $\rho$-invariant (up to a Galois map), and in I.9, I.12 and I.13 the set $T_0$ is not a union of cyclotomic classes of index $8$. The members of the family are not small modifications of one another. For example, consider the $490$ elements of $D_{IV}$ and the $540$ elements of $D_{\mathrm{I}.1}$, $D_{\mathrm{I}.3}$, $D_{\mathrm{I}.5}$ outside the two coordinate subgroups. Under each of the $19{,}200$ maps $(a,b)\mapsto(\alpha^xa^{2^u},\beta^yb^{3^w})$, these parts share at most $300$ elements. Proposition~\ref{prop:family} also helps the solver. With $T_0$, $U_0$ and the ring sizes fixed as in the proposition, CP-SAT solves the cases $m=5,6$ in under a second each, where the unrestricted model needed $15$ and $70$ seconds. For $m=7$ it proves infeasibility in $125$ to $850$ seconds, where the unrestricted model gave no decision in $900$ seconds. For $m=13,14,15$, however, fixing these data does not help: CP-SAT still gives no decision in $600$ seconds.
+
+\subsection{The order-three graphs}\label{sec:outside}
+By Proposition~\ref{prop:family}, the parameter sets $\LS_{12}(36)$ and $\LS_{11}(36)$ need a symmetry other than $\rho$. The forced data of Table~\ref{tab:skeleton} are invariant under a fixed-point-free element of order $3$ of $\mathrm{GL}(\F_{16})$, acting by $\F_4$-scalars. For $m=12$ the complement of a plane is a union of three $\F_4$-lines; for $m=11$ the grid is a union of three $\F_4$-lines and its complement of two. Combined with the unipotent map $M_3$ on $\F_{81}$, this gives the model $\langle\sigma\rangle$ of Constructions~\ref{con:VII} and~\ref{con:VIII}, with five seeds.
+
+In both cases the $\sigma$-invariant candidates for $T_0$ form a single orbit of $108$ sets under the centralizer of $M_3$ in $\mathrm{GL}_4(\F_3)$ (of order $3888$), and all ring sets of the graphs VII and VIII are of the four local types $L_1$--$L_4$. We did not find a larger symmetry. The group $\mathrm{diag}(\F_4^*,\F_4^*)$ of order $9$ on $\F_{16}=\F_4^2$ also preserves the forced data. Its actions on $\F_{81}$ by commuting elements of order dividing $3$ fall into $96$ conjugacy classes. For the $89$ of them with at most $22$ orbits on $\mathrm{PG}(3,3)$, a complete join found no PDS for $\LS_{12}(36)$; for $\LS_{11}(36)$ it found none in $86$ of these classes, and three were not finished. The other seven classes, and other groups, were not searched.
 
 %=====================================================================
 \section{Properties}\label{sec:properties}
 
 \subsection{Clique numbers}
-In the graph of an $\mathrm{OA}(36,m)$ every edge lies in a $36$-clique, which attains the Delsarte bound $1-k/s=36$ on the size of a clique~\cite{BvM2022}. We computed the clique numbers $\omega$ of all eighteen graphs exactly (Table~\ref{tab:classes}). Since $\Gamma$ is vertex-transitive, a maximum clique may be taken to contain $(0,0)$ and an edge $\{(0,0),x\}$, so $\omega(\Gamma)=2+\max_x\omega(\Gamma(0,0)\cap\Gamma(x))$. Here $x$ runs over representatives of the orbits of the known automorphisms fixing $(0,0)$ on its neighbors. Each common neighborhood has $\lambda$ vertices, and its clique number was computed exactly with Cliquer~\cite{Cliquer} (through igraph). A clique of size $\omega$ was exhibited in each case, and the values for I.1 and I.8 were confirmed with a second exact solver (networkx). The clique numbers are $12$, $14$ or $15$ for the graphs I, $12$ or $13$ for the graphs II and $24$ for the graphs III. They are far below the Delsarte bounds, which are $36$ for I and III and $\lfloor 1+592/20\rfloor=30$ for II. In particular none of the graphs I and III is the graph of an orthogonal array, and they say nothing about the existence of $14$ or $15$ MOLS of order $36$.
+In the graph of an $\mathrm{OA}(36,m)$ every edge lies in a $36$-clique, which attains the Delsarte bound $1-k/s=36$ on the size of a clique~\cite{BvM2022}. We computed the clique numbers $\omega$ of all thirty-five graphs exactly (Table~\ref{tab:classes}). Since $\Gamma$ is vertex-transitive, a maximum clique may be taken to contain $(0,0)$ and an edge $\{(0,0),x\}$, so $\omega(\Gamma)=2+\max_x\omega(\Gamma(0,0)\cap\Gamma(x))$. Here $x$ runs over representatives of the orbits of the known automorphisms fixing $(0,0)$ on its neighbors. Each common neighborhood has $\lambda$ vertices, and its clique number was computed exactly with Cliquer~\cite{Cliquer} (through igraph). A clique of size $\omega$ was exhibited in each case. The clique numbers are $12$, $13$, $14$ or $15$ for the graphs I, $12$ or $13$ for the graphs II, $24$ for the graphs III, $12$ for IV, $12$ or $18$ for V, $24$ for VI, $18$ or $36$ for VII and $18$ or $13$ for VIII. The Delsarte bounds are $36$ for all graphs of Latin square type and $\lfloor 1+592/20\rfloor=30$ for II. Only VII.2 and VII.3 attain the bound: they contain the subgroup $U$ of Section~\ref{sec:shared}, whose cosets form one spread of Delsarte cliques. In an $\mathrm{OA}(36,12)$ graph every edge lies in a $36$-clique. In VII.2 and VII.3, however, some edges $\{(0,0),x\}$ have $\omega(\Gamma(0,0)\cap\Gamma(x))+2=12$, so these edges lie in no Delsarte clique. Hence none of the graphs of Latin square type is the graph of an orthogonal array, and they say nothing about the existence of $9$ to $15$ MOLS of order $36$.
 
 \subsection{Ring structure}
 Let $R_a=\{a\}\times\F_{81}$ for $a\in\F_{16}$; we call these sets \emph{rings}. Since they are the cosets of a subgroup, $\{R_a\}$ is an equitable partition of every Cayley graph of $G$.
@@ -249,7 +684,9 @@ In $\Gamma_I$ each ring induces the Brouwer--Haemers graph $\srg(81,20,1,6)$~\ci
 The subgraph induced on $R_a$ is $\Cay(\F_{81},D\cap(\{0\}\times\F_{81}))$, and $D_I\cap(\{0\}\times\F_{81})=\{0\}\times\langle\beta^4\rangle$. This cyclotomic graph is an $\srg(81,20,1,6)$, as a direct count shows, and an $\srg(81,20,1,6)$ is unique~\cite{BrouwerHaemers1992}, so it is the Brouwer--Haemers graph. The remaining counts are $|D\cap(\{a\}\times\F_{81})|$ for $a\neq0$, read off from the constructions. For $\Gamma_{II}$, adjacent pairs in a ring have $31$ or $37$ common neighbors inside the ring, and for $\Gamma_{III}$ they have $1$, $7$ or $13$.
 \end{proof}
 
-The quotient matrix of the partition $\{R_a\}$ is $cI+36(J-I)$ with $c=20$ for $\Gamma_I$ and $c=52$ for $\Gamma_{II}$. Its eigenvalues are $c+15\cdot36=k$ and $c-36$, which equals $-16$ for $\Gamma_I$ and $16$ for $\Gamma_{II}$, as they must be. For $\Gamma_{III}$ the quotient matrix is not of this form, because the subfield $\F_4$ singles out three rings, and it has eigenvalues $595$, $19$ and $-17$. Figure~\ref{fig:rings} illustrates the ring structure, and its right-hand panels zoom into a single ring. An interactive visualization of all eighteen graphs, including their adjacency matrices, is in the data repository. The ring graphs of $\Gamma_{II}$ show that strong regularity of $\Gamma$ does not require strongly regular rings: two non-adjacent vertices of the same ring have $26$, $32$ or $38$ common neighbors inside the ring (adjacent ones $31$ or $37$), and the other $15$ rings contribute exactly the complementary amount.
+The quotient matrix of the partition $\{R_a\}$ is $cI+36(J-I)$ with $c=20$ for $\Gamma_I$ and $c=52$ for $\Gamma_{II}$. Its eigenvalues are $c+15\cdot36=k$ and $c-36$, which equals $-16$ for $\Gamma_I$ and $16$ for $\Gamma_{II}$, as they must be. For $\Gamma_{III}$ the quotient matrix is not of this form, because the subfield $\F_4$ singles out three rings, and it has eigenvalues $595$, $19$ and $-17$. Figure~\ref{fig:rings} illustrates the ring structure, and its right-hand panels zoom into a single ring. An interactive visualization of the graphs I.1--I.10, II.1--II.4 and III.1--III.4, including their adjacency matrices, is in the data repository. The ring graphs of $\Gamma_{II}$ show that strong regularity of $\Gamma$ does not require strongly regular rings: two non-adjacent vertices of the same ring have $26$, $32$ or $38$ common neighbors inside the ring (adjacent ones $31$ or $37$), and the other $15$ rings contribute exactly the complementary amount.
+
+The ring structure of $\Gamma_I$ is shared by all fourteen graphs I.1--I.14: in each of them every ring induces the Brouwer--Haemers graph and every vertex has $36$ neighbors in each other ring, although only I.1--I.6 and I.11 are invariant under an element of order $5$ of the kind considered in Section~\ref{sec:family}. For the graphs IV, V and VI the rings induce the negative Latin square graphs $\NL_3(9)$, $\NL_4(9)$ and $\NL_5(9)$, and the numbers of neighbors in the other rings are $27$ and $36$ (Proposition~\ref{prop:family}). In $\Gamma_{VII}$ and $\Gamma_{VIII}$ the rings induce $42$- and $34$-regular graphs that are not strongly regular, and the numbers of neighbors in the other rings are $18$ and $27$. The ring sizes of all graphs agree with Table~\ref{tab:fibredata}.
 
 \begin{figure}[p]
 \centering
@@ -271,30 +708,36 @@ The quotient matrix of the partition $\{R_a\}$ is $cI+36(J-I)$ with $c=20$ for $
 \node[note,below=2mm of a] {$\Cay(G,E)$};
 \node[note,below=2mm of c] {graphs III;\\ Kova\v{l}'s graphs~\cite{KovalMultiOrbit}};
 \node[note,below=2mm of d] {graphs I.6, I.10};
+\node[box,below=14mm of b] (e) {$\LS_{12}(36)$\\ $(1296,420,144,132)$};
+\node[box,right=11mm of e] (f) {$\LS_{11}(36)$\\ $(1296,385,124,110)$};
+\draw[arr] (e) -- node[lab] {$-\,U$} (f);
+\node[note,below=2mm of e] {graphs VII.2, VII.3};
+\node[note,below=2mm of f] {graphs VIII.1, VIII.2};
 \end{tikzpicture}\\[1mm]
 {\small (a)}\\[3mm]
-\includegraphics[width=0.78\textwidth]{figures/orthogonality.pdf}\\[1mm]
+\includegraphics[width=\textwidth]{figures/orthogonality.pdf}\\[1mm]
 {\small (b)}
-\caption{(a) Deleting pairwise orthogonal spreads (Propositions~\ref{prop:spreads} and~\ref{prop:bush}). Each arrow replaces the connection set $E$ by $E\setminus U$ for a subgroup $U$ of order $36$, and $U,V,W$ meet pairwise in $\{0\}$. In each case $\Cay(G,E)$ is the graph $\Gamma_0$ of a symmetric Bush-type Hadamard matrix. The graphs III and I.6, I.10 come from different sets $E$. (b) Free subgroups of order $36$ (Proposition~\ref{prop:spreads}). Vertices are the subgroups of order $36$ disjoint from $D$, and two of them are joined if they intersect in $\{0\}$, that is, if their spreads are orthogonal. The largest set of pairwise orthogonal ones is shown in blue; adding all of them to $D$ gives the Latin square type PDS shown below each graph. The other graphs I and all graphs II have no free subgroups.}\label{fig:spreads}
+\caption{(a) Deleting pairwise orthogonal spreads (Propositions~\ref{prop:spreads} and~\ref{prop:bush}). Each arrow replaces the connection set $E$ by $E\setminus U$ for a subgroup $U$ of order $36$, and $U,V,W$ meet pairwise in $\{0\}$. In the first row $\Cay(G,E)$ is the graph $\Gamma_0$ of a symmetric Bush-type Hadamard matrix, and the graphs III and I.6, I.10 come from different sets $E$. In the second row a single spread is deleted from VII.2 or VII.3. (b) Free subgroups of order $36$ (Proposition~\ref{prop:spreads}). Vertices are the subgroups of order $36$ disjoint from $D$, and two of them are joined if they intersect in $\{0\}$, that is, if their spreads are orthogonal. The largest set of pairwise orthogonal ones is shown in blue; adding all of them to $D$ gives the Latin square type PDS shown below each graph. The other twenty-seven graphs of Table~\ref{tab:classes} have no free subgroups.}\label{fig:spreads}
 \end{figure}
 
 \subsection{Spread structure}\label{sec:spreads}
 Following Haemers and Tonchev~\cite{HaemersTonchev1996}, a \emph{spread} of a strongly regular graph is a partition of its vertex set into Delsarte cliques, that is, cliques of size $1-k/s$. Two spreads are \emph{orthogonal} if every clique of one meets every clique of the other in exactly one vertex. Kova\v{l}~\cite[Lemma~4.1]{KovalMultiOrbit}, building on~\cite[Proposition~4.1]{HaemersTonchev1996}, showed the following: if $\mathcal S_1,\dots,\mathcal S_j$ are pairwise orthogonal spreads of a primitive strongly regular graph with the parameters of $\LS_m(n)$, $j<m$, then deleting the edges inside all their cliques leaves a strongly regular graph with the parameters of $\LS_{m-j}(n)$. Kova\v{l} constructed $\LS_{n/2-1}(n)$ graphs this way, by deleting two orthogonal spreads from $\LS_{n/2+1}(n)$ graphs coming from Bush-type Hadamard matrices, and asked whether a third orthogonal spread can be deleted, which for $n=36$ would give the parameters $\LS_{16}(36)=(1296,560,244,240)$ of $\Gamma_I$~\cite[Section~4.10]{KovalMultiOrbit}.
 
-In a Cayley graph $\Cay(G,E)$, a subgroup $U$ of order $36$ with $U\setminus\{0\}\subseteq E$ makes the cosets of $U$ cliques of size $36$. For an $\LS_m(36)$ graph these are Delsarte cliques, since $1-k/s=1+35m/m=36$. So the cosets of $U$ form a spread, and the spreads of two such subgroups $U,V$ are orthogonal exactly when $U\cap V=\{0\}$. Deleting the spread of $U$ replaces $E$ by $E\setminus U$. Conversely, we call a subgroup $U$ of order $36$ \emph{free} for $D$ if $U\cap D=\emptyset$; adding $U^*=U\setminus\{0\}$ to $D$ may or may not give a PDS.
+In a Cayley graph $\Cay(G,E)$, a subgroup $U$ of order $36$ with $U\setminus\{0\}\subseteq E$ makes the cosets of $U$ cliques of size $36$. For an $\LS_m(36)$ graph these are Delsarte cliques, since $1-k/s=1+35m/m=36$. So the cosets of $U$ form a spread, and the spreads of two such subgroups $U,V$ are orthogonal exactly when $U\cap V=\{0\}$. Deleting the spread of $U$ replaces $E$ by $E\setminus U$. Conversely, we call a subgroup $U$ of order $36$ \emph{free} for $D$ if $U\cap D=\emptyset$. By Lemma~\ref{lem:free}, adding $U^*=U\setminus\{0\}$ to an $\LS_m(36)$ PDS $D$ always gives an $\LS_{m+1}(36)$ PDS.
 
 \begin{proposition}\label{prop:spreads}
-Free subgroups exist only for the graphs I.6, I.10 and III.1--III.4, whose connection sets $D$ are of type $\LS_m(36)$ with $m=16$ and $m=17$. For these graphs, if $U_1,\dots,U_j$ are free subgroups with pairwise intersection $\{0\}$, then $D\cup U_1^*\cup\dots\cup U_j^*$ is an $\LS_{m+j}(36)$ PDS. The free subgroups are as follows (Figure~\ref{fig:spreads}(b)).
+Among our $35$ graphs, free subgroups exist only for I.6, I.10, III.1--III.4, VIII.1 and VIII.2, whose connection sets $D$ are of type $\LS_m(36)$ with $m=16$, $17$ and $11$. For these graphs, if $U_1,\dots,U_j$ are free subgroups with pairwise intersection $\{0\}$, then $D\cup U_1^*\cup\dots\cup U_j^*$ is an $\LS_{m+j}(36)$ PDS. The free subgroups are as follows (Figure~\ref{fig:spreads}(b)).
 \begin{enumerate}
 \item I.6 has $5$ free subgroups, and they intersect pairwise in $\{0\}$. So $D_{\mathrm{I.6}}\cup U_1^*\cup\dots\cup U_5^*$ is an $\LS_{21}(36)$ PDS, and $\Gamma_{\mathrm{I.6}}$ arises from an $\LS_{21}(36)$ Cayley graph by deleting five pairwise orthogonal spreads. By the theorem of Bailey and Jungnickel (Section~\ref{sec:known}), five is the largest possible number of subgroups of order $36$ of $G$ that intersect pairwise in $\{0\}$.
 \item I.10 has $8$ free subgroups, with $18$ pairs, $8$ triples and one set of four that intersect pairwise in $\{0\}$. So $\Gamma_{\mathrm{I.10}}$ arises from an $\LS_{20}(36)$ Cayley graph by deleting four pairwise orthogonal spreads.
 \item III.1 and III.3 have $4$ free subgroups each, and they intersect pairwise in $\{0\}$. III.2 and III.4 have $8$ each, with $12$ pairs, $4$ triples and one set of four that intersect pairwise in $\{0\}$. So every graph III arises from an $\LS_{21}(36)$ Cayley graph by deleting four pairwise orthogonal spreads.
+\item VIII.1 and VIII.2 have one free subgroup each, and adding it gives the graphs VII.2 and VII.3 with parameters $\LS_{12}(36)$. The graphs VII.2 and VII.3 are the only ones among ours whose connection set contains $U^*$ for a subgroup $U$ of order $36$.
 \end{enumerate}
 In particular $\Gamma_{\mathrm{I.6}}$ and $\Gamma_{\mathrm{I.10}}$ arise from an $\LS_{19}(36)$ Cayley graph by deleting three pairwise orthogonal spreads, in $10$ and $8$ ways, and every graph III arises from an $\LS_{19}(36)$ Cayley graph by deleting two.
 \end{proposition}
 
 \begin{proof}
-By exhaustive computation over the $35\cdot130$ subgroups of order $36$, which are the products of a subgroup of order $4$ of $\F_{16}$ (there are $35$) and a subgroup of order $9$ of $\F_{81}$ (there are $130$). Every set of free subgroups with pairwise trivial intersection was tested with the character criterion of Lemma~\ref{lem:char}. For one triple of each of I.6 and I.10, strong regularity of all four Cayley graphs $\Cay(G,D)$, $\Cay(G,D\cup U^*)$, $\Cay(G,D\cup U^*\cup V^*)$ and $\Cay(G,D\cup U^*\cup V^*\cup W^*)$ was also checked by counting common neighbors.
+By exhaustive computation, for all thirty-five connection sets, over the $35\cdot130$ subgroups of order $36$, which are the products of a subgroup of order $4$ of $\F_{16}$ (there are $35$) and a subgroup of order $9$ of $\F_{81}$ (there are $130$). Every set of free subgroups with pairwise trivial intersection was also tested with the character criterion of Lemma~\ref{lem:char}, although Lemma~\ref{lem:free} already shows that the union is a PDS. For one triple of each of I.6 and I.10, strong regularity of all four Cayley graphs $\Cay(G,D)$, $\Cay(G,D\cup U^*)$, $\Cay(G,D\cup U^*\cup V^*)$ and $\Cay(G,D\cup U^*\cup V^*\cup W^*)$ was also checked by counting common neighbors.
 \end{proof}
 
 
@@ -314,21 +757,34 @@ Since $G=U\oplus V$, each $U$-coset meets each $V$-coset in exactly one vertex, 
 By Proposition~\ref{prop:spreads}, Proposition~\ref{prop:bush} applies to every graph III, with $E=D\cup U^*\cup V^*$ for a pair of orthogonal free subgroups, so the graphs III are graphs $\Gamma_K$ of Bush-type Hadamard matrices developed over $G$, like Kova\v{l}'s $\LS_{17}(36)$ graphs. For I.6 and I.10, with $E=D\cup U^*\cup V^*\cup W^*$, it also gives the third spread. All Bush-type and spread statements above were also checked directly on the matrices.
 
 \subsection{Relation to known constructions}\label{sec:known}
-We checked the constructions of Latin square and negative Latin square type PDSs that could apply to abelian groups of order $1296=2^4\cdot3^4$. None of the constructions we checked gives any of our three parameter sets.
+We checked the constructions of Latin square and negative Latin square type PDSs that could apply to abelian groups of order $1296=2^4\cdot3^4$. None of the constructions we checked gives any of our eight parameter sets.
 \begin{itemize}
 \item \emph{Partial congruence partitions.} In an abelian group of order $36^2$, a set of subgroups of order $36$ that intersect pairwise trivially has at most $\min(2^2+1,3^2+1)=5$ members, by a theorem of Bailey and Jungnickel~\cite[Theorem~2.4]{Ma1994}. So these give $\LS_m(36)$ only for $m\le5$.
-\item \emph{Product constructions.} The product theorems for packings of Latin square and negative Latin square type PDSs~\cite[Theorems 3.15, 6.8, Corollaries 3.17, 6.10]{JedwabLi2021}, including Polhill's product construction~\cite{Polhill2008}, combine packings in groups $G_1$, $G_2$ of orders $n_1^2$, $n_2^2$ with $n_1n_2=n$. They give $\LS_m(n)$ or $\NL_m(n)$ only when $m$ is a multiple of $n/t$ with $t>1$ dividing $\gcd(n_1,n_2)$. For $n=36$ we have $\gcd(n_1,n_2)\le 6$, so $m$ is a multiple of $6$. Our values $m=16$ ($\LS$ and $\NL$) and $m=17$ ($\LS$) are not, and neither are the complementary values $21$, $19$ and $20$.
+\item \emph{Product constructions.} The product theorems for packings of Latin square and negative Latin square type PDSs~\cite[Theorems 3.15, 6.8, Corollaries 3.17, 6.10]{JedwabLi2021}, which include Polhill's product construction~\cite{Polhill2008}, combine a packing in a group $G_1$ of order $t^2c_1^2$ with an $(c_2,t')$ LP-packing in a group $G_2$ of order $t'^2c_2^2$, where $t,t'>1$ and $t\mid t'$. An LP-packing gives Latin square type PDSs $\LS_{bc}(n)$ and $\LS_{bc+1}(n)$~\cite[Lemma~3.9]{JedwabLi2021}, so the possible values of $m$ are not restricted to multiples of $n/t$. What restricts them is the input. Every LP-packing listed in~\cite[Table~1.1]{JedwabLi2021} lies in a $p$-group, with $t$ a power of $p$. Every NLP-packing listed in~\cite[Table~1.2]{JedwabLi2021} with $t>2$ lies in a $2$-group or a $3$-group. In a group of order $36^2=2^4\cdot3^4$, two $p$-group factors with a common $t>1$ are impossible. The only remaining combination is an NLP-packing with $t=2$ from the first row of~\cite[Table~1.2]{JedwabLi2021} with an LP-packing in a $2$-group, and this gives the parameters $\NL_{18}(36)$ and its complement $\NL_{17}(36)$ only. So these product theorems, applied to the packings listed in~\cite{JedwabLi2021}, give none of our parameter sets.
 \item \emph{Momihara's families}~\cite[Theorems 1.4, 1.5]{Momihara2021} live in products of elementary abelian groups of orders $q_i^4$ with $2m\mid q_i+1$ for all $i$, for an integer $m$ (not the Latin square index). For $1296=2^4\cdot3^4$ this would require $2m\mid 3$ and $2m\mid 4$, which is impossible.
-\item \emph{Cyclotomy over products of finite fields.} The standard cyclotomy of Fern\'andez-Alcober, Kwashira and Mart\'\i nez~\cite{FKM2010} on $\F_{16}\times\F_{81}$ has order $e\mid\gcd(15,80)=5$. Its PDSs are unions of orbits of a subgroup $H\le\F_{16}^*\times\F_{81}^*$ of index $e$. For $e=1$ the orbits have sizes $1,15,80,1200$, so no union has size $560$, $592$ or $595$. For $e=5$ there are four choices of $H$, the orbits have sizes $1$, $15$, $80$ and $240$, and an exhaustive check shows that none of the $40$ unions of $H$-orbits of size $560$ is a PDS; no union of $H$-orbits has size $592$ or $595$. So this cyclotomy gives none of our parameter sets. Independently, our connection sets are not of this form: their multiplicative stabilizers have order at most $20$ (Table~\ref{tab:classes}), whereas a union of $H$-orbits is invariant under $H$, which has order $1200/e\ge240$. Ott's generalizations~\cite{Ott2016b,Ott2016a} consider unions of cosets of $U_\chi=\{(x_1,x_2):\chi_1(x_1)\chi_2(x_2)=1\}$, together with $U_\chi$-orbits of non-units, for multiplicative characters $\chi_i$ of order $d\mid q_i-1$. As Ott notes~\cite[Section~1]{Ott2016b}, these are exactly the subgroups of~\cite{FKM2010}. So here $d\mid5$, and the same two arguments exclude them. The new family of~\cite[Theorem~3]{Ott2016a} lives in groups of prime-power order $q^{2a+1}$.
+\item \emph{Cyclotomy over products of finite fields.} The standard cyclotomy of Fern\'andez-Alcober, Kwashira and Mart\'\i nez~\cite{FKM2010} on $\F_{16}\times\F_{81}$ has order $e\mid\gcd(15,80)=5$. Its PDSs are unions of orbits of a subgroup $H\le\F_{16}^*\times\F_{81}^*$ of index $e$. For $e=1$ the orbits have sizes $1,15,80,1200$, so no union has any of our eight sizes. For $e=5$ there are four choices of $H$, the orbits have sizes $1$, $15$, $80$ and $240$, and an exhaustive check shows that none of the $40$ unions of $H$-orbits of size $560$ is a PDS; no union of $H$-orbits has size $592$, $595$, $525$, $490$, $455$, $420$ or $385$. So this cyclotomy gives none of our parameter sets. Independently, none of our connection sets is of this form: their multiplicative stabilizers have order at most $20$ (Table~\ref{tab:classes}), whereas a union of $H$-orbits is invariant under $H$, which has order $1200/e\ge240$. Ott's generalizations~\cite{Ott2016b,Ott2016a} consider unions of cosets of $U_\chi=\{(x_1,x_2):\chi_1(x_1)\chi_2(x_2)=1\}$, together with $U_\chi$-orbits of non-units, for multiplicative characters $\chi_i$ of order $d\mid q_i-1$. As Ott notes~\cite[Section~1]{Ott2016b}, these are exactly the subgroups of~\cite{FKM2010}. So here $d\mid5$, and the same two arguments exclude them. The new family of~\cite[Theorem~3]{Ott2016a} lives in groups of prime-power order $q^{2a+1}$.
 \end{itemize}
 
 %=====================================================================
+\section{Open questions}\label{sec:open}
+With Theorem~\ref{thm:complete}, every Latin square parameter set on $1296$ vertices is realized. Several questions remain.
+
+\emph{Partial difference sets with $7\le m\le10$.} Our graphs, the partial congruence partitions, the $\rho$-invariant sets of Theorem~\ref{thm:familyexact} and the added spreads give $\LS_m(36)$ partial difference sets in $\Z_2^4\times\Z_3^4$ for $m\le6$ and $11\le m\le26$, and their complements. For $7\le m\le10$ the graphs we know come from orthogonal arrays, and we do not know a partial difference set in this group. Theorem~\ref{thm:fibredata} fixes the binary data: an ovoid, nothing, a plane minus $0$, or the complement of a grid. Proposition~\ref{prop:family} and Theorem~\ref{thm:familyexact} exclude the model $\langle\rho\rangle$ for all four values (for $m=7$ by an exhaustive computation). For $m=8,9,10$ the data are invariant under the order-three symmetry $\sigma$ of Section~\ref{sec:outside}. CP-SAT, with these data fixed, gave no decision in $30$ minutes for any of the three; the fibre join of Section~\ref{sec:fibres} has not been tried there. For $m=7$ the ovoid $\mu_5$ is $\rho$-invariant but not a union of $\F_4$-lines, so $\sigma$ does not apply, and the model $\langle\rho\rangle$ is excluded by Theorem~\ref{thm:familyexact}.
+
+\emph{Orthogonal arrays.} None of our graphs comes from an orthogonal array. The existence of $\mathrm{OA}(36,m)$, that is, of $m-2$ MOLS of order $36$, is open for $m\ge11$.
+
+\emph{Negative Latin square parameters.} The parameter sets $\NL_m(36)$ with $5\le m\le15$, and their complements, are open, as are the other open parameter sets on $1296$ vertices. In the model $\langle\rho\rangle$ the only negative Latin square case that passes the trace identities is $\NL_{10}(36)$, and it is excluded in the proof of Proposition~\ref{prop:family}. A version of Theorem~\ref{thm:fibredata} for negative Latin square parameters would be a natural next step.
+
+\emph{Explaining the alphabet.} Lemma~\ref{lem:alphabet} explains why few local types are possible, but not why the same ones recur across different $m$, nor the structure of the types $L_2,L_3,L_4,L_5,L_7,L_9$. A hand proof of the existence of any of the graphs IV--VIII would also be of interest.
+
+%=====================================================================
 \section{Verification}\label{sec:verification}
-Each claimed graph was checked in three independent ways, and all checks pass.
+Each claimed graph was checked in the following independent ways, and all checks pass.
 \begin{enumerate}
-\item A standalone program (plain Python, no external packages, no code shared with the search) builds $\Cay(G,D)$ with its own arithmetic in $\F_{16}$ and $\F_{81}$. It checks $D=-D$, $0\notin D$, the degree, and the number of common neighbors of all $839{,}160$ vertex pairs. It is run on Constructions~\ref{con:I}--\ref{con:III} exactly as printed above, and on the connection sets of all eighteen graphs.
-\item Kova\v{l}'s independent verifier \texttt{verify\_srg.py}, from the data accompanying~\cite{KovalNew}, was run on the graph6 files of all eighteen graphs.
-\item The spectra were computed numerically, and isomorphism classes and automorphism groups were computed with nauty~\cite{McKayPiperno2014}.
+\item A standalone program (plain Python, no external packages, no code shared with the search) builds $\Cay(G,D)$ with its own arithmetic in $\F_{16}$ and $\F_{81}$. It checks $D=-D$, $0\notin D$, the degree, and the number of common neighbors of all $839{,}160$ vertex pairs. It is run on Constructions~\ref{con:I}--\ref{con:VIII} exactly as printed above, on the connection sets of all thirty-five graphs, and on the $\rho$-invariant sets of Theorem~\ref{thm:familyexact} with $m=5,6$.
+\item Kova\v{l}'s independent verifier \texttt{verify\_srg.py}, from the data accompanying~\cite{KovalNew}, was run on the graph6 files of all thirty-five graphs.
+\item The spectra were computed numerically, and isomorphism classes and automorphism groups were computed with nauty~\cite{McKayPiperno2014} and, independently, with bliss through igraph. The graphs IV.1, V.1, VI.1, VII.1 and VIII.1 were moreover verified from the original connection sets in $(\Z/6\Z)^4$, before the transfer to $\F_{16}\times\F_{81}$, by an exact count of all differences and by the integer identity $A^2=(k-\mu)I+(\lambda-\mu)A+\mu J$.
+\item The finite checks in the proofs of Section~\ref{sec:family} (trace identities, Gauss periods of index $8$, the unions of classes, and the Walsh sums of the cosets of $\mu_5$) are done by a separate plain Python program, the classification of Theorem~\ref{thm:fibredata} by a third, the exhaustive search for $m=7$ by a fourth, and the structural claims about all thirty-five graphs (ring graphs, ring sizes, divisibility, duals, local types, spreads) by others; all are in the data repository.
 \end{enumerate}
 
 %=====================================================================

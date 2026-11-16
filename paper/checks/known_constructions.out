@@ -1,0 +1,38 @@
+1. multiplicative / semilinear stabilisers
+  385_124_110_class1     |Stab_mult| =   2   |Stab_semilinear| =   2
+  385_124_110_class2     |Stab_mult| =   2   |Stab_semilinear| =   2
+  420_144_132_class1     |Stab_mult| =   2   |Stab_semilinear| =   2
+  420_144_132_class2     |Stab_mult| =   2   |Stab_semilinear| =   2
+  420_144_132_class3     |Stab_mult| =   2   |Stab_semilinear| =   2
+  455_166_156_class1     |Stab_mult| =  10   |Stab_semilinear| =  10
+  490_190_182_class1     |Stab_mult| =  10   |Stab_semilinear| =  10
+  490_190_182_class2     |Stab_mult| =  10   |Stab_semilinear| =  10
+  525_216_210_class1     |Stab_mult| =  10   |Stab_semilinear| =  10
+  525_216_210_class2     |Stab_mult| =  10   |Stab_semilinear| =  10
+  560_244_240_class1     |Stab_mult| =  20   |Stab_semilinear| =  80
+  560_244_240_class2     |Stab_mult| =  20   |Stab_semilinear| =  40
+  560_244_240_class3     |Stab_mult| =  10   |Stab_semilinear| =  40
+  560_244_240_class4     |Stab_mult| =  20   |Stab_semilinear| =  40
+  560_244_240_class5     |Stab_mult| =  20   |Stab_semilinear| =  20
+  560_244_240_class6     |Stab_mult| =  20   |Stab_semilinear| =  20
+  560_244_240_class7     |Stab_mult| =   4   |Stab_semilinear| =  16
+  560_244_240_class8     |Stab_mult| =   4   |Stab_semilinear| =  16
+  560_244_240_class9     |Stab_mult| =   4   |Stab_semilinear| =  16
+  560_244_240_class10    |Stab_mult| =   4   |Stab_semilinear| =  16
+  560_244_240_class11    |Stab_mult| =  20   |Stab_semilinear| =  20
+  560_244_240_class12    |Stab_mult| =   4   |Stab_semilinear| =  16
+  560_244_240_class13    |Stab_mult| =   4   |Stab_semilinear| =  16
+  560_244_240_class14    |Stab_mult| =   4   |Stab_semilinear| =  16
+  592_268_272_class1     |Stab_mult| =   4   |Stab_semilinear| =  16
+  592_268_272_class2     |Stab_mult| =   4   |Stab_semilinear| =  16
+  592_268_272_class3     |Stab_mult| =   4   |Stab_semilinear| =  16
+  592_268_272_class4     |Stab_mult| =   4   |Stab_semilinear| =  16
+  592_268_272_class5     |Stab_mult| =   4   |Stab_semilinear| =  16
+  592_268_272_class6     |Stab_mult| =   4   |Stab_semilinear| =  16
+  592_268_272_class7     |Stab_mult| =   4   |Stab_semilinear| =  16
+  595_274_272_class1     |Stab_mult| =   4   |Stab_semilinear| =  16
+  595_274_272_class2     |Stab_mult| =   4   |Stab_semilinear| =  16
+  595_274_272_class3     |Stab_mult| =   4   |Stab_semilinear| =  16
+  595_274_272_class4     |Stab_mult| =   4   |Stab_semilinear| =  16
+2. FKM standard cyclotomy of order e = 5 (e = 1 gives orbit sizes 1, 15, 80, 1200 only)
+   unions of orbits of size 560 or 592 tested: 40; PDS with our parameters among them: 0

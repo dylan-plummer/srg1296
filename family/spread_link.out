@@ -1,0 +1,5 @@
+VIII.1: free subgroups of order 36: 1
+  E = D u U*: |E| = 420, LS_12 PDS (difference count): True, |Aut| = 7776, isomorphic to VII.1: False
+VIII.2: free subgroups of order 36: 1
+  E = D u U*: |E| = 420, LS_12 PDS (difference count): True, |Aut| = 7776, isomorphic to VII.1: False
+E from VIII.1 isomorphic to E from VIII.2: False

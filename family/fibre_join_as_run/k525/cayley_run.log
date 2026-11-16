@@ -1,0 +1,2 @@
+{"orbit_variables": 131, "unfixed_connection_choices": 120, "distinct_nonprincipal_character_profiles": 131, "walsh_tables": true, "controls_passed": true, "build_seconds": 0.2773811249062419}
+{"orbit_variables": 131, "unfixed_connection_choices": 120, "distinct_nonprincipal_character_profiles": 131, "walsh_tables": true, "controls_passed": true, "build_seconds": 0.2773811249062419, "status": "UNKNOWN", "solver_seconds": 30.015999795868993, "branches": 233463, "conflicts": 1543}
