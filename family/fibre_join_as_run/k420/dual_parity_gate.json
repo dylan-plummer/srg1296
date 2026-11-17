@@ -1,0 +1,26 @@
+{
+  "parameters": [
+    1296,
+    420,
+    144,
+    132
+  ],
+  "quotient_classes": {
+    "4": {
+      "initial": 105,
+      "survives_dual_parity": 0
+    },
+    "12": {
+      "initial": 35,
+      "survives_dual_parity": 35
+    }
+  },
+  "known_graph_controls": {
+    "525": true,
+    "455": true,
+    "490": true
+  },
+  "degree24_template_excluded": true,
+  "arbitrary_srg_parameters_excluded": false,
+  "scope": "Inverse-closed Cayley graph on F2^4 x F3^4"
+}

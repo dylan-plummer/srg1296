@@ -1,0 +1,43 @@
+III.1  |Aut| = 20736
+III.2  |Aut| = 20736
+III.3  |Aut| = 20736
+III.4  |Aut| = 20736
+II.1   |Aut| = 20736
+II.2   |Aut| = 20736
+II.3   |Aut| = 20736
+II.4   |Aut| = 20736
+II.5   |Aut| = 20736
+II.6   |Aut| = 20736
+II.7   |Aut| = 20736
+I.1    |Aut| = 103680
+I.2    |Aut| = 51840
+I.3    |Aut| = 51840
+I.4    |Aut| = 51840
+I.5    |Aut| = 25920
+I.6    |Aut| = 25920
+I.7    |Aut| = 20736
+I.8    |Aut| = 20736
+I.9    |Aut| = 20736
+I.10   |Aut| = 20736
+I.11   |Aut| = 25920
+I.12   |Aut| = 20736
+I.13   |Aut| = 20736
+I.14   |Aut| = 20736
+IV.1   |Aut| = 12960
+IV.2   |Aut| = 12960
+V.1    |Aut| = 12960
+V.2    |Aut| = 12960
+VI.1   |Aut| = 12960
+VII.1  |Aut| = 7776
+VII.2  |Aut| = 7776
+VII.3  |Aut| = 7776
+VIII.1 |Aut| = 7776
+VIII.2 |Aut| = 7776
+k=595: 4 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for ['III.1', 'III.2', 'III.3', 'III.4']; dual classes: {}
+k=592: 7 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for ['II.1']; dual classes: {'II.2': ['II.5'], 'II.3': ['II.6'], 'II.4': ['II.7'], 'II.5': ['II.2'], 'II.6': ['II.3'], 'II.7': ['II.4']}
+k=560: 14 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for ['I.1', 'I.2', 'I.3', 'I.4', 'I.6', 'I.10']; dual classes: {'I.5': ['I.11'], 'I.7': ['I.12'], 'I.8': ['I.13'], 'I.9': ['I.14'], 'I.11': ['I.5'], 'I.12': ['I.7'], 'I.13': ['I.8'], 'I.14': ['I.9']}
+k=525: 2 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for []; dual classes: {'IV.1': ['IV.2'], 'IV.2': ['IV.1']}
+k=490: 2 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for []; dual classes: {'V.1': ['V.2'], 'V.2': ['V.1']}
+k=455: 1 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for ['VI.1']; dual classes: {}
+k=420: 3 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for ['VII.1']; dual classes: {'VII.2': ['VII.3'], 'VII.3': ['VII.2']}
+k=385: 2 graphs, pairwise non-isomorphic: True; Cay(D*) = Cay(D) for []; dual classes: {'VIII.1': ['VIII.2'], 'VIII.2': ['VIII.1']}

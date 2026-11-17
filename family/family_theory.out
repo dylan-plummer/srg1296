@@ -1,0 +1,38 @@
+1. trace conditions in the rho-model
+  LS_5(36), k = 175: (|T0|, j, |U0|, j') = [(40, 15, 15, 40)]
+  LS_6(36), k = 210: (|T0|, j, |U0|, j') = [(30, 10, 10, 30)]
+  LS_7(36), k = 245: (|T0|, j, |U0|, j') = [(20, 5, 5, 20)]
+  LS_8(36), k = 280: (|T0|, j, |U0|, j') = [(10, 0, 0, 10)]
+  LS_13(36), k = 455: (|T0|, j, |U0|, j') = [(50, 15, 15, 50)]
+  LS_14(36), k = 490: (|T0|, j, |U0|, j') = [(40, 10, 10, 40)]
+  LS_15(36), k = 525: (|T0|, j, |U0|, j') = [(30, 5, 5, 30)]
+  LS_16(36), k = 560: (|T0|, j, |U0|, j') = [(20, 0, 0, 20)]
+  NL_10(36), k = 370: (|T0|, j, |U0|, j') = [(10, 5, 10, 70)]
+  (all other LS_m / NL_m with k <= 648 fail; complements follow)
+2. Gauss periods of index 8 and unions of classes
+  class 0: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  class 1: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  class 2: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  class 3: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  class 4: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  class 5: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  class 6: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  class 7: values {-5: 10, -2: 30, 1: 20, 4: 20}
+  LS_5: g = 4 classes; unions satisfying the congruence: 6, all strongly regular: True
+  LS_6: g = 3 classes; unions satisfying the congruence: 8, all strongly regular: True
+  LS_7: g = 2 classes; unions satisfying the congruence: 4, all strongly regular: True
+  LS_8: g = 1 classes; unions satisfying the congruence: 0, all strongly regular: True  -> NO rho-invariant PDS
+  LS_13: g = 5 classes; unions satisfying the congruence: 8, all strongly regular: True
+  LS_14: g = 4 classes; unions satisfying the congruence: 6, all strongly regular: True
+  LS_15: g = 3 classes; unions satisfying the congruence: 8, all strongly regular: True
+  LS_16: g = 2 classes; unions satisfying the congruence: 4, all strongly regular: True
+  NL_10: g = 1 classes; unions satisfying the congruence: 0, all strongly regular: True  -> NO rho-invariant PDS
+3. ring sizes from the Walsh sums of S_1
+  LS_5: S_1 = 3 coset(s) of mu_5: |T_a| (a != 0) takes values {9.0: 15}
+  LS_6: S_1 = 2 coset(s) of mu_5: |T_a| (a != 0) takes values {9.0: 10, 18.0: 5}
+  LS_7: S_1 = 1 coset(s) of mu_5: |T_a| (a != 0) takes values {9.0: 5, 18.0: 10}
+  LS_8: S_1 = 0 coset(s) of mu_5: |T_a| (a != 0) takes values {18.0: 15}
+  LS_13: S_1 = 3 coset(s) of mu_5: |T_a| (a != 0) takes values {27.0: 15}
+  LS_14: S_1 = 2 coset(s) of mu_5: |T_a| (a != 0) takes values {27.0: 10, 36.0: 5}
+  LS_15: S_1 = 1 coset(s) of mu_5: |T_a| (a != 0) takes values {27.0: 5, 36.0: 10}
+  LS_16: S_1 = 0 coset(s) of mu_5: |T_a| (a != 0) takes values {36.0: 15}

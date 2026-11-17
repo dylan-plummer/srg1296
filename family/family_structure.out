@@ -1,0 +1,44 @@
+III.1  LS_17(36)  |Aut|=  20736  ring 28-set, not srg; column srg(16,3,2,0); ring sizes {36: 12, 45: 3}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 16, 8: 60, 12: 4}; dual isomorphic: True
+III.2  LS_17(36)  |Aut|=  20736  ring 28-set, not srg; column srg(16,3,2,0); ring sizes {36: 12, 45: 3}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 16, 8: 60, 12: 4}; dual isomorphic: True
+III.3  LS_17(36)  |Aut|=  20736  ring 28-set, not srg; column srg(16,3,2,0); ring sizes {36: 12, 45: 3}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 16, 8: 60, 12: 4}; dual isomorphic: True
+III.4  LS_17(36)  |Aut|=  20736  ring 28-set, not srg; column srg(16,3,2,0); ring sizes {36: 12, 45: 3}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 16, 8: 60, 12: 4}; dual isomorphic: True
+II.1   NL_16(36)  |Aut|=  20736  ring 52-set, not srg; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 4, 8: 60, 12: 16}; dual isomorphic: True
+II.2   NL_16(36)  |Aut|=  20736  ring 52-set, not srg; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 4, 8: 60, 12: 16}; dual isomorphic: False
+II.3   NL_16(36)  |Aut|=  20736  ring 52-set, not srg; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 4, 8: 60, 12: 16}; dual isomorphic: False
+II.4   NL_16(36)  |Aut|=  20736  ring 52-set, not srg; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 4, 8: 60, 12: 16}; dual isomorphic: False
+II.5   NL_16(36)  |Aut|=  20736  ring 52-set, not srg; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 4, 8: 60, 12: 16}; dual isomorphic: False
+II.6   NL_16(36)  |Aut|=  20736  ring 52-set, not srg; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 4, 8: 60, 12: 16}; dual isomorphic: False
+II.7   NL_16(36)  |Aut|=  20736  ring 52-set, not srg; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 4, 8: 60, 12: 16}; dual isomorphic: False
+I.1    LS_16(36)  |Aut|= 103680  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: True
+I.2    LS_16(36)  |Aut|=  51840  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: True
+I.3    LS_16(36)  |Aut|=  51840  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: True
+I.4    LS_16(36)  |Aut|=  51840  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: True
+I.5    LS_16(36)  |Aut|=  25920  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+I.6    LS_16(36)  |Aut|=  25920  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: True
+I.7    LS_16(36)  |Aut|=  20736  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+I.8    LS_16(36)  |Aut|=  20736  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+I.9    LS_16(36)  |Aut|=  20736  ring srg(81,20,1,6); column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+I.10   LS_16(36)  |Aut|=  20736  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: True
+I.11   LS_16(36)  |Aut|=  25920  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+I.12   LS_16(36)  |Aut|=  20736  ring srg(81,20,1,6); column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+I.13   LS_16(36)  |Aut|=  20736  ring srg(81,20,1,6); column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+I.14   LS_16(36)  |Aut|=  20736  ring srg(81,20,1,6) = 2 classes of index 8; column empty; ring sizes {36: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 20, 8: 60}; dual isomorphic: False
+IV.1   LS_15(36)  |Aut|=  12960  ring srg(81,30,9,12) = 3 classes of index 8; column srg(16,5,0,2) = 1 cosets of mu5; ring sizes {27: 5, 36: 10}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 30, 8: 50}; dual isomorphic: False
+IV.2   LS_15(36)  |Aut|=  12960  ring srg(81,30,9,12) = 3 classes of index 8; column srg(16,5,0,2) = 1 cosets of mu5; ring sizes {27: 5, 36: 10}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 30, 8: 50}; dual isomorphic: False
+V.1    LS_14(36)  |Aut|=  12960  ring srg(81,40,19,20) = 4 classes of index 8; column srg(16,10,6,6) = 2 cosets of mu5; ring sizes {27: 10, 36: 5}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 40, 8: 40}; dual isomorphic: False
+V.2    LS_14(36)  |Aut|=  12960  ring srg(81,40,19,20) = 4 classes of index 8; column srg(16,10,6,6) = 2 cosets of mu5; ring sizes {27: 10, 36: 5}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 40, 8: 40}; dual isomorphic: False
+VI.1   LS_13(36)  |Aut|=  12960  ring srg(81,50,31,30) = 5 classes of index 8; column K16 = 3 cosets of mu5; ring sizes {27: 15}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 50, 8: 30}; dual isomorphic: True
+VII.1  LS_12(36)  |Aut|=   7776  ring 42-set, not srg; column srg(16,12,8,12); ring sizes {18: 3, 27: 12}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 60, 8: 18, 12: 2}; dual isomorphic: True
+VII.2  LS_12(36)  |Aut|=   7776  ring 42-set, not srg; column srg(16,12,8,12); ring sizes {18: 3, 27: 12}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 60, 8: 18, 12: 2}; dual isomorphic: False
+VII.3  LS_12(36)  |Aut|=   7776  ring 42-set, not srg; column srg(16,12,8,12); ring sizes {18: 3, 27: 12}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {4: 60, 8: 18, 12: 2}; dual isomorphic: False
+VIII.1 LS_11(36)  |Aut|=   7776  ring 34-set, not srg; column srg(16,9,4,6); ring sizes {18: 6, 27: 9}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {0: 2, 4: 64, 8: 12, 12: 2}; dual isomorphic: False
+VIII.2 LS_11(36)  |Aut|=   7776  ring 34-set, not srg; column srg(16,9,4,6); ring sizes {18: 6, 27: 9}; divisibility 9|chi(T_a): True, 4|W(U_b): True; |S_beta| {0: 2, 4: 64, 8: 12, 12: 2}; dual isomorphic: False
+pairwise non-isomorphic within each parameter set:
+  k=595: 4 graphs, pairwise non-isomorphic: True
+  k=592: 7 graphs, pairwise non-isomorphic: True
+  k=560: 14 graphs, pairwise non-isomorphic: True
+  k=525: 2 graphs, pairwise non-isomorphic: True
+  k=490: 2 graphs, pairwise non-isomorphic: True
+  k=455: 1 graphs, pairwise non-isomorphic: True
+  k=420: 3 graphs, pairwise non-isomorphic: True
+  k=385: 2 graphs, pairwise non-isomorphic: True

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Check Constructions 4.1, 4.2 and 4.3 of the paper exactly as printed (plain Python 3, no packages).
-Builds the three Cayley graphs on F_16 x F_81 from the printed data and verifies, for every vertex pair,
-the strongly regular parameters. Runtime: about a minute."""
+"""Check Constructions 4.1-4.6 of the paper exactly as printed (plain Python 3, no packages).
+Builds the eight Cayley graphs on F_16 x F_81 (Constructions 4.5, 4.6: on F_2^4 x F_3^4) from the printed data and verifies, for every vertex pair,
+the strongly regular parameters. Runtime: a few minutes."""
 
 # F_16 = F_2[x]/(x^4+x^3+1), alpha = x ;  F_81 = F_3[y]/(y^4+y^3+2), beta = y
 def powers(p, poly, n):
@@ -48,6 +48,51 @@ J3 = {None: [0, 4, 5, 8, 12, 15, 16],
 D3 = {(Z if a is None else A16[a], B81[j]) for a, js in J3.items() for j in range(80) if j % 20 in js}
 D3 |= {(A16[i], Z) for i in (0, 5, 10)}          # F_4^* = {1, alpha^5, alpha^10}
 
+# Construction 4.4 (Table 3): D(J0, I0, S) =
+#   {(0, beta^j): j mod 8 in J0} u {(alpha^i, 0): i mod 3 in I0} u {(alpha^(3t+u), beta^j): (j + 16t) mod 40 in S_u}
+T44 = {525: ([0, 1, 6], [0], [[0, 2, 3, 8, 10, 12, 14, 15, 20, 30, 32, 37, 39],
+                              [0, 2, 3, 5, 6, 11, 12, 13, 14, 19, 20, 21, 26, 28, 30, 31, 33, 35],
+                              [3, 5, 6, 11, 12, 13, 16, 17, 20, 21, 24, 25, 29, 30, 31, 32, 35, 36]]),
+       490: ([0, 1, 4, 5], [0, 1], [[0, 1, 2, 8, 14, 18, 19, 23, 25, 33, 34, 37, 38],
+                                    [4, 5, 6, 9, 10, 13, 21, 23, 25, 28, 29, 30, 35],
+                                    [0, 2, 3, 4, 5, 6, 9, 10, 14, 15, 18, 19, 22, 25, 29, 30, 31, 34]]),
+       455: ([0, 1, 2, 3, 5], [0, 1, 2], [[0, 1, 2, 4, 5, 11, 21, 28, 29, 31, 32, 37, 38],
+                                          [3, 5, 6, 7, 13, 14, 19, 22, 25, 31, 33, 35, 39],
+                                          [6, 10, 13, 14, 19, 22, 26, 27, 28, 30, 32, 35, 36]])}
+def con44(J0, I0, S):
+    D = {(Z, B81[j]) for j in range(80) if j % 8 in J0} | {(A16[i], Z) for i in range(15) if i % 3 in I0}
+    D |= {(A16[3 * t + u], B81[j]) for t in range(5) for u in range(3) for j in range(80) if (j + 16 * t) % 40 in S[u]}
+    return D
+
+# Construction 4.5 (Table 4), in coordinates F_2^4 x F_3^4 (vectors written as digit strings).  sigma = (M2, M3):
+#   M2(b0,b1,b2,b3) = (b1, b0+b1, b3, b2+b3),  M3(v0,v1,v2,v3) = (v0+v2, v1+v3, v2, v3);  D = {0} x +-T0  u  sigma-orbits of seeds
+T45_0 = "0001 0010 0011 0012 0100 0101 0102 0112 0121 1000 1010 1012 1020 1021 1100 1111 1112 1121 1122 1212 1221"
+T45 = [("0100", False, "0001 0010 0011 0101 0102 0110 0111 0120 0122"),
+       ("0001", True, "0001 0010 0011 0121 1021 1101 1102 1110 1111 1112 1120 1122 1200"),
+       ("0101", True, "0001 0010 0011 0112 1001 1002 1010 1011 1012 1020 1022 1121 1200"),
+       ("1001", True, "0001 0012 0120 0122 1001 1010 1101 1122 1200 1210 1212 1221 1222"),
+       ("1101", True, "0001 0100 0110 0111 1000 1002 1020 1100 1102 1111 1200 1211 1220")]
+def con45(T45_0=T45_0, T45=T45):
+    vec = lambda w: tuple(int(ch) for ch in w)
+    pm = lambda P: {vec(w) for w in P.split()} | {tuple((-x) % 3 for x in vec(w)) for w in P.split()}
+    M2 = lambda b: (b[1], (b[0] + b[1]) % 2, b[3], (b[2] + b[3]) % 2)
+    M3 = lambda v: ((v[0] + v[2]) % 3, (v[1] + v[3]) % 3, v[2], v[3])
+    D = {((0, 0, 0, 0), t) for t in pm(T45_0)}
+    for lab, z, P in T45:
+        b, T = vec(lab), pm(P) | ({(0, 0, 0, 0)} if z else set())
+        for _ in range(3):
+            D |= {(b, t) for t in T}; b = M2(b); T = {M3(t) for t in T}
+    # identify F_2^4 x F_3^4 with V below: b -> coefficient tuple (b0..b3) of F_16, v -> coefficient tuple (v0..v3) of F_81
+    return D
+
+# Construction 4.6 (Table 5), same coordinates and the same sigma as Construction 4.5
+T46_0 = "0001 0010 0012 0100 0101 0102 0112 0121 1000 1010 1012 1020 1021 1112 1121 1212 1221"
+T46 = [("0110", False, "0001 0010 0011 0101 0102 0110 0111 0120 0122"),
+       ("0111", False, "0102 0110 0121 1001 1012 1020 1200 1211 1222"),
+       ("0001", True, "0001 0010 0011 0012 1001 1002 1010 1011 1020 1022 1200 1212 1221"),
+       ("0100", True, "0010 0100 0110 0120 1002 1020 1022 1111 1112 1121 1200 1201 1210"),
+       ("0101", True, "0001 0101 0110 0112 1000 1011 1021 1101 1102 1122 1200 1202 1210")]
+
 F2 = [tuple((t >> s) & 1 for s in range(4)) for t in range(16)]
 F3 = [tuple((t // 3 ** s) % 3 for s in range(4)) for t in range(81)]
 V = [(a, b) for a in F2 for b in F3]
@@ -70,4 +115,7 @@ def check(D, k, lam, mu):
 ok1 = check(D1, 560, 244, 240)
 ok2 = check(D2, 592, 268, 272)
 ok3 = check(D3, 595, 274, 272)
-raise SystemExit(0 if ok1 and ok2 and ok3 else 1)
+ok4 = [check(con44(*T44[k]), k, lam, mu) for k, lam, mu in ((525, 216, 210), (490, 190, 182), (455, 166, 156))]
+ok5 = check(con45(), 420, 144, 132)
+ok6 = check(con45(T46_0, T46), 385, 124, 110)
+raise SystemExit(0 if ok1 and ok2 and ok3 and all(ok4) and ok5 and ok6 else 1)

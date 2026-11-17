@@ -1,0 +1,25 @@
+srg(1296,455,166,156) from connsets/srg1296_455_166_156_class1.txt: VERIFIED
+srg(1296,490,190,182) from connsets/srg1296_490_190_182_class1.txt: VERIFIED
+srg(1296,490,190,182) from connsets/srg1296_490_190_182_class2.txt: VERIFIED
+srg(1296,525,216,210) from connsets/srg1296_525_216_210_class1.txt: VERIFIED
+srg(1296,525,216,210) from connsets/srg1296_525_216_210_class2.txt: VERIFIED
+srg(1296,560,244,240) from connsets/srg1296_560_244_240_class11.txt: VERIFIED
+srg(1296,560,244,240) from connsets/srg1296_560_244_240_class12.txt: VERIFIED
+srg(1296,560,244,240) from connsets/srg1296_560_244_240_class13.txt: VERIFIED
+srg(1296,560,244,240) from connsets/srg1296_560_244_240_class14.txt: VERIFIED
+srg(1296,592,268,272) from connsets/srg1296_592_268_272_class5.txt: VERIFIED
+srg(1296,592,268,272) from connsets/srg1296_592_268_272_class6.txt: VERIFIED
+srg(1296,592,268,272) from connsets/srg1296_592_268_272_class7.txt: VERIFIED
+srg(1296,420,144,132) from connsets/srg1296_420_144_132_class1.txt: VERIFIED
+srg1296_560_244_240_classes.g6: 14/14 OK
+srg1296_592_268_272_classes.g6: 7/7 OK
+srg1296_595_274_272_classes.g6: 4/4 OK
+srg1296_525_216_210_classes.g6: 2/2 OK
+srg1296_490_190_182_classes.g6: 2/2 OK
+srg1296_455_166_156_classes.g6: 1/1 OK
+srg(1296,385,124,110) from connsets/srg1296_385_124_110_class1.txt: VERIFIED
+srg(1296,385,124,110) from connsets/srg1296_385_124_110_class2.txt: VERIFIED
+srg(1296,420,144,132) from connsets/srg1296_420_144_132_class2.txt: VERIFIED
+srg(1296,420,144,132) from connsets/srg1296_420_144_132_class3.txt: VERIFIED
+srg1296_385_124_110_classes.g6: 2/2 OK
+srg1296_420_144_132_classes.g6: 3/3 OK

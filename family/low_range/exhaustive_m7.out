@@ -1,0 +1,4 @@
+catalogue: 130 lines (9-sets with 0), 9880 nine-point sets; 11s
+|S_psi| per class rep: [np.int64(0), np.int64(4), np.int64(4), np.int64(4), np.int64(0), np.int64(4), np.int64(4), np.int64(4)]  exact rows: [0, 4]
+m=7: pairs tested 1284400, candidates passing all class-representative rows: 0; 832s
+RESULT m=7: NO solution (exhaustive)

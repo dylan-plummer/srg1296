@@ -1,0 +1,57 @@
+Local types of ring sets T_a (a != 0): size, 0 in T, multiset of psi(T_a)/9 over the 40 projective psi
+  L1   |T|=18 0in=False values {-1: 3, 0: 36, 2: 1}   used by graphs: ['VII', 'VIII']
+  L2   |T|=18 0in=False values {-1: 4, 0: 33, 1: 3}   used by graphs: ['VII', 'VIII']
+  L3   |T|=27 0in=True  values {-1: 2, 0: 34, 1: 3, 2: 1}   used by graphs: ['IV', 'V', 'VI', 'VII', 'VIII']
+  L4   |T|=27 0in=True  values {-1: 3, 0: 31, 1: 6}   used by graphs: ['IV', 'V', 'VI', 'VII', 'VIII']
+  L5   |T|=36 0in=False values {-2: 1, -1: 3, 0: 33, 1: 3}   used by graphs: ['I']
+  L6   |T|=36 0in=False values {-2: 2, 0: 36, 1: 2}   used by graphs: ['I', 'II']
+  L7   |T|=36 0in=False values {-1: 6, 0: 30, 1: 4}   used by graphs: ['I', 'II', 'III', 'IV', 'V']
+  L8   |T|=45 0in=True  values {-1: 2, 0: 36, 2: 2}   used by graphs: ['III']
+  L9   |T|=45 0in=True  values {-1: 4, 0: 30, 1: 6}   used by graphs: ['III']
+
+III.1  k=595: rings {'L8': 1, 'L7': 12, 'L9': 2}; T0 character sums {-8: 8, 1: 30, 10: 2}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 8, 8: 30, 12: 2}; matching 2/30
+III.2  k=595: rings {'L8': 1, 'L7': 12, 'L9': 2}; T0 character sums {-8: 8, 1: 30, 10: 2}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 8, 8: 30, 12: 2}; matching 2/30
+III.3  k=595: rings {'L8': 1, 'L7': 12, 'L9': 2}; T0 character sums {-8: 8, 1: 30, 10: 2}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 8, 8: 30, 12: 2}; matching 2/30
+III.4  k=595: rings {'L8': 1, 'L7': 12, 'L9': 2}; T0 character sums {-8: 8, 1: 30, 10: 2}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 8, 8: 30, 12: 2}; matching 2/30
+II.1   k=592: rings {'L6': 5, 'L7': 10}; T0 character sums {-11: 2, -2: 30, 7: 8}; U_b (weight, affine) {(4, True): 8, (8, False): 20, (8, True): 10, (12, False): 2}; |S_psi| {4: 2, 8: 30, 12: 8}; matching 10/30
+II.2   k=592: rings {'L6': 1, 'L7': 14}; T0 character sums {-11: 2, -2: 30, 7: 8}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 2, 8: 30, 12: 8}; matching 2/30
+II.3   k=592: rings {'L6': 1, 'L7': 14}; T0 character sums {-11: 2, -2: 30, 7: 8}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 2, 8: 30, 12: 8}; matching 2/30
+II.4   k=592: rings {'L6': 1, 'L7': 14}; T0 character sums {-11: 2, -2: 30, 7: 8}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 2, 8: 30, 12: 8}; matching 2/30
+II.5   k=592: rings {'L6': 1, 'L7': 14}; T0 character sums {-11: 2, -2: 30, 7: 8}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 2, 8: 30, 12: 8}; matching 2/30
+II.6   k=592: rings {'L6': 1, 'L7': 14}; T0 character sums {-11: 2, -2: 30, 7: 8}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 2, 8: 30, 12: 8}; matching 2/30
+II.7   k=592: rings {'L6': 1, 'L7': 14}; T0 character sums {-11: 2, -2: 30, 7: 8}; U_b (weight, affine) {(4, True): 8, (8, False): 28, (8, True): 2, (12, False): 2}; |S_psi| {4: 2, 8: 30, 12: 8}; matching 2/30
+I.1    k=560: rings {'L6': 5, 'L7': 10}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 20, (8, True): 10}; |S_psi| {4: 10, 8: 30}; matching 10/30
+I.2    k=560: rings {'L7': 15}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 30}; |S_psi| {4: 10, 8: 30}; matching 0/30
+I.3    k=560: rings {'L6': 5, 'L5': 10}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 10, (8, True): 20}; |S_psi| {4: 10, 8: 30}; matching 20/30
+I.4    k=560: rings {'L6': 10, 'L7': 5}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 10, (8, True): 20}; |S_psi| {4: 10, 8: 30}; matching 20/30
+I.5    k=560: rings {'L7': 15}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 30}; |S_psi| {4: 10, 8: 30}; matching 0/30
+I.6    k=560: rings {'L7': 10, 'L6': 5}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 20, (8, True): 10}; |S_psi| {4: 10, 8: 30}; matching 10/30
+I.7    k=560: rings {'L6': 1, 'L7': 14}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 28, (8, True): 2}; |S_psi| {4: 10, 8: 30}; matching 2/30
+I.8    k=560: rings {'L6': 1, 'L7': 14}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 28, (8, True): 2}; |S_psi| {4: 10, 8: 30}; matching 2/30
+I.9    k=560: rings {'L6': 1, 'L7': 14}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 28, (8, True): 2}; |S_psi| {4: 10, 8: 30}; matching 2/30
+I.10   k=560: rings {'L6': 1, 'L7': 14}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 28, (8, True): 2}; |S_psi| {4: 10, 8: 30}; matching 2/30
+I.11   k=560: rings {'L7': 15}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 30}; |S_psi| {4: 10, 8: 30}; matching 0/30
+I.12   k=560: rings {'L6': 1, 'L7': 14}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 28, (8, True): 2}; |S_psi| {4: 10, 8: 30}; matching 2/30
+I.13   k=560: rings {'L6': 1, 'L7': 14}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 28, (8, True): 2}; |S_psi| {4: 10, 8: 30}; matching 2/30
+I.14   k=560: rings {'L6': 1, 'L7': 14}; T0 character sums {-7: 10, 2: 30}; U_b (weight, affine) {(4, True): 10, (8, False): 28, (8, True): 2}; |S_psi| {4: 10, 8: 30}; matching 2/30
+IV.1   k=525: rings {'L3': 5, 'L7': 10}; T0 character sums {-6: 15, 3: 25}; U_b (weight, affine) {(4, True): 15, (8, False): 25}; |S_psi| {4: 15, 8: 25}; matching 5/25
+IV.2   k=525: rings {'L4': 5, 'L7': 10}; T0 character sums {-6: 15, 3: 25}; U_b (weight, affine) {(4, True): 15, (8, False): 20, (8, True): 5}; |S_psi| {4: 15, 8: 25}; matching 0/25
+V.1    k=490: rings {'L3': 5, 'L4': 5, 'L7': 5}; T0 character sums {-5: 20, 4: 20}; U_b (weight, affine) {(4, True): 20, (8, False): 20}; |S_psi| {4: 20, 8: 20}; matching 5/20
+V.2    k=490: rings {'L4': 10, 'L7': 5}; T0 character sums {-5: 20, 4: 20}; U_b (weight, affine) {(4, True): 20, (8, False): 15, (8, True): 5}; |S_psi| {4: 20, 8: 20}; matching 0/20
+VI.1   k=455: rings {'L3': 5, 'L4': 10}; T0 character sums {-4: 25, 5: 15}; U_b (weight, affine) {(4, True): 25, (8, False): 10, (8, True): 5}; |S_psi| {4: 25, 8: 15}; matching 5/15
+VII.1  k=420: rings {'L1': 3, 'L3': 6, 'L4': 6}; T0 character sums {-3: 30, 6: 9, 15: 1}; U_b (weight, affine) {(4, True): 30, (8, True): 9, (12, False): 1}; |S_psi| {4: 30, 8: 9, 12: 1}; matching 9/9
+VII.2  k=420: rings {'L4': 6, 'L3': 6, 'L1': 3}; T0 character sums {-3: 30, 6: 9, 15: 1}; U_b (weight, affine) {(4, True): 30, (8, False): 6, (8, True): 3, (12, False): 1}; |S_psi| {4: 30, 8: 9, 12: 1}; matching 9/9
+VII.3  k=420: rings {'L4': 9, 'L2': 3, 'L3': 3}; T0 character sums {-3: 30, 6: 9, 15: 1}; U_b (weight, affine) {(4, True): 30, (8, True): 9, (12, False): 1}; |S_psi| {4: 30, 8: 9, 12: 1}; matching 3/9
+VIII.1 k=385: rings {'L4': 6, 'L3': 3, 'L2': 3, 'L1': 3}; T0 character sums {-11: 1, -2: 32, 7: 6, 16: 1}; U_b (weight, affine) {(0, False): 1, (4, True): 32, (8, False): 6, (12, False): 1}; |S_psi| {0: 1, 4: 32, 8: 6, 12: 1}; matching 6/6
+VIII.2 k=385: rings {'L4': 9, 'L2': 6}; T0 character sums {-11: 1, -2: 32, 7: 6, 16: 1}; U_b (weight, affine) {(0, False): 1, (4, True): 32, (8, True): 6, (12, False): 1}; |S_psi| {0: 1, 4: 32, 8: 6, 12: 1}; matching 0/6
+
+Geometric identification of local types (all rings of all graphs):
+  L1: {('hyperplane minus a 2-dim subspace (an affine plane of PG(3,3), +-)',): 9}
+  L2: {(): 12}
+  L3: {(): 33}
+  L4: {(): 66}
+  L5: {(): 10}
+  L6: {('F81 minus two hyperplanes',): 43}
+  L7: {(): 340}
+  L8: {('union of two hyperplanes',): 4}
+  L9: {(): 8}

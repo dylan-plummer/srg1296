@@ -1,0 +1,7 @@
+catalogue: 130 lines (9-sets with 0), 9880 nine-point sets; 11s
+|S_psi| per class rep: [np.int64(0), np.int64(4), np.int64(0), np.int64(0), np.int64(4), np.int64(4), np.int64(4), np.int64(4)]  exact rows: [0, 2, 3]
+m=6: pairs tested 16900, candidates passing all class-representative rows: 10; 17s
+  candidate (4, 18, 6803) |D| = 210 character values {-6: 1085, 30: 210} PDS: True
+  candidate (19, 10, 6803) |D| = 210 character values {-6: 1085, 30: 210} PDS: True
+  candidate (24, 83, 6801) |D| = 210 character values {-6: 1085, 30: 210} PDS: True
+RESULT m=6: solutions exist

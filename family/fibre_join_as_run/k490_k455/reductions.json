@@ -1,0 +1,192 @@
+{
+  "current_degree525_fibre_mask": 131,
+  "ternary_projective_centralizer_actions": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    [
+      1,
+      4,
+      6,
+      7,
+      5,
+      0,
+      3,
+      2
+    ],
+    [
+      2,
+      6,
+      1,
+      5,
+      3,
+      7,
+      4,
+      0
+    ],
+    [
+      3,
+      7,
+      5,
+      1,
+      2,
+      6,
+      0,
+      4
+    ],
+    [
+      4,
+      5,
+      3,
+      2,
+      0,
+      1,
+      7,
+      6
+    ],
+    [
+      5,
+      0,
+      7,
+      6,
+      1,
+      4,
+      2,
+      3
+    ],
+    [
+      6,
+      3,
+      4,
+      0,
+      7,
+      2,
+      5,
+      1
+    ],
+    [
+      7,
+      2,
+      0,
+      4,
+      6,
+      3,
+      1,
+      5
+    ]
+  ],
+  "binary_centralizer_order": 15,
+  "targets": [
+    {
+      "parameters": [
+        1296,
+        455,
+        166,
+        156
+      ],
+      "fibre_centralizer_classes": [
+        [
+          91,
+          103,
+          124,
+          143,
+          181,
+          186,
+          214,
+          233
+        ]
+      ],
+      "representative_fibre_masks": [
+        124
+      ],
+      "quotient_centralizer_classes": 1,
+      "representative_cross_sizes": [
+        50,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27,
+        27
+      ],
+      "essential_fibre_quotient_cases": 1,
+      "cross_seed_sizes": [
+        27,
+        27,
+        27
+      ]
+    },
+    {
+      "parameters": [
+        1296,
+        490,
+        190,
+        182
+      ],
+      "fibre_centralizer_classes": [
+        [
+          29,
+          46,
+          209,
+          226
+        ],
+        [
+          51,
+          204
+        ]
+      ],
+      "representative_fibre_masks": [
+        29,
+        51
+      ],
+      "quotient_centralizer_classes": 1,
+      "representative_cross_sizes": [
+        40,
+        36,
+        27,
+        36,
+        27,
+        27,
+        36,
+        27,
+        36,
+        27,
+        27,
+        27,
+        36,
+        27,
+        27,
+        27
+      ],
+      "essential_fibre_quotient_cases": 2,
+      "cross_seed_sizes": [
+        36,
+        27,
+        27
+      ]
+    }
+  ],
+  "local_formulas": {
+    "size27": "T={0} union (+/- P), |P|=13; c_q=(|P intersect q-perp|-4)/3",
+    "size36": "T=(+/- P), |P|=18; c_q=(|P intersect q-perp|-6)/3",
+    "rank4": "For each q with rank 4, the 15 coefficients c are Walsh sums of a 4-subset with XOR zero (140 patterns)",
+    "rank8": "For each q with rank 8, the 15 coefficients c are Walsh sums of an 8-subset with XOR zero (870 patterns)"
+  },
+  "symmetry_scope": "Only the stated C5 and inversion invariant abelian Cayley ansatz; these equivalences do not classify all SRGs"
+}

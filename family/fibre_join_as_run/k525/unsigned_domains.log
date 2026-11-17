@@ -1,0 +1,153 @@
+{
+  "scope": "Complete local domains with fixed five matching channels and shared Sylvester frame; extra matching channels permitted",
+  "local_counts": {
+    "27": {
+      "sets": 1320,
+      "positive_square_histogram": {
+        "5": 150,
+        "6": 330,
+        "7": 570,
+        "8": 240,
+        "9": 30
+      }
+    },
+    "36": {
+      "sets": 580615,
+      "positive_square_histogram": {
+        "1": 420,
+        "2": 3120,
+        "3": 26100,
+        "4": 67495,
+        "5": 150540,
+        "6": 162615,
+        "7": 113660,
+        "8": 44850,
+        "9": 10770,
+        "10": 1045
+      }
+    }
+  },
+  "buckets": [
+    {
+      "index": 0,
+      "differences": [
+        1,
+        8,
+        12,
+        6,
+        3
+      ],
+      "cross_size": 36,
+      "local_sets_surviving": 336665,
+      "unsigned_options": 336665
+    },
+    {
+      "index": 1,
+      "differences": [
+        2,
+        9,
+        4,
+        10,
+        5
+      ],
+      "cross_size": 36,
+      "local_sets_surviving": 336665,
+      "unsigned_options": 336665
+    },
+    {
+      "index": 2,
+      "differences": [
+        7,
+        11,
+        13,
+        14,
+        15
+      ],
+      "cross_size": 27,
+      "local_sets_surviving": 252,
+      "unsigned_options": 252
+    }
+  ],
+  "frequency_cycles": [
+    [
+      0,
+      26,
+      13,
+      4,
+      1
+    ],
+    [
+      2,
+      25,
+      8,
+      22,
+      7
+    ],
+    [
+      3,
+      27,
+      39,
+      31,
+      10
+    ],
+    [
+      5,
+      23,
+      14,
+      17,
+      16
+    ],
+    [
+      6,
+      29,
+      15,
+      35,
+      19
+    ],
+    [
+      9,
+      30,
+      37,
+      12,
+      28
+    ],
+    [
+      11,
+      24,
+      38,
+      21,
+      34
+    ],
+    [
+      18,
+      36,
+      33,
+      32,
+      20
+    ]
+  ],
+  "difference_cycles": [
+    [
+      1,
+      8,
+      12,
+      6,
+      3
+    ],
+    [
+      2,
+      9,
+      4,
+      10,
+      5
+    ],
+    [
+      7,
+      11,
+      13,
+      14,
+      15
+    ]
+  ],
+  "seconds": 8.76433437387459
+}

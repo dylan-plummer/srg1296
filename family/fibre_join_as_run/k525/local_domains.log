@@ -1,0 +1,7 @@
+COMPLETE left_subsets=1048576 right_subsets=1048576 seconds=1.69675
+type=0 raw=264 kept=264
+type=1 raw=264 kept=264
+type=2 raw=264 kept=264
+type=3 raw=264 kept=264
+type=4 raw=264 kept=264
+type=5 raw=589120 kept=580615

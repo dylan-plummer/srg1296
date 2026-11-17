@@ -1,0 +1,4 @@
+orbits 131 r,s 30 -6
+character constraints 131
+RESULT (210, 54, 30) cuts 0 model c5 OPTIMAL 69.7s
+check spectrum {np.float64(-6.0): np.int64(1085), np.float64(30.0): np.int64(210), np.float64(210.0): np.int64(1)}
