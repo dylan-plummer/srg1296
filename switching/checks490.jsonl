@@ -1,0 +1,1 @@
+{"source": "srg1296_490_190_182_class2.txt", "normal": [1, 2, 1, 1], "gauge_index": 1371, "negative_frequencies": [3, 5, 7, 9, 11, 13, 15], "parameters": [1296, 490, 190, 182], "pair_census": {"(0, 182)": 521640, "(1, 190)": 317520}, "automorphism_order": 12960, "orbit_sizes": [1296]}

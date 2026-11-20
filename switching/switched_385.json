@@ -1,0 +1,31 @@
+{
+  "source": "srg1296_385_124_110_class1.txt",
+  "normal": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "gauge_index": 18,
+  "negative_frequencies": [
+    5,
+    9
+  ],
+  "parameters": [
+    1296,
+    385,
+    124,
+    110
+  ],
+  "pair_census": {
+    "(0, 110)": 589680,
+    "(1, 124)": 249480
+  },
+  "automorphism_order": 864,
+  "orbit_sizes": [
+    432,
+    864
+  ],
+  "sha256": "a3e7c06c4f9fd597b5bbf874c8178a228b64f0e806bc494ba64dc58fc1436d66",
+  "graph": "switched_385.g6"
+}

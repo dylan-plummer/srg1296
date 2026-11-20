@@ -27,6 +27,12 @@ Their complements are also realized.
 - None of the Latin-square-type graphs is the graph of an orthogonal array. VII.2 and VII.3 contain one spread of
   Delsarte cliques, but some of their edges lie in no 36-clique.
 - Counts are lower bounds; the searches are not exhaustive.
+- **Two further Cayley graphs with parameters (1296, 595, 274, 272)**, found by A. Kovaľ on 20 October 2026 in the
+  same two models as III.1–III.4 and provided by him, are in [`graphs/koval/`](graphs/koval/) (his README included).
+  With III.1–III.4 they form six pairwise non-isomorphic vertex-transitive graphs (paper, Remark 4.9).
+- **68 graphs that are not vertex-transitive** (1 each at k = 385, 420 and 33 each at k = 560, 592) come from a
+  switching of the binary fibers of our Cayley graphs; see [`switching/`](switching/) and Section 6.4 of the paper.
+  They were found by GPT 6.2 Astra (OpenAI) after an audit of the paper.
 - Status of the rows: Brouwer's table (checked 14 October 2026) lists (1296, 560, 244, 240) and (1296, 592, 268, 272)
   as realized, citing this work. The rows with k = 525, 490, 455, 420, 385 were open when this work began.
 

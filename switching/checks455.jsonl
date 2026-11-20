@@ -1,0 +1,1 @@
+{"source": "srg1296_455_166_156_class1.txt", "normal": [1, 2, 1, 2], "gauge_index": 1371, "negative_frequencies": [3, 5, 7, 9, 11, 13, 15], "parameters": [1296, 455, 166, 156], "pair_census": {"(0, 156)": 544320, "(1, 166)": 294840}, "automorphism_order": 12960, "orbit_sizes": [1296]}

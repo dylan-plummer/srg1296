@@ -1,0 +1,1 @@
+{"source": "srg1296_592_268_272_class1.txt", "normal": [0, 0, 0, 1], "gauge_index": 933, "negative_frequencies": [3, 6, 10, 12, 13, 14], "parameters": [1296, 592, 268, 272], "pair_census": {"(0, 272)": 455544, "(1, 268)": 383616}, "automorphism_order": 864, "orbit_sizes": [432, 864]}

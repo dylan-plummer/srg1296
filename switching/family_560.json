@@ -1,0 +1,20 @@
+{
+  "source": "srg1296_560_244_240_class1.txt",
+  "parameters": [
+    1296,
+    560,
+    244,
+    240
+  ],
+  "negative_frequencies": [
+    6,
+    7,
+    9,
+    10,
+    12,
+    14
+  ],
+  "changed_nonzero_differences": 52,
+  "components": 1,
+  "distinct_labelled_graphs": "1208925819614629174706176"
+}

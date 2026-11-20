@@ -1,0 +1,31 @@
+{
+  "source": "srg1296_420_144_132_class1.txt",
+  "normal": [
+    0,
+    0,
+    0,
+    1
+  ],
+  "gauge_index": 65,
+  "negative_frequencies": [
+    3,
+    11
+  ],
+  "parameters": [
+    1296,
+    420,
+    144,
+    132
+  ],
+  "pair_census": {
+    "(0, 132)": 567000,
+    "(1, 144)": 272160
+  },
+  "automorphism_order": 864,
+  "orbit_sizes": [
+    432,
+    864
+  ],
+  "sha256": "e2b3d4a5a475e79afbca4666272857541a09991fd1fa146143921059d45e7728",
+  "graph": "switched_420.g6"
+}
