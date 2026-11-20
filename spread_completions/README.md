@@ -1,6 +1,6 @@
 # Completions of the LS₁₆(36) Cayley graphs by spreads of cocliques
 
-These graphs were found by an AI research agent working on this project, 20 November 2026; see the paper, Section 6.5.
+These graphs were found by GPT 6.2 Astra (OpenAI), 20 November 2026; see the paper, Section 6.5.
 
 **Result.** There are exactly 25 isomorphism classes of srg(1296, 595, 274, 272) that contain a spanning copy of one of
 the fourteen degree-560 Cayley graphs I.1–I.14 in `../connsets`. By symmetry type:
