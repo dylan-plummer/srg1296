@@ -29,7 +29,7 @@ Unless noted, programs are plain Python 3. Those marked † need numpy, igraph, 
 | Table 7 (skeleton), Table 8 (the nine local types L1–L9, with geometric identification of L1, L6, L8), zero-ring spectra, \|S_ψ\| vs \|U_b\|, cospectral zero rings of dual pairs | `family/shared_structure.py` | `family/shared_structure.out` |
 | subgroups of order 36 inside / disjoint from every D (Section 5.4, Proposition 6.2) | `family/spread_inside.py` | `family/spread_inside.out` |
 | Lemma 5.1 (Σc, Σc²); Lemma 5.2 (adding a free subgroup gives a PDS); Lemma 5.3 (spreads commute with duality) | proofs; consistent with `shared_structure.out`, `spread_link.out` | |
-| Theorem 2.7 / Table 1: the binary fibre data of every LS_m(36) PDS, m ≤ 18 (enumeration of all 2¹⁵ sets, geometric identification) | `family/fibre_data.py` | `family/fibre_data.out` |
+| Theorem 2.7 / Table 1: the binary fiber data of every LS_m(36) PDS, m ≤ 18 (enumeration of all 2¹⁵ sets, geometric identification) | `family/fibre_data.py` | `family/fibre_data.out` |
 | Proposition 5.4: trace identities in the ρ-model; Gauss periods of index 8; NL_g(9) unions; ring sizes | `family/family_theory.py` | `family/family_theory.out` |
 | Theorem 5.5, m = 5, 6: ρ-invariant PDSs exist | `family/rho_cpsat.py` †, `family/low_range/exhaustive_low.py` † | `family/low_range/*.txt` (verified by `build_from_logs.py`) |
 | Theorem 5.5, m = 7: none exists (exhaustive) | `family/low_range/exhaustive_low.py 7 0,4 0` † | `family/low_range/exhaustive_m7.out` |
@@ -41,7 +41,7 @@ Unless noted, programs are plain Python 3. Those marked † need numpy, igraph, 
 | claim | where |
 |---|---|
 | CP-SAT field-model search and its coverage | `search/`, `SEARCH.md` |
-| fibre-join constructions of IV.1, V.1, VI.1, VII.1, VIII.1, as run | `family/fibre_join_as_run/` |
+| fiber-join constructions of IV.1, V.1, VI.1, VII.1, VIII.1, as run | `family/fibre_join_as_run/` |
 | Section 7: σ-model attempts for LS_8, LS_9, LS_10 (CP-SAT UNKNOWN after 30 min each) | `family/sigma_cpsat.py` †; logs in `family/low_range/solver_logs/` |
 | Section 3.3 / 5.5: CP-SAT timings quoted in the text | `family/low_range/solver_logs/` (see its README) |
 

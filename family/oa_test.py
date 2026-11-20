@@ -14,7 +14,7 @@ for c in (2, 3):
     for a, b in D: M[i2[a], i3[b]] = True
     A = M[d2[ea][:, ea], d3[eb][:, eb]]
     nb0 = np.flatnonzero(A[0]); res = []
-    for x in nb0[:60]:                                         # first 60 neighbours of 0 (all orbits are not needed)
+    for x in nb0[:60]:                                         # first 60 neighbors of 0 (all orbits are not needed)
         cn = np.flatnonzero(A[0] & A[x]); g = ig.Graph.Adjacency(A[np.ix_(cn, cn)].tolist(), mode='undirected')
         res.append(g.clique_number() + 2)
     print(f'VII.{c}: clique numbers of edges {{0,x}} for 60 neighbours x: min {min(res)}, max {max(res)}; '

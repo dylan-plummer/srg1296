@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Figure: the zero ring R_0 = {0} x F_81 of one graph for each m = 11,...,17 (Section 5), i.e. Cay(F_81, T_0).
-(0,0) in the centre, its neighbours in R_0 on the inner circle and its non-neighbours on the outer circle (at angle
-2 pi j/80 for beta^j); vertices coloured by their number of common neighbours with (0,0) inside R_0.
+(0,0) in the center, its neighbors in R_0 on the inner circle and its non-neighbors on the outer circle (at angle
+2 pi j/80 for beta^j); vertices colored by their number of common neighbors with (0,0) inside R_0.
 usage: python3 make_fig_family.py   (writes figures/zero_rings.pdf; needs numpy, matplotlib)"""
 import os
 import numpy as np
@@ -26,7 +26,7 @@ PANELS = [("385_124_110", 1, "VIII.1", 11, "grid"), ("420_144_132", 1, "VII.1", 
 BLUE, ORANGE, AQUA, INK, GREY = "#2a78d6", "#eb6834", "#1baf7a", "#1b1f27", "#9aa1ad"
 fig, axes = plt.subplots(2, 4, figsize=(6.9, 3.95), gridspec_kw={"wspace": 0.04, "hspace": 0.32})
 axes = axes.ravel(); axes[-1].axis("off")
-axes[-1].text(0.02, 0.55, "centre: $(0,0)$\ninner circle: its neighbours in $R_0$\nouter circle: its non-neighbours in $R_0$\ncolour: number of common\nneighbours with $(0,0)$ in $R_0$", transform=axes[-1].transAxes, fontsize=6.5, va="center", linespacing=1.4)
+axes[-1].text(0.02, 0.55, "center: $(0,0)$\ninner circle: its neighbors in $R_0$\nouter circle: its non-neighbors in $R_0$\ncolor: number of common\nneighbors with $(0,0)$ in $R_0$", transform=axes[-1].transAxes, fontsize=6.5, va="center", linespacing=1.4)
 for ax, (p, c, name, m, u0) in zip(axes, PANELS):
     T0 = set()
     for l in open(os.path.join(CONN, f"srg1296_{p}_class{c}.txt")):

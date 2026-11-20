@@ -100,7 +100,7 @@ def main():
         records.append(dict(parameters=[1296,k,l,mu],restricted_eigenvalues=[r,s],trace_options=trace,
                             admissible_fibre_count=len(candidates),fibres=candidates))
     # Natural fusions distinguish each binary orbit, membership in D, origin,
-    # and the three nonzero quadratic levels in the zero binary fibre.
+    # and the three nonzero quadratic levels in the zero binary fiber.
     labels={};columns=[]
     binary_class={b:i for i,cycle in enumerate(D['binary_cycles']) for b in cycle}
     for b in range(16):

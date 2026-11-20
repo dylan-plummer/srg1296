@@ -1,4 +1,4 @@
-// Complete local projective moment-code catalogues, without fixed matching channels.
+// Complete local projective moment-code catalogs, without fixed matching channels.
 #include <array>
 #include <chrono>
 #include <cstdint>

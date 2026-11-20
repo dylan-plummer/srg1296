@@ -14,7 +14,7 @@ def det3(M): return int(round(np.linalg.det(M))) % 3
 def key(M): return tuple(M.ravel().tolist())
 out = []; seen = set()
 for name, g1 in canon.items():
-    # centraliser in M4(F3): solve g1 X - X g1 = 0 by brute force on a basis (linear algebra mod 3)
+    # centralizer in M4(F3): solve g1 X - X g1 = 0 by brute force on a basis (linear algebra mod 3)
     basis = []
     E = [np.zeros((4,4), dtype=np.int64) for _ in range(16)]
     for i in range(16): E[i].flat[i] = 1
@@ -42,7 +42,7 @@ for name, g1 in canon.items():
         for pair in [(g1, X), (X, g1)]:
             k = (key(pair[0]), key(pair[1]))
             if k not in seen: seen.add(k); out.append(pair); cnt += 1
-    print(name, 'centraliser dim', len(basis), 'pairs', cnt)
+    print(name, 'centralizer dim', len(basis), 'pairs', cnt)
 for g in canon.values():
     for pair in [(I, g), (g, I)]:
         k = (key(pair[0]), key(pair[1]))

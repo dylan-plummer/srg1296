@@ -1,4 +1,4 @@
-"""Exact C3 quotient, dual-parity, moment and invariant-fibre transfer gates.
+"""Exact C3 quotient, dual-parity, moment and invariant-fiber transfer gates.
 
 Only the specified elementary-abelian Cayley family is screened. A local
 survivor is not a constructed graph or a completed compatibility problem.

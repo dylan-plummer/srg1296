@@ -93,7 +93,7 @@ footer p { font-size: 0.85rem; }
   <header>
     <div class="eyebrow">Strongly regular Cayley graphs on <span class="math">F</span><sub>16</sub> × <span class="math">F</span><sub>81</sub></div>
     <h1 id="title">srg(1296, 560, 244, 240)</h1>
-    <p>Three parameter sets on 1296 = 36² vertices, eighteen pairwise non-isomorphic graphs: (1296, 560, 244, 240) and (1296, 592, 268, 272) had no known construction, and (1296, 595, 274, 272) was realised independently by Kovaľ with graphs that are not vertex-transitive. Each is a Cayley graph: a vertex is a pair (<span class="math">a</span>, <span class="math">b</span>) with <span class="math">a</span> ∈ <span class="math">F</span><sub>16</sub>, <span class="math">b</span> ∈ <span class="math">F</span><sub>81</sub>, and two vertices are joined when their difference lies in a connection set <span class="math">D</span>. Pick a graph below; every panel redraws for it.</p>
+    <p>Three parameter sets on 1296 = 36² vertices, eighteen pairwise non-isomorphic graphs: (1296, 560, 244, 240) and (1296, 592, 268, 272) had no known construction, and (1296, 595, 274, 272) was realized independently by Kovaľ with graphs that are not vertex-transitive. Each is a Cayley graph: a vertex is a pair (<span class="math">a</span>, <span class="math">b</span>) with <span class="math">a</span> ∈ <span class="math">F</span><sub>16</sub>, <span class="math">b</span> ∈ <span class="math">F</span><sub>81</sub>, and two vertices are joined when their difference lies in a connection set <span class="math">D</span>. Pick a graph below; every panel redraws for it.</p>
     <div class="stats" id="stats"></div>
     <div class="tags" id="tags"></div>
   </header>
@@ -152,9 +152,9 @@ footer p { font-size: 0.85rem; }
   <section>
     <div class="rail">
       <div class="eyebrow">3 · network</div>
-      <h2>Count the common neighbours</h2>
-      <p>Each ring is a coset {<span class="math">a</span>} × <span class="math">F</span><sub>81</sub>: β<sup>j</sup> sits at angle 2π<span class="math">j</span>/80, with 0 in the middle. The centre ring is <span class="math">a</span> = 0 and α<sup>i</sup> sits at angle 2π<span class="math">i</span>/15.</p>
-      <p>Click a vertex to choose the blue point, click again to choose the orange one. The highlighted dots are their common neighbours; the count always equals λ for adjacent pairs and μ for non-adjacent ones.</p>
+      <h2>Count the common neighbors</h2>
+      <p>Each ring is a coset {<span class="math">a</span>} × <span class="math">F</span><sub>81</sub>: β<sup>j</sup> sits at angle 2π<span class="math">j</span>/80, with 0 in the middle. The center ring is <span class="math">a</span> = 0 and α<sup>i</sup> sits at angle 2π<span class="math">i</span>/15.</p>
+      <p>Click a vertex to choose the blue point, click again to choose the orange one. The highlighted dots are their common neighbors; the count always equals λ for adjacent pairs and μ for non-adjacent ones.</p>
       <div class="controls">
         <button class="btn" id="r-adj">Random adjacent pair</button>
         <button class="btn" id="r-non">Random non-adjacent pair</button>
@@ -162,11 +162,11 @@ footer p { font-size: 0.85rem; }
     </div>
     <div class="fig">
       <div class="verdict" id="verdict"></div>
-      <canvas id="net" aria-label="Ring layout of all 1296 vertices with a selected pair and their common neighbours"></canvas>
+      <canvas id="net" aria-label="Ring layout of all 1296 vertices with a selected pair and their common neighbors"></canvas>
       <div class="legend">
-        <span><i class="sw" style="background:var(--s1)"></i>first vertex and its neighbours</span>
+        <span><i class="sw" style="background:var(--s1)"></i>first vertex and its neighbors</span>
         <span><i class="sw" style="background:var(--s2)"></i>second vertex</span>
-        <span><i class="sw" style="background:var(--ink)"></i>common neighbours</span>
+        <span><i class="sw" style="background:var(--ink)"></i>common neighbors</span>
       </div>
     </div>
   </section>
@@ -176,7 +176,7 @@ footer p { font-size: 0.85rem; }
       <div class="eyebrow">4 · inside a ring</div>
       <h2 id="ringTitle">One ring of 81 vertices</h2>
       <p id="ringText"></p>
-      <p>Between rings the counts are rigid for every graph here: the 16 rings form an equitable partition, so each vertex of ring <span class="math">a</span> has the same number of neighbours in ring <span class="math">a</span>′.</p>
+      <p>Between rings the counts are rigid for every graph here: the 16 rings form an equitable partition, so each vertex of ring <span class="math">a</span> has the same number of neighbors in ring <span class="math">a</span>′.</p>
     </div>
     <div class="fig">
       <div class="pair">
@@ -185,16 +185,16 @@ footer p { font-size: 0.85rem; }
           <div class="cap" id="bhCap"></div>
         </div>
         <div style="display:grid;gap:10px">
-          <div class="quot" id="quot" aria-label="16 by 16 matrix of neighbour counts between rings"></div>
+          <div class="quot" id="quot" aria-label="16 by 16 matrix of neighbor counts between rings"></div>
           <div class="legend" id="quotLegend"></div>
-          <div class="cap">Neighbours a vertex in ring <span class="math">a</span> (row) has in ring <span class="math">a</span>′ (column); rows in the order 0, α<sup>0</sup>, …, α<sup>14</sup>.</div>
+          <div class="cap">Neighbors a vertex in ring <span class="math">a</span> (row) has in ring <span class="math">a</span>′ (column); rows in the order 0, α<sup>0</sup>, …, α<sup>14</sup>.</div>
         </div>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>Found by exact CP-SAT searches for partial difference sets in <span class="math">F</span><sub>16</sub> × <span class="math">F</span><sub>81</sub> invariant under a subgroup of field multiplications plus a Galois map, generalising Kovaľ's construction of srg(324, 136, 58, 56) on <span class="math">F</span><sub>4</sub> × <span class="math">F</span><sub>81</sub>. Fields: <span class="math">F</span><sub>16</sub> = <span class="math">F</span><sub>2</sub>[x]/(x<sup>4</sup>+x<sup>3</sup>+1), <span class="math">F</span><sub>81</sub> = <span class="math">F</span><sub>3</sub>[y]/(y<sup>4</sup>+y<sup>3</sup>+2). Every graph was rebuilt by a standalone script that checks all 839 160 vertex pairs, and checked again by an independent verifier. Isomorphism classes and automorphism groups by nauty. None of the Latin-square-type graphs is the graph of an orthogonal array.</p>
+    <p>Found by exact CP-SAT searches for partial difference sets in <span class="math">F</span><sub>16</sub> × <span class="math">F</span><sub>81</sub> invariant under a subgroup of field multiplications plus a Galois map, generalizing Kovaľ's construction of srg(324, 136, 58, 56) on <span class="math">F</span><sub>4</sub> × <span class="math">F</span><sub>81</sub>. Fields: <span class="math">F</span><sub>16</sub> = <span class="math">F</span><sub>2</sub>[x]/(x<sup>4</sup>+x<sup>3</sup>+1), <span class="math">F</span><sub>81</sub> = <span class="math">F</span><sub>3</sub>[y]/(y<sup>4</sup>+y<sup>3</sup>+2). Every graph was rebuilt by a standalone script that checks all 839 160 vertex pairs, and checked again by an independent verifier. Isomorphism classes and automorphism groups by nauty. None of the Latin-square-type graphs is the graph of an orthogonal array.</p>
   </footer>
 </div>
 <div id="tip" hidden></div>
@@ -397,7 +397,7 @@ function drawNet() {
   }
   const a = adj(selU, selW), want = a ? LAM : MU;
   verdict.innerHTML = `<span style="color:var(--s1)">${fmtV(selU)}</span> and <span style="color:var(--s2)">${fmtV(selW)}</span> are ${a ? "adjacent" : "not adjacent"}<br>` +
-    `common neighbours: ${common} ${common === want ? `<span class="ok">= ${a ? "λ" : "μ"} ✓</span>` : "✗"}`;
+    `common neighbors: ${common} ${common === want ? `<span class="ok">= ${a ? "λ" : "μ"} ✓</span>` : "✗"}`;
 }
 function nearest(e, cv, posFn, n, r2) {
   const rect = cv.getBoundingClientRect(), x = e.clientX - rect.left, y = e.clientY - rect.top;
@@ -438,8 +438,8 @@ function drawRing() {
   const bhName = isSrg && st.deg === 20 && st.lam[0] === 1 && st.mu[0] === 6;
   document.getElementById("ringTitle").textContent = bhName ? "A Brouwer–Haemers graph in every ring" : `A ${st.deg}-regular graph in every ring`;
   document.getElementById("ringText").innerHTML = bhName
-    ? "Restrict to one ring and the 81 vertices form srg(81, 20, 1, 6), the Brouwer–Haemers graph: <span class=\"math\">b</span> ~ <span class=\"math\">b</span>′ when <span class=\"math\">b</span> − <span class=\"math\">b</span>′ is a power of β<sup>4</sup>. Hover a vertex to see its neighbours."
-    : `Restrict to one ring and the 81 vertices form a ${st.deg}-regular Cayley graph of <span class="math">F</span><sub>81</sub>. Unlike the LS<sub>16</sub> graphs, it is not strongly regular: adjacent pairs share ${st.lam.join(", ")} neighbours and non-adjacent pairs ${st.mu.join(", ")}. Hover a vertex to see its neighbours.`;
+    ? "Restrict to one ring and the 81 vertices form srg(81, 20, 1, 6), the Brouwer–Haemers graph: <span class=\"math\">b</span> ~ <span class=\"math\">b</span>′ when <span class=\"math\">b</span> − <span class=\"math\">b</span>′ is a power of β<sup>4</sup>. Hover a vertex to see its neighbors."
+    : `Restrict to one ring and the 81 vertices form a ${st.deg}-regular Cayley graph of <span class="math">F</span><sub>81</sub>. Unlike the LS<sub>16</sub> graphs, it is not strongly regular: adjacent pairs share ${st.lam.join(", ")} neighbors and non-adjacent pairs ${st.mu.join(", ")}. Hover a vertex to see its neighbors.`;
   document.getElementById("bhCap").innerHTML = `Ring {0} × <span class="math">F</span><sub>81</sub>: 81 vertices, ${81 * st.deg / 2} edges${isSrg ? `, srg(81, ${st.deg}, ${st.lam[0]}, ${st.mu[0]})` : ""}.`;
   // quotient matrix
   const rows = [0, ...expA], Q = rows.map(a => rows.map(b => { let c = 0; for (let y = 0; y < 81; y++) if (adj(a * 81, b * 81 + y)) c++; return c; }));
@@ -448,7 +448,7 @@ function drawRing() {
   document.getElementById("quot").innerHTML = Q.map(r => r.map(q => `<i style="background:${colOf(q)}" title="${q}"></i>`).join("")).join("");
   document.getElementById("quotLegend").innerHTML = vals.map(v => {
     const n = Q.flat().filter(q => q === v).length;
-    return `<span><i class="sw" style="background:${colOf(v)};outline:1px solid var(--rule)"></i>${v} neighbours (${n} cells)</span>`; }).join("");
+    return `<span><i class="sw" style="background:${colOf(v)};outline:1px solid var(--rule)"></i>${v} neighbors (${n} cells)</span>`; }).join("");
   drawBH();
 }
 function drawBH() {
@@ -467,7 +467,7 @@ function drawBH() {
 bh.addEventListener("pointermove", e => {
   const best = nearest(e, bh, bhPos, 81, 100);
   if (best !== bhHover) { bhHover = best; drawBH(); }
-  if (best >= 0) { let d = 0; for (let y = 0; y < 81; y++) if (adj(best, y)) d++; showTip(`(0, ${fmtB(best)}) · ${d} neighbours in the ring`, e); } else hideTip();
+  if (best >= 0) { let d = 0; for (let y = 0; y < 81; y++) if (adj(best, y)) d++; showTip(`(0, ${fmtB(best)}) · ${d} neighbors in the ring`, e); } else hideTip();
 });
 bh.addEventListener("pointerleave", () => { bhHover = -1; drawBH(); hideTip(); });
 

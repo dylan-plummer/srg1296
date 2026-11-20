@@ -61,7 +61,7 @@ For graphs I–VI, D is a union of orbits of a small group of field multiplicati
 The paper prints the connection sets of I.1, II.1, III.1, IV.1, V.1, VI.1, VII.1 and VIII.1 (Constructions 4.1–4.6).
 Every connection set is in `connsets/*.txt` as discrete-log pairs: a line "i j" means (αⁱ, βʲ), and "-" stands for 0.
 
-Structure (Section 6 of the paper; the fibre structure and the order-five family are in Sections 2.3 and 5 and in `family/`):
+Structure (Section 6 of the paper; the fiber structure and the order-five family are in Sections 2.3 and 5 and in `family/`):
 - In graph I each coset {a} × F₈₁ induces the Brouwer–Haemers graph srg(81, 20, 1, 6).
 - Graphs I.6 and I.10 arise from an srg(1296, 665, 340, 342) Cayley graph by deleting three pairwise orthogonal
   spreads of Delsarte cliques. That Cayley graph is the graph of a symmetric Bush-type Hadamard matrix, so this answers
@@ -85,7 +85,7 @@ Structure (Section 6 of the paper; the fibre structure and the order-five family
 | `paper/make_fig_orthogonality.py` | regenerates `paper/figures/orthogonality.pdf` (Figure 4(b)) from `paper/checks/spread_lattice.json` |
 | `paper/make_fig_family.py` | regenerates `paper/figures/zero_rings.pdf` (Figure 1: the zero ring for m = 11, …, 17) from `connsets/` (numpy, matplotlib) |
 | `paper/checks/` | computations behind the paper's claims: exact clique numbers (`clique_numbers.py`, output in `clique_numbers.out`), stabilizers and the known-construction checks (`known_constructions.py`), spread structure (`spread_structure.py`, `third_spread.py`), and the independent check of Propositions 5.2 and 5.3 (`spread_lattice.py`: all subgroups of order 36, every orthogonal set via the character criterion, and the Bush-type Hadamard matrices; output in `spread_lattice.out` and `.json`) |
-| `family/` | Sections 2.3–5 of the paper: the structure theorem, the order-five family, duals, imports of graphs IV–VII, the fibre-join code as run, the LS₁₁/LS₁₂ searches; see `family/README.md` |
+| `family/` | Sections 2.3–5 of the paper: the structure theorem, the order-five family, duals, imports of graphs IV–VII, the fiber-join code as run, the LS₁₁/LS₁₂ searches; see `family/README.md` |
 | `CHECKS.md`, `verify_all.sh` | every claim of the paper with the program and output that support it; a script that reruns them all |
 | `search/` | the search code, the target parameter sets, and a snapshot of all search logs; see `SEARCH.md` |
 | `SEARCH.md` | how the search works, how it extends Kovaľ's, and its coverage |
@@ -110,7 +110,7 @@ The scripts in `paper/checks/` need numpy; `clique_numbers.py` also needs python
 
 ## How the graphs were found
 
-Graphs IV–VIII were found by the fibre decomposition of Section 3.4 (`family/fibre_join_as_run/`); the duals by
+Graphs IV–VIII were found by the fiber decomposition of Section 3.4 (`family/fibre_join_as_run/`); the duals by
 Proposition 2.5. The graphs I–III were found by an exact CP-SAT search for partial difference sets in products of finite fields that are
-invariant under a subgroup of F_{q₁}* × F_{q₂}* plus a Galois map. It generalises Kovaľ's search on F₄ × F₈₁, which
+invariant under a subgroup of F_{q₁}* × F_{q₂}* plus a Galois map. It generalizes Kovaľ's search on F₄ × F₈₁, which
 produced srg(324, 136, 58, 56). See `SEARCH.md`.

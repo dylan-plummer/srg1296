@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Import a C5 'fibre-join' connection set given in (Z/6)^4 coordinates (z_i = 3 b_i + 4 v_i mod 6, b in F_2^4,
+"""Import a C5 'fiber-join' connection set given in (Z/6)^4 coordinates (z_i = 3 b_i + 4 v_i mod 6, b in F_2^4,
 v in F_3^4) into the F_16 x F_81 coordinates of this repository.
 
 The construction's order-5 map is R = (B, F) with B(b) = (b1+b2+b3+b4, b1, b2, b3) on F_2^4 and

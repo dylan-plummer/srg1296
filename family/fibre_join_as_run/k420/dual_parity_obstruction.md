@@ -1,4 +1,4 @@
-# The degree-24 fibre template is impossible
+# The degree-24 fiber template is impossible
 
 Let D be an inverse-closed connection set for SRG(1296,420,144,132) on
 A x B = F2^4 x F3^4. Write T_a={v:(a,v) in D}. Let S consist of the
@@ -17,7 +17,7 @@ Fourier inversion gives, for a nonprincipal character indexed by g,
     g(D*) = 36*1_D(g) - 12.
 
 Consequently the dual's positive binary quotient set is U, whereas its
-binary zero-fibre connection set is S. Applying the same size/parity rule
+binary zero-fiber connection set is S. Applying the same size/parity rule
 to U must therefore recover S. This is a necessary involution condition
 on the binary quotient, not an assumption that the graph is self-dual.
 
@@ -27,7 +27,7 @@ complement of a linear plane, of size twelve. The size/parity rule applied
 to that U gives the complement of a linear plane again, of size twelve.
 It cannot recover the original four-element S: contradiction.
 
-All 105 labelled degree-24 quotient choices fail this test. The 35 degree-
+All 105 labeled degree-24 quotient choices fail this test. The 35 degree-
 42 choices survive: S is the complement of a linear plane, and the parity
 map applied twice recovers it. Thus the degree-24 template is excluded
 on this group, while the degree-42 template and the SRG row remain open.

@@ -1,5 +1,5 @@
 // Adapted from transfer525 local_catalogue.cpp: enumerate nine-point moment-zero sets.
-// Complete local projective moment-code catalogues, without fixed matching channels.
+// Complete local projective moment-code catalogs, without fixed matching channels.
 #include <array>
 #include <chrono>
 #include <cstdint>

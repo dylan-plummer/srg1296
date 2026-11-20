@@ -37,7 +37,7 @@ This search extends it in four ways.
 4. **Staged solving.**
    - Models with at most 120 orbits: 1 worker, 10 s per case.
    - Deep pass, 121–200 orbits (F_16 × F_81 only): 1 worker, 60 s.
-   - Rerun of undecided cases: 5 workers, LP linearisation level 2, 120 s.
+   - Rerun of undecided cases: 5 workers, LP linearization level 2, 120 s.
    - Tier 3: 20 workers, 30 s per case, then a 600 s pass restricted to parameter sets that are still open.
 
 Graphs I.1–I.3 of the paper came from the first pass. Graph II and graphs I.4–I.10 came from the 5-worker
@@ -69,7 +69,7 @@ infeasible case proves only that no PDS with those parameters is invariant under
 
 **Solutions found.** The only solutions so far are for three parameter sets on 1296 vertices, all in
 F_16 × F_81: (1296, 560, 244, 240) and (1296, 592, 268, 272), which were open, and (1296, 595, 274, 272),
-which Kovaľ realised independently (Zenodo 10.5281/zenodo.23296158) with graphs that are not vertex-transitive.
+which Kovaľ realized independently (Zenodo 10.5281/zenodo.23296158) with graphs that are not vertex-transitive.
 All three are presented in the paper.
 
 Models with more than 120 orbits (more than 200 for F_16 × F_81) were not searched.

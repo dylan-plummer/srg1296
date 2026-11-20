@@ -7,7 +7,7 @@ for m, fn in [(13, W+'transfer525_20261116/results/455/connections_Z6_4.txt'), (
     for l in open(fn):
         z = tuple(int(x) for x in l.split()); b = tuple(x % 2 for x in z); v = tuple(x % 3 for x in z)
         T[int(''.join(map(str, b)), 2)].add(v)
-    # here A index = binary number with standard dot product; build H for that labelling
+    # here A index = binary number with standard dot product; build H for that labeling
     Hs = np.array([[(-1) ** bin(al & a).count('1') for a in range(16)] for al in range(16)])
     ok = True
     for b in range(40):

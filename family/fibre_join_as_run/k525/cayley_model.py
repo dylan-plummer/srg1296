@@ -1,6 +1,6 @@
 """Exact 120-choice Cayley realization forced by the local uniqueness check.
 
-Keep the fibre, quotient, C5 action and five matching channels. Impose
+Keep the fiber, quotient, C5 action and five matching channels. Impose
 integer cross Fourier values and every global character equation directly.
 The optional Walsh tables strengthen the same spectral constraints.
 """
@@ -104,7 +104,7 @@ def build(tables=True,selfdual=False):
             md.AddAllowedAssignments([refs[d] for d in range(1,16)],patterns[4 if D['diagonal_fourier'][fo[0]]==-6 else 8])
     assert not md.Validate(),md.Validate()
     # Independent coefficient controls: complete multipartite and the
-    # prescribed fibre character table, evaluated without a solver.
+    # prescribed fiber character table, evaluated without a solver.
     vector=np.array([int(b!=0) for orbit in oo for b,p in [orbit[0]]])
     for row,(a,q) in profiles.items():assert int(np.array(row)@vector)==(0 if q>=0 else -81)
     fibre=np.array([fixed.get(i,0) if oo[i][0][0]==0 else 0 for i in range(len(oo))])

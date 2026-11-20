@@ -2,7 +2,7 @@
 """Shared local structure of the Latin square type graphs I, III-VIII (and II for contrast).  Plain Python 3.
 For every graph and every ring a != 0 the ring set T_a is classified by its *local type*: |T_a|, whether 0 in T_a, and the
 multiset of the 40 values psi_d(T_a)/9 (d over projective points; integers by Lemma 2.3).  Also reported:
-the character values of T_0; the F_2-fibres U_b (b != 0) by weight and by whether they are affine subspaces;
+the character values of T_0; the F_2-fibers U_b (b != 0) by weight and by whether they are affine subspaces;
 the sizes |S_psi|; and 'matching': the share of characters psi with |S_psi| = 8 whose row (psi(T_a))_{a != 0} has a
 single nonzero entry (one ring carries the whole positive Walsh pattern).
 usage: python3 shared_structure.py > shared_structure.out"""

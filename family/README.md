@@ -1,4 +1,4 @@
-# Fibre structure, shared structure, and graphs IV–VIII (Sections 2.3, 3.4, 4, 5 of the paper)
+# Fiber structure, shared structure, and graphs IV–VIII (Sections 2.3, 3.4, 4, 5 of the paper)
 
 Notation follows the paper:
 - ρ = (α¹², β¹⁶) is multiplication by elements of order 5 in both fields.
@@ -13,7 +13,7 @@ See `../CHECKS.md` for the map from claims to programs.
 | `duality.py` | exact character values via the trace forms; the dual set D* of Proposition 2.5 | — |
 | `fibre_data.py` → `fibre_data.out` | Theorem 2.7 and Table 1: forced S₁, U₀, \|T₀\|, ring sizes for every LS_m(36), m ≤ 18, with geometric identification (planes, ovoids, grids) | — |
 | `family_theory.py` → `family_theory.out` | finite checks in the proof of Proposition 5.4 (ρ-model): trace identities, Gauss periods of index 8, NL_g(9) unions, Walsh sums of μ₅-cosets | — |
-| `import_c5.py`, `import_c3.py` | map the (Z/6)⁴ connection sets of the fibre-join runs to F₁₆ × F₈₁ (IV–VI with R ↦ ρ; VII, VIII with their binary C3 ↦ α⁵) | — |
+| `import_c5.py`, `import_c3.py` | map the (Z/6)⁴ connection sets of the fiber-join runs to F₁₆ × F₈₁ (IV–VI with R ↦ ρ; VII, VIII with their binary C3 ↦ α⁵) | — |
 | `shared_structure.py` → `shared_structure.out` | Section 5: local types L1–L9 of all ring sets (Table 8) with geometric identification, zero-ring spectra, \|U_b\| and \|S_ψ\| distributions, matching | — |
 | `spread_inside.py` → `spread_inside.out` | subgroups of order 36 inside / disjoint from every connection set | — |
 | `spread_link.py` → `spread_link.out` | VII.2, VII.3 = D(VIII.i) ∪ U*: PDS check and non-isomorphism | numpy, pynauty |
@@ -26,7 +26,7 @@ See `../CHECKS.md` for the map from claims to programs.
 | `rho_cpsat.py` | CP-SAT in the model ⟨ρ⟩, optionally with T₀, U₀ and ring sizes fixed as in Proposition 5.4 | ortools |
 | `low_range/` | Theorem 5.5 for m = 5, 6, 7: `exhaustive_low.py` (solver-free; outputs `exhaustive_m*.out`) and the PDSs found for m = 5, 6 | numpy |
 | `search_m11_m12/` | Section 5.6: diag(F₄*, F₄*) models for LS₁₂ and LS₁₁, with logs | numpy |
-| `fibre_join_as_run/` | the fibre-join code, logs and certificates that found IV.1 (`k525/`), V.1 and VI.1 (`k490_k455/`), VII.1 (`k420/`) and VIII.1 (`k385/`), copied as run | see below |
+| `fibre_join_as_run/` | the fiber-join code, logs and certificates that found IV.1 (`k525/`), V.1 and VI.1 (`k490_k455/`), VII.1 (`k420/`) and VIII.1 (`k385/`), copied as run | see below |
 | `verification_new_graphs.log` | `../build_from_logs.py` and Kovaľ's `verify_srg.py` on all new graphs | — |
 
 ## Results in one table
@@ -61,13 +61,13 @@ python3 make_connsets.py raw525.txt raw490.txt raw455.txt
 python3 import_c3.py RAW_Z6_CONNECTIONS_420.txt ../connsets/srg1296_420_144_132_class1.txt
 ```
 
-The raw (Z/6)⁴ connection sets are `connections_Z6_4.txt` in the result folders of the fibre-join runs.
+The raw (Z/6)⁴ connection sets are `connections_Z6_4.txt` in the result folders of the fiber-join runs.
 
 ## Notes on `fibre_join_as_run/`
 
 This folder is a record, not a package. The scripts contain the absolute paths of the working tree where they ran
 (`work/construct525_20261116`, `work/transfer525_20261116`, `work/construct420_20261116`, `work/transfer420_20261116`). The large intermediate files
-(local catalogues, `.npz` domains) are not included. Each can be regenerated in seconds by the `.cpp` and `.py` files there.
+(local catalogs, `.npz` domains) are not included. Each can be regenerated in seconds by the `.cpp` and `.py` files there.
 
 The certificates (`construction.json`, `FOUND455_certificate.json`, `FOUND490_certificate.json`, `k420/construction.json`)
 give the seeds explicitly. The joins used optional restrictions on the positive Walsh patterns, which are not necessary

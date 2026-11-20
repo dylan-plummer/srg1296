@@ -1,6 +1,6 @@
 """Weaker, fixed-point-free C3 join for SRG(1296,420,144,132).
 
-There is one 42-element zero fibre, one developed 18-element seed and
+There is one 42-element zero fiber, one developed 18-element seed and
 four developed 27-element seeds. No C3 x C3 symmetry is imposed.
 """
 import argparse

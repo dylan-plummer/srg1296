@@ -100,12 +100,12 @@ for row, (key, tag) in enumerate([("560", "I"), ("592", "II"), ("595", "III")]):
     a1.add_patch(Rectangle((-r0, -r0), 2 * r0, 2 * r0, fill=False, ec=INK, lw=0.6, zorder=5))
     for a in (a0, a1):
         a.set_xlim(-0.9, 0.9); a.set_ylim(-0.9, 0.9); a.set_aspect("equal"); a.axis("off")
-    # (right) zoom: the subgraph induced on R_0, layered from its centre (0,0)
+    # (right) zoom: the subgraph induced on R_0, layered from its center (0,0)
     a2 = ax[row, 2]
     R = A[:81, :81]; C = R.astype(int) @ R.astype(int)
     inn = [x for x in range(81) if R[0, x]]; out = [x for x in range(81) if x and not R[0, x]]
     zp = {0: np.zeros(2)}
-    if tag == "I":                               # windmill: pair x with its unique common neighbour -x
+    if tag == "I":                               # windmill: pair x with its unique common neighbor -x
         prs = []
         for x in inn:
             y = [z for z in inn if R[x, z]]; assert len(y) == 1

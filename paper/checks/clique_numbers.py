@@ -2,7 +2,7 @@
 """Exact clique numbers of the graphs in ../../connsets (Cayley graphs on F16 x F81).
 
 Gamma is vertex-transitive, so a maximum clique may be assumed to contain the vertex 0 = (0,0) and an
-edge {0, x}; hence omega(Gamma) = 2 + max_x omega(N(0) & N(x)). The neighbours x of 0 are reduced to orbit
+edge {0, x}; hence omega(Gamma) = 2 + max_x omega(N(0) & N(x)). The neighbors x of 0 are reduced to orbit
 representatives under the known automorphisms fixing 0: the maps (a,b) -> (g1 s1(a), g2 s2(b)) with
 (g1, g2) in F16* x F81* and s1, s2 Frobenius powers, that preserve D. Each subproblem is solved exactly
 with igraph's clique_number (Cliquer). A witness clique of size omega is produced and checked.

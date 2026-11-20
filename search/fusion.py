@@ -1,4 +1,4 @@
-"""Search for strongly regular graphs that are unions of symmetrised orbitals of a
+"""Search for strongly regular graphs that are unions of symmetrized orbitals of a
 permutation group acting (possibly intransitively) on {0..v-1}.
 
 Core API
@@ -33,7 +33,7 @@ class Config:
         fiber_of_orb = {int(d): i for i, d in enumerate(dlab)}
         self.fiber = np.array([fiber_of_orb[int(O[i, i])] for i in range(v)])
         self.nfib = len(dlab)
-        # symmetrise: relation id = min(orbital, transpose orbital) over off-diagonal orbitals
+        # symmetrize: relation id = min(orbital, transpose orbital) over off-diagonal orbitals
         OT = O.T
         S = np.minimum(O, OT)
         diagset = set(int(d) for d in dlab)
@@ -54,7 +54,7 @@ class Config:
         self.rep = [(int(f // v), int(f % v)) for f in first]
         self.fibrep = [int(np.where(self.fiber == f)[0][0]) for f in range(self.nfib)]
         self.fibsize = [int((self.fiber == f).sum()) for f in range(self.nfib)]
-        # deg[f][i] = number of neighbours via relation i of a vertex in fiber f
+        # deg[f][i] = number of neighbors via relation i of a vertex in fiber f
         self.deg = np.zeros((self.nfib, r), dtype=np.int64)
         for f, a in enumerate(self.fibrep):
             row = R[a]
@@ -74,7 +74,7 @@ class Config:
                 d[(i, j)] = d.get((i, j), 0) + c
             self.coef.append(d)
         self.size = np.array([int((R == i).sum()) for i in range(r)])  # number of ordered pairs
-        # ordered orbitals relabelled 0..N-1 (for the spectral decomposition)
+        # ordered orbitals relabeled 0..N-1 (for the spectral decomposition)
         u, O2 = np.unique(O, return_inverse=True)
         self.O = O2.reshape(v, v)
         self.N = len(u)
@@ -82,9 +82,9 @@ class Config:
 
     # ------------------------------------------------------------------ spectral data
     def spectral(self, seed=1):
-        """Decompose the centraliser algebra W (span of orbital matrices) into its simple
+        """Decompose the centralizer algebra W (span of orbital matrices) into its simple
         blocks. For every block j returns (chi_j(1), m_j, trivial?, T_j) where T_j[l] =
-        tr(A_l e_j) for the symmetrised relation l, e_j the central idempotent."""
+        tr(A_l e_j) for the symmetrized relation l, e_j the central idempotent."""
         if self.blocks is not None:
             return self.blocks
         v, N, O = self.v, self.N, self.O
@@ -98,7 +98,7 @@ class Config:
             a, b = divmod(int(first[mm]), v)
             key = O[a] * N + O[:, b]
             P[:, :, mm] = np.bincount(key, minlength=N * N).reshape(N, N)
-        # centre: sum_i z_i (p[i,l,m] - p[l,i,m]) = 0  for all l, m
+        # center: sum_i z_i (p[i,l,m] - p[l,i,m]) = 0  for all l, m
         C = (P - P.transpose(1, 0, 2)).transpose(1, 2, 0).reshape(N * N, N)
         _, sv, vt = np.linalg.svd(C, full_matrices=False)
         tol = 1e-8 * max(1.0, sv[0])
@@ -118,7 +118,7 @@ class Config:
                 groups.append((start, i)); start = i
         ones_f = np.zeros((v, self.nfib))
         ones_f[np.arange(v), self.fiber] = 1.0
-        # transpose pairing of ordered orbitals and map ordered -> symmetrised relation
+        # transpose pairing of ordered orbitals and map ordered -> symmetrized relation
         tr_of = self.O.T
         symrel = np.full(N, -1)
         symrel_flat = self.R.ravel()

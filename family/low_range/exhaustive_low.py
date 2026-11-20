@@ -19,7 +19,7 @@ P = [b for b in B81 if logB[b] < 40]                       # 40 projective point
 D80 = B81                                                  # nonzero d
 C = np.array([[2 if TRB[(d, x)] == 0 else -1 for x in P] for d in D80], dtype=np.int64)   # psi_d(+-x), 80 x 40
 didx = {d: i for i, d in enumerate(D80)}
-# catalogues
+# catalogs
 mom = lambda S: tuple(sum(x[i] * x[j] for x in S) % 3 for i in range(4) for j in range(i, 4))
 lines = [S for S in itertools.combinations(range(40), 4) if all((1 + C[:, list(S)].sum(1)) % 9 == 0)]
 def nine_sets():

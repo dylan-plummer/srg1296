@@ -1,8 +1,8 @@
 """Use phase-retrieval uniqueness to enforce full signed spectral templates.
 
-After unsigned difference consistency, the local code catalogue has at
+After unsigned difference consistency, the local code catalog has at
 most one cross-set for each absolute Fourier vector. Hence a shared-frame
-solution is translation invariant on the binary fibres. Its remaining
+solution is translation invariant on the binary fibers. Its remaining
 signed spectra must come from the 140 or 870 integral Walsh subsets.
 """
 from unsigned_domains import *

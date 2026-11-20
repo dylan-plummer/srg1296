@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Checks against known constructions (plain Python 3 + numpy).
-1. Multiplicative stabiliser in F16* x F81* (and with Galois maps) of every connection set in ../../connsets.
+1. Multiplicative stabilizer in F16* x F81* (and with Galois maps) of every connection set in ../../connsets.
 2. Fernandez-Alcober-Kwashira-Martinez standard cyclotomy of order e | gcd(15,80) = 5 on F16 x F81:
    every union of orbits of size 560 or 592 is tested for being a PDS with our parameters."""
 import os, glob, itertools, cmath

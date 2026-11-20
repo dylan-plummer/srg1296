@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Theorem 2.7 of the paper: the binary fibre data of an LS_m(36) PDS in Z_2^4 x Z_3^4 (1 <= m <= 18).
+"""Theorem 2.7 of the paper: the binary fiber data of an LS_m(36) PDS in Z_2^4 x Z_3^4 (1 <= m <= 18).
 For S subset of A* = F_2^4 \\ {0} let |T_a|(S) = (9/4)(m + W_S(a)) (Lemma 2.3) and Pi_m(S) = {a != 0 : |T_a|(S) odd}.
 Necessary (Lemmas 2.3, 2.5): all |T_a|(S) are integers in [0, 81], U_0 = Pi_m(S_1) and S_1 = Pi_m(U_0).
 This script lists all S surviving these conditions for each m, with |T_0| = (5m + 9|S|)/4 and the ring sizes, and
@@ -17,7 +17,7 @@ def sizes(m, S):
     return out
 def Pi(m, S):
     q = sizes(m, S); return None if q is None else frozenset(a for a in range(1, 16) if q[a - 1] % 2)
-# geometric catalogue
+# geometric catalog
 bit = lambda x, i: (x >> i) & 1
 shapes = collections.defaultdict(set)
 for coef in itertools.product(range(2), repeat=10):           # Q(x) = sum_{i<=j} q_ij x_i x_j

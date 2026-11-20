@@ -1,7 +1,7 @@
 """LS_12(36) = srg(1296,420,144,132) as a Cayley set in F4^2 x F3^4, invariant under H = diag(F4*,F4*) acting on A=F4^2
 through phi: H -> GL(4,3), h1=diag(w,1) -> g1, h2=diag(1,w) -> g2.  Template (d,j,d',j') = (42,12,12,42):
-T_0 = 42-set, 18-fibres on the axis {(x,0)}, 27-fibres elsewhere.  Fibre reps: T0 (<g1,g2>-inv), Te1 = T_(1,0) (g2-inv),
-Te2 = T_(0,1) (g1-inv), T11 = T_(1,1) (free, from the complete 9-divisible catalogue).
+T_0 = 42-set, 18-fibers on the axis {(x,0)}, 27-fibers elsewhere.  Fiber reps: T0 (<g1,g2>-inv), Te1 = T_(1,0) (g2-inv),
+Te2 = T_(0,1) (g1-inv), T11 = T_(1,1) (free, from the complete 9-divisible catalog).
 usage: ls420.py PAIRS_FILE [start end]   (each line: 'g1 ; g2' as 16 ints each, row-major)"""
 import sys, itertools, json, time, numpy as np
 m_LS = 12; s_ev = -m_LS
@@ -75,10 +75,10 @@ def run(g1, g2, log):
     if len(D0) * len(D1) * len(D2) > MAXTRIP: rec['skipped_triples'] = len(D0) * len(D1) * len(D2); log.write(json.dumps(rec) + '\n'); log.flush(); return []
     dual = {ij: perm_dual(G[ij]) for ij in G}          # beta -> (phi(h)^T beta)
     masks, C = cat; found = []; ntrip = 0; t0 = time.time()
-    # unknown-part functionals: for each beta, the 9 catalogue coordinates dual[(i,j)][beta] with sign (-1)^{alpha.a_ij}
+    # unknown-part functionals: for each beta, the 9 catalog coordinates dual[(i,j)][beta] with sign (-1)^{alpha.a_ij}
     Hfree = H16[:, [a for a, _, _ in free]]                                 # 16 x 9
     cols = np.array([[dual[(i, j)][b] for _, i, j in free] for b in range(40)])   # 40 x 9
-    # order betas: most constraining first (fewest distinct catalogue coordinates)
+    # order betas: most constraining first (fewest distinct catalog coordinates)
     border = sorted(range(40), key=lambda b: len(set(cols[b])))
     Hf16 = Hfree.T.astype(np.int16)
     U = [C[:, cols[b]].astype(np.int16) @ Hf16 for b in range(40)]          # 40 x (N x 16)
