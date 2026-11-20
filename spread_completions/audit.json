@@ -1,0 +1,20 @@
+{
+  "exact_covers": 1124,
+  "cover_digest": "8ce19084ac1d165d82c659ce0e6a2284de56aba7ae35e69ef773bd0fcca0f876",
+  "cp_sat_status": "OPTIMAL",
+  "I10_graphs": 24,
+  "all_graphs": 25,
+  "shared_reference_classes": 10,
+  "distinct_clique_profiles": 25,
+  "shared_profile_matches": 0,
+  "automorphism_orders": {
+    "144": 1,
+    "216": 3,
+    "288": 2,
+    "432": 9,
+    "864": 2,
+    "1296": 3,
+    "2592": 1,
+    "5184": 4
+  }
+}

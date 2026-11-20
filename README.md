@@ -33,6 +33,10 @@ Their complements are also realized.
 - **68 graphs that are not vertex-transitive** (1 each at k = 385, 420 and 33 each at k = 560, 592) come from a
   switching of the binary fibers of our Cayley graphs; see [`switching/`](switching/) and Section 6.4 of the paper.
   They were found by GPT 6.2 Astra (OpenAI) after an audit of the paper.
+- **25 spread completions with parameters (1296, 595, 274, 272)**: exactly 25 classes contain a spanning copy of one of
+  I.1–I.14 (Lemma 6.4: spanning LS₁₇ ⊃ LS₁₆ ⇔ partition into 36-cocliques). Three are abelian Cayley graphs, one is a
+  Cayley graph only of non-abelian groups, one is vertex-transitive but not Cayley, and 20 are not vertex-transitive;
+  see [`spread_completions/`](spread_completions/) and Section 6.5 of the paper.
 - Status of the rows: Brouwer's table (checked 14 October 2026) lists (1296, 560, 244, 240) and (1296, 592, 268, 272)
   as realized, citing this work. The rows with k = 525, 490, 455, 420, 385 were open when this work began.
 

@@ -1,0 +1,7 @@
+
+regular [ 1296, 2848 ]  abelian=false  orbit=1296  stabilizer=1
+regular [ 1296, 2797 ]  abelian=false  orbit=1296  stabilizer=1
+regular [ 1296, 2848 ]  abelian=false  orbit=1296  stabilizer=1
+regular [ 1296, 2797 ]  abelian=false  orbit=1296  stabilizer=1
+FINISHED candidate subgroup classes 23  regular types 
+[ [ 1296, 2797 ], [ 1296, 2848 ] ]
